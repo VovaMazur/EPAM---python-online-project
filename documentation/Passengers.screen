@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model:Screen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://wireframesketcher.com/1.0/model.ecore">
+  <widgets xsi:type="model:WidgetGroup" id="1" x="64" y="11" measuredWidth="553" measuredHeight="241">
+    <widgets xsi:type="model:TabbedPane" id="2" width="553" height="241" text="Events,Passengers" measuredWidth="553" measuredHeight="241" selection="1">
+      <items x="10" y="0" width="55" height="27" text="Events"/>
+      <items x="65" y="0" width="79" height="27" text="Passengers"/>
+      <font/>
+    </widgets>
+    <widgets xsi:type="model:Button" id="3" x="503" y="52" text="add" measuredWidth="40" measuredHeight="25" background="#0f0">
+      <font/>
+    </widgets>
+    <widgets xsi:type="model:Label" id="5" x="10" y="53" text="status:" measuredWidth="40" measuredHeight="23">
+      <font/>
+    </widgets>
+    <widgets xsi:type="model:Button" id="8" x="184" y="52" measuredWidth="36" measuredHeight="25" icon="reload (small)">
+      <font/>
+    </widgets>
+    <widgets xsi:type="model:HLine" id="9" y="93" width="553" measuredWidth="553" measuredHeight="6"/>
+    <widgets xsi:type="model:TextField" id="10" x="11" y="109" text="ID" measuredWidth="22" measuredHeight="23" background="#ccc">
+      <font/>
+    </widgets>
+    <widgets xsi:type="model:TextField" id="11" x="34" y="109" text="FirstName" measuredWidth="65" measuredHeight="23" background="#ccc">
+      <font/>
+    </widgets>
+    <widgets xsi:type="model:TextField" id="12" x="98" y="109" text="LastName" measuredWidth="64" measuredHeight="23" background="#ccc">
+      <font/>
+    </widgets>
+    <widgets xsi:type="model:TextField" id="13" x="161" y="109" text="SeatNo" measuredWidth="49" measuredHeight="23" background="#ccc">
+      <font/>
+    </widgets>
+    <widgets xsi:type="model:TextField" id="14" x="209" y="109" text="Address" measuredWidth="53" measuredHeight="23" background="#ccc">
+      <font/>
+    </widgets>
+    <widgets xsi:type="model:TextField" id="15" x="262" y="109" text="Date of Birth" measuredWidth="77" measuredHeight="23" background="#ccc">
+      <font/>
+    </widgets>
+    <widgets xsi:type="model:TextField" id="16" x="338" y="109" text="Status" measuredWidth="43" measuredHeight="23" background="#ccc">
+      <font/>
+    </widgets>
+    <widgets xsi:type="model:Button" id="17" x="432" y="141" measuredWidth="36" measuredHeight="25" icon="edit (small)">
+      <font/>
+    </widgets>
+    <widgets xsi:type="model:Button" id="18" x="472" y="141" measuredWidth="36" measuredHeight="25" icon="trash (small)">
+      <font/>
+    </widgets>
+    <widgets xsi:type="model:Combo" id="20" x="49" y="53" text="select from the list" measuredWidth="124" measuredHeight="23">
+      <font/>
+    </widgets>
+    <widgets xsi:type="model:Alert" id="21" x="111" y="61" text="Delete passenger info&#xA;Do you want to delete the data permanently?&#xA;OK,Cancel" measuredWidth="325" measuredHeight="132" icon="warning (large)">
+      <items x="135" y="93" width="80" height="24" text="OK"/>
+      <items x="230" y="93" width="80" height="24" text="Cancel"/>
+      <font/>
+    </widgets>
+  </widgets>
+  <hRuler/>
+  <vRuler/>
+  <font size="12px"/>
+</model:Screen>
