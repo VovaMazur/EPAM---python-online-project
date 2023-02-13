@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manifest</title>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="events.html">Events</a></li>
+            <li><a href="passengers.html">Passengers</a></li>
+        </ul>
+    </nav>
+    <div>
+        <button onclick="location.href='events.html';">cancel</button>
+        <button type="submit" form="event-details">save</button>
+    </div>
+    <main>
+        <h1>Calling data</h1>
+
+        <form action="events.html" id="event-details">
+            <label for="edate">Date</label>
+            <input type="date" id="edate"><br>
+            
+            <label for="epassenger">Passenger</label>
+            <select name="epassenger" id="epassenger">
+                <option value="Mike Jordan">Mike Jordan</option>
+                <option value="Tim Cook">Tim Cook</option>
+            </select><br>
+
+            <label for="geoloc">Geo location</label>
+            <input type="text" id="geoloc" placeholder="Pick a point on the map"><br>
+
+            <label for="edescription">Description</label>
+            <input type="text" id="edescription" placeholder="Short description of event"><br>
+
+            <label for="estatus">Status</label>
+            <select name="estatus" id="estatus">
+                <option value="Unknown">Unknown</option>
+                <option value="Success">Success</option>
+                <option value="Failed">Failed</option>
+            </select><br>
+            
+            <label for="eothers">Other passengers</label>
+            <select name="eothers" id="eothers" multiple>
+                <option value="Mike Jordan">Mike Jordan</option>
+                <option value="Tim Cook">Tim Cook</option>
+            </select><br>
+
+            <label for="ecomment">Comments</label>
+            <input type="text" id="ecomment" placeholder="Add comments">
+        </form>
+    </main>
+</body>
+</html>

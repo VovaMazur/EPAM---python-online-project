@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manifest</title>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="events.html">Events</a></li>
+            <li><a href="passengers.html">Passengers</a></li>
+        </ul>
+    </nav>
+    <div>
+        <form action="events.html">
+            <label for="date1">date from: </label>
+            <input type="date" id="date1">
+            <label for="date2">  to: </label>
+            <input type="date" id="date2">
+            <button type="submit">refresh</button>
+        </form>
+        <button onclick="location.href='eventform.html';">add</button>
+    </div>
+    <main>
+        <h1>List of callings</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Date</th>
+                    <th>Passenger</th>
+                    <th>Location</th>
+                    <th>Description</th>
+                    <th>Status</th>
+                    <th>Other passengers</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>12</td>
+                    <td>2022-10-12</td>
+                    <td>Mike Jordan</td>
+                    <td>10.3345, 34.23566</td>
+                    <td>I see the volcano errupting</td>
+                    <td>Ongoing</td>
+                    <td>Ben Stone, Mac Stone</td>
+                    <td>
+                        <button onclick="location.href='eventform.html';">edit</button>
+                        <button onclick="confirm('Do you want to delete the event permanently?');">delete</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </main>
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manifest</title>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="events.html">Events</a></li>
+            <li><a href="passengers.html">Passengers</a></li>
+        </ul>
+    </nav>
+    <div>
+        <form action="passengers.html">
+            <label for="pstatus">status: </label>
+            <select name="pstatus" id="pstatus">
+                <option value="unknown">Unknown</option>
+                <option value="alive">Alive</option>
+                <option value="dead">Dead</option>
+            </select>
+            <button type="submit">refresh</button>
+        </form>
+        <button onclick="location.href='passform.html';">add</button>
+    </div>
+    <main>
+        <h1>List of "828 air flight" passengers</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>First name</th>
+                    <th>Last name</th>
+                    <th>Seat#</th>
+                    <th>Address</th>
+                    <th>Date of birth</th>
+                    <th>Status</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>Mike</td>
+                    <td>Jordan</td>
+                    <td>12A</td>
+                    <td>NY, Central park</td>
+                    <td>1980-01-01</td>
+                    <td>alive</td>
+                    <td>
+                        <button onclick="location.href='passform.html';">edit</button>
+                        <button onclick="confirm('Do you want to delete the data permanently?');">delete</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </main>
+</body>
+</html>
