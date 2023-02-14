@@ -3,10 +3,18 @@ language: python
 python:
   - "3.6"      # current default Python on Travis CI
 
+
 # command to install dependencies
 install:
   - pip install -r requirements.txt
+  - pip install python-coveralls
+  - pip install pylint
 
-# command to run tests
+
+# command to run code checker & tests
 script:
+  - pylint manifest-app --output-format=text:checker_report.txt
   - pytest
+
+after_success:
+  - coveralls
