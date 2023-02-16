@@ -1,1 +1,3 @@
-# to be able to import from another folder
+#
+
+from .models import Event, Passenger

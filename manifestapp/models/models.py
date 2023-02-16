@@ -1,10 +1,10 @@
-from manifestapp import db
+from manifestapp.db_instance import db
 
 class Event(db.Model):
     __tablename__ = 'events'
     id = db.Column(db.Integer, primary_key=True)
     date = db.Column(db.Date, nullable=False)
-    passengerID = db.Column(db.Integer, db.ForeignKey('passenger.id'), nullable=False)
+    passengerID = db.Column(db.Integer, db.ForeignKey('passengers.id'), nullable=False)
     geo_location = db.Column(db.String(50), nullable=False)
     description = db.Column(db.String(90), nullable=False)
     status = db.Column(db.String(10), nullable=False)
