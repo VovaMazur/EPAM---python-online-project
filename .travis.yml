@@ -13,7 +13,7 @@ install:
 
 # command to run code checker & tests
 script:
-  - pylint manifest-app --output-format=text #:checker_report.txt
+  - pylint manifestapp --output-format=text #:checker_report.txt
 #  - pytest
 
 after_success:
