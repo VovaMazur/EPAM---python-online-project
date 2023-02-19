@@ -1,5 +1,6 @@
 alembic==1.9.3
 aniso8601==9.0.1
+attrs==22.2.0
 click==8.1.3
 colorama==0.4.6
 Flask==2.2.2
@@ -12,14 +13,17 @@ greenlet==2.0.2
 gunicorn==20.1.0
 itsdangerous==2.1.2
 Jinja2==3.1.2
+jsonschema==4.17.3
 Mako==1.2.4
 MarkupSafe==2.1.2
 mysql-connector-python==8.0.32
 mysqlclient==2.1.1
 permissive-dict==1.0.4
 protobuf==3.20.3
+pyrsistent==0.19.3
 pytz==2022.7.1
 six==1.16.0
 SQLAlchemy==2.0.3
 typing_extensions==4.5.0
+waitress==2.1.2
 Werkzeug==2.2.3
