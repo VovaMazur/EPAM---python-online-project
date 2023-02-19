@@ -1,10 +1,12 @@
+"""Passenger API main functionality"""
 from flask_restful import Resource
-from manifestapp.models import Passenger
-from manifestapp.logger import logger_setup
 from jsonschema import validate
 from flask import request
+from manifestapp.models import Passenger
+from manifestapp.logger import logger_setup
 
-logger = logger_setup(__name__, '%(levelname)s::%(name)s::%(asctime)s::%(message)s', 'apicalls.log', 'DEBUG')
+logger = logger_setup(__name__, '%(levelname)s::%(name)s::%(asctime)s'
+                                '::%(message)s', 'apicalls.log', 'DEBUG')
 
 
 error_msgs = [
@@ -54,20 +56,21 @@ class PassengerApi(Resource):
                 logger.debug(f'Get all items. Status code: {resp.status_code}')
             return resp
 
-        else:
-            if pass_id.isdigit():
-                item = Passenger.query.get(pass_id)
-                if not item:
-                    logger.error(f'Item with id {pass_id} not found. Status code: {error_msgs[1][1]}')
-                    return error_msgs[1][0], error_msgs[1][1]
+        if pass_id.isdigit():
+            item = Passenger.query.get(pass_id)
+            if not item:
+                logger.error(f'Item with id {pass_id} not found. '
+                             f'Status code: {error_msgs[1][1]}')
+                return error_msgs[1][0], error_msgs[1][1]
 
-                resp = Passenger.fs_json_list([item])
-                logger.debug(f'Get item with id {pass_id}. Status code: {resp.status_code}')
-                return resp
+            resp = Passenger.fs_json_list([item])
+            logger.debug(f'Get item with id {pass_id}. '
+                         f'Status code: {resp.status_code}')
+            return resp
 
-            else:
-                logger.error(f'GET method. Invalid pass_id parameter. Status code: {error_msgs[0][1]}')
-                return error_msgs[0][0], error_msgs[0][1]
+        logger.error(f'GET method. Invalid pass_id parameter. '
+                     f'Status code: {error_msgs[0][1]}')
+        return error_msgs[0][0], error_msgs[0][1]
 
     def delete(self, pass_id):
         """DELETE method to delete passenger record"""
@@ -75,13 +78,16 @@ class PassengerApi(Resource):
         if pass_id.isdigit():
             resp = Passenger.fs_get_delete_put_post(pass_id)
             if resp.__class__.__name__ == 'Response':
-                logger.debug(f'Item with id {pass_id} is deleted. Status code: {resp.status_code}')
+                logger.debug(f'Item with id {pass_id} is deleted. '
+                             f'Status code: {resp.status_code}')
             else:
-                logger.error(f'Error during item deletion. {resp}. Status code: 400')
+                logger.error(f'Error during item deletion. {resp}. '
+                             f'Status code: 400')
 
             return resp
 
-        logger.error(f'DELETE method. Invalid pass_id parameter. Status code: {error_msgs[0][1]}')
+        logger.error(f'DELETE method. Invalid pass_id parameter. '
+                     f'Status code: {error_msgs[0][1]}')
         return error_msgs[0][0], error_msgs[0][1]
 
     def post(self, pass_id):
@@ -91,9 +97,10 @@ class PassengerApi(Resource):
             payload = request.get_json()
             try:
                 validate(payload, schema=create_schema)
-            except Exception as e:
-                logger.error(f'POST method (create). Invalid payload. {str(e)}. Status code: 400')
-                return 'Your payload is incorrect. ' + str(e.message), 400
+            except Exception as error:
+                logger.error(f'POST method (create). '
+                             f'Invalid payload. {str(error)}. Status code: 400')
+                return 'Your payload is incorrect. ' + str(error), 400
 
             resp = Passenger.fs_get_delete_put_post()
             if resp.__class__.__name__ == 'Response':
@@ -106,20 +113,22 @@ class PassengerApi(Resource):
                 payload = request.get_json()
                 try:
                     validate(payload, schema=update_schema)
-                except Exception as e:
-                    logger.error(f'POST method (update). Invalid payload. {str(e)}. Status code: 400')
-                    return 'Your payload is incorrect.' + str(e.message), 400
+                except Exception as error:
+                    logger.error(f'POST method (update). Invalid payload. '
+                                 f'{str(error)}. Status code: 400')
+                    return 'Your payload is incorrect.' + str(error), 400
 
                 resp = Passenger.fs_get_delete_put_post(pass_id)
                 if resp.__class__.__name__ == 'Response':
-                    logger.debug(f'Item with id {pass_id} is updated. Status code: {resp.status_code}')
+                    logger.debug(f'Item with id {pass_id} is updated. '
+                                 f'Status code: {resp.status_code}')
                 else:
-                    logger.error(f'Error during update. {resp}. Status code: 400')
+                    logger.error(f'Error during update. {resp}. '
+                                 f'Status code: 400')
 
             else:
-                logger.error(f'POST method (update). Invalid pass_id {pass_id} parameter. Status code: {error_msgs[0][1]}')
+                logger.error(f'POST method (update). Invalid pass_id {pass_id} parameter. '
+                             f'Status code: {error_msgs[0][1]}')
                 return error_msgs[0][0], error_msgs[0][1]
 
         return resp
-
-

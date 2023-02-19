@@ -1,9 +1,10 @@
-from manifestapp.db_instance import db
+"""Data model definition for the application"""
 from flask_serialize import FlaskSerialize
+from manifestapp.db_instance import db
 
-fs_mixin = FlaskSerialize(db)
+FsMixin = FlaskSerialize(db)
 
-class Event(db.Model, fs_mixin):
+class Event(db.Model, FsMixin):
     """Class model to store event data"""
 
     __tablename__ = 'events'
@@ -17,9 +18,11 @@ class Event(db.Model, fs_mixin):
     comments = db.Column(db.String(140))
 
     # serializer fields
-    __fs_create_fields__ = __fs_update_fields__ = ['date', 'passengerID', 'geo_location', 'description', 'status', 'other_pass', 'comments']
+    __fs_create_fields__ = __fs_update_fields__ = ['date', 'passengerID', 'geo_location',
+                                                   'description', 'status', 'other_pass',
+                                                   'comments']
 
-class Passenger(db.Model, fs_mixin):
+class Passenger(db.Model, FsMixin):
     """Class model to store passenger data"""
 
     __tablename__ = 'passengers'
@@ -33,4 +36,5 @@ class Passenger(db.Model, fs_mixin):
     comments = db.Column(db.String(140))
 
     # serializer fields
-    __fs_create_fields__ = __fs_update_fields__ = ['fname', 'lname', 'seatno', 'address', 'dob', 'status', 'comments']
+    __fs_create_fields__ = __fs_update_fields__ = ['fname', 'lname',
+                                                   'seatno', 'address', 'dob', 'status', 'comments']

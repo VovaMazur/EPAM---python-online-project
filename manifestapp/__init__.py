@@ -1,5 +1,12 @@
+"""Manifest application module"""
+
 import os
 from flask import Flask
+from manifestapp.db_instance import db, migrate
+from manifestapp.models import Event, Passenger
+from manifestapp.rest import api
+from manifestapp.views import events_bp, passengers_bp
+
 
 def create_app():
     """Flask application factory"""
@@ -8,19 +15,15 @@ def create_app():
     application.config.from_pyfile('config.py')
 
     # Initialize Flask extensions here
-    from .db_instance import db, migrate
-    from manifestapp.models import Event, Passenger
     db.init_app(application)
 
-    MIGRATION_DIR = os.path.join('manifestapp', 'migrations')
-    migrate.init_app(application, db, directory=MIGRATION_DIR)
+    migration_dir = os.path.join('manifestapp', 'migrations')
+    migrate.init_app(application, db, directory=migration_dir)
 
-    from manifestapp.rest import api
     api.init_app(application)
 
 
     # Register blueprints here
-    from manifestapp.views import events_bp, passengers_bp
     application.register_blueprint(events_bp, url_prefix='/events')
     application.register_blueprint(passengers_bp, url_prefix='/passengers')
 

@@ -1,3 +1,4 @@
+"""Script to create mysql database"""
 import mysql.connector
 
 mydb = mysql.connector.connect(

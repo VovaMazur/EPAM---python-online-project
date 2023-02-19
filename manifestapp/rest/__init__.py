@@ -1,4 +1,4 @@
-#
+"""API module initiation"""
 from flask_restful import Api
 from .event_api import EventApi
 from .passenger_api import PassengerApi
