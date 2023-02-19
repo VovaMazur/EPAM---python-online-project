@@ -2,7 +2,7 @@ alembic
 aniso8601==9.0.1
 attrs==22.2.0
 click
-colorama==0.4.6
+colorama
 Flask==2.2.2
 Flask-Migrate==4.0.4
 Flask-MySQLdb==1.0.1
