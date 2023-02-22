@@ -7,13 +7,11 @@ python:
 # command to install dependencies
 install:
   - pip install -r requirements.txt
-  - pip install python-coveralls
-
 
 # command to run code checker & tests
 script:
   - pylint --exit-zero manifestapp
-#  - unittest
+  - coverage run -m unittest tests
 
 after_success:
   - coveralls

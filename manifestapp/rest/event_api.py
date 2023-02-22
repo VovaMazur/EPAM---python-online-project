@@ -1,8 +1,9 @@
 """Event API main functionality"""
 import datetime
+import json
 from flask_restful import Resource
 from jsonschema import validate, exceptions
-from flask import request
+from flask import request, Response
 from manifestapp.models import Event
 from manifestapp.logger import logger_setup
 
@@ -13,7 +14,9 @@ logger = logger_setup(__name__, '%(levelname)s::%(name)s::%(asctime)s'
 error_msgs = [
     [{'message': 'EventID parameter should be an integer'}, 400],
     [{'message': 'Event not found'}, 404],
-    [{'message': 'Date parameter should be a valid date, format YYYY-MM-DD'}, 400]
+    [{'message': 'Date parameter should be a valid date, format YYYY-MM-DD'}, 400],
+    [{'message': 'Incorrect payload'}, 400],
+    [{'message': 'Unknown error during record creation'}, 400]
 ]
 
 create_schema = {
@@ -67,23 +70,26 @@ class EventApi(Resource):
 
                 if (datefrom and not validatedate(datefrom)) or \
                         (dateto and not validatedate(dateto)):
+                    resp = Response(json.dumps(error_msgs[2][0]), error_msgs[2][1],
+                                    mimetype='application/json')
                     logger.error('Invalid %s parameter. '
                                  'Status code: %s', ("datefrom" if datefrom else "dateto"),
                                  error_msgs[2][1])
-                    return error_msgs[2][0], error_msgs[2][1]
-
-                if datefrom and dateto:
-                    items = Event.query.filter(Event.date >= datefrom, Event.date <= dateto).all()
-
-                elif datefrom:
-                    items = Event.query.filter(Event.date >= datefrom).all()
 
                 else:
-                    items = Event.query.filter(Event.date <= dateto).all()
+                    if datefrom and dateto:
+                        items = Event.query.filter(Event.date >= datefrom,
+                                                   Event.date <= dateto).all()
 
-                resp = Event.fs_json_list(items)
-                logger.debug('Get items from %s to %s. Status code: %s',
-                             datefrom, dateto, resp.status_code)
+                    elif datefrom:
+                        items = Event.query.filter(Event.date >= datefrom).all()
+
+                    else:
+                        items = Event.query.filter(Event.date <= dateto).all()
+
+                    resp = Event.fs_json_list(items)
+                    logger.debug('Get items from %s to %s. Status code: %s',
+                                 datefrom, dateto, resp.status_code)
             return resp
 
         if event_id.isdigit():
@@ -91,70 +97,87 @@ class EventApi(Resource):
             if not item:
                 logger.error('Item with id %s not found. Status code: %s',
                              event_id, error_msgs[1][1])
-                return error_msgs[1][0], error_msgs[1][1]
+                resp = Response(json.dumps(error_msgs[1][0]), error_msgs[1][1],
+                                mimetype='application/json')
 
-            resp = Event.fs_json_list([item])
-            logger.debug('Get item with id %s. Status code: %s',
-                         event_id, resp.status_code)
-            return resp
+            else:
+                resp = Event.fs_json_list([item])
+                logger.debug('Get item with id %s. Status code: %s',
+                             event_id, resp.status_code)
 
-        logger.error('GET method. Invalid event_id parameter. Status code: %s',
-                     error_msgs[0][1])
-        return error_msgs[0][0], error_msgs[0][1]
+        else:
+            logger.error('GET method. Invalid event_id (%s) parameter. Status code: %s',
+                         event_id, error_msgs[0][1])
+            resp = Response(json.dumps(error_msgs[0][0]), error_msgs[0][1],
+                            mimetype='application/json')
+
+        return resp
 
     def delete(self, event_id):
         """DELETE method to delete event record"""
 
         if event_id.isdigit():
-            resp = Event.fs_get_delete_put_post(event_id)
-            if resp.__class__.__name__ == 'Response':
+            item = Event.query.get(event_id)
+            if not item:
+                logger.error('Item with id %s not found. Status code: %s',
+                             event_id, error_msgs[1][1])
+                resp = Response(json.dumps(error_msgs[1][0]), error_msgs[1][1],
+                                mimetype='application/json')
+
+            else:
+                resp = Event.fs_get_delete_put_post(event_id)
                 logger.debug('Item with id %s is deleted. Status code: %s',
                              event_id, resp.status_code)
-            else:
-                logger.error('Error during item deletion. %s. Status code: 400', resp)
 
-            return resp
-
-        logger.error('DELETE method. Invalid event_id parameter. Status code: %s',
-                     error_msgs[0][1])
-        return error_msgs[0][0], error_msgs[0][1]
+        else:
+            resp = Response(json.dumps(error_msgs[0][0]), error_msgs[0][1],
+                            mimetype='application/json')
+            logger.error('DELETE method. Invalid event_id parameter. Status code: %s',
+                         error_msgs[0][1])
+        return resp
 
     def post(self, event_id=None):
         """POST method to create/update event record"""
 
-        if not event_id:
-            payload = request.get_json()
-            try:
+        payload = request.get_json()
+        try:
+            if not event_id:
                 validate(payload, schema=create_schema)
-            except exceptions.ValidationError as error:
-                logger.error('POST (create). Invalid payload. %s. Status code: 400', str(error))
-                return 'Your payload is incorrect. '+str(error), 400
-
-            resp = Event.fs_get_delete_put_post()
-            if resp.__class__.__name__ == 'Response':
-                logger.debug('Item is created. Status code: %s', resp.status_code)
             else:
-                logger.error('Error during item creation. %s. Status code: 400', resp)
+                validate(payload, schema=update_schema)
+
+        except exceptions.ValidationError as error:
+            logger.error('POST method. Invalid payload. %s. Status code: 400', str(error))
+            resp = Response(json.dumps(error_msgs[3][0]), error_msgs[3][1],
+                            mimetype='application/json')
 
         else:
-            if event_id.isdigit():
-                payload = request.get_json()
-                try:
-                    validate(payload, schema=update_schema)
-                except exceptions.ValidationError as error:
-                    logger.error('POST (update). Invalid payload. %s. Status code: 400', str(error))
-                    return 'Your payload is incorrect.' + str(error), 400
-
-                resp = Event.fs_get_delete_put_post(event_id)
+            if not event_id:
+                resp = Event.fs_get_delete_put_post()
                 if resp.__class__.__name__ == 'Response':
+                    logger.debug('Item is created. Status code: %s', resp.status_code)
+                else:
+                    logger.error('Error during item creation. %s. Status code: 400', resp)
+                    resp = Response(json.dumps(error_msgs[4][0]), error_msgs[4][1],
+                                    mimetype='application/json')
+
+            elif event_id.isdigit():
+                item = Event.query.get(event_id)
+                if not item:
+                    logger.error('Item with id %s not found. Status code: %s',
+                                 event_id, error_msgs[1][1])
+                    resp = Response(json.dumps(error_msgs[1][0]), error_msgs[1][1],
+                                    mimetype='application/json')
+
+                else:
+                    resp = Event.fs_get_delete_put_post(event_id)
                     logger.debug('Item with id %s is updated. Status code: %s',
                                  event_id, resp.status_code)
-                else:
-                    logger.error('Error during update. %s. Status code: 400', resp)
 
             else:
                 logger.error('POST (update). Invalid event_id %s parameter. Status code: %s',
                              event_id, error_msgs[0][1])
-                return error_msgs[0][0], error_msgs[0][1]
+                resp = Response(json.dumps(error_msgs[0][0]), error_msgs[0][1],
+                                mimetype='application/json')
 
         return resp

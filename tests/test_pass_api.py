@@ -1,0 +1,204 @@
+"""Tests for Passenger API module"""
+import unittest
+import json
+from manifestapp import create_app
+from manifestapp.rest import PassengerApi
+
+
+class TestPassengerAPI(unittest.TestCase):
+    app = create_app()
+    test_inst = PassengerApi()
+
+    def test_get_all_items(self):
+        test_resp = TestPassengerAPI.app.test_client().get('http://localhost:5000/passapi')
+        self.assertEqual(test_resp.status_code, 200)
+        self.assertTrue(test_resp.is_json)
+
+        test_resp = TestPassengerAPI.app.test_client().get('http://localhost:5000/passapi/all')
+        self.assertEqual(test_resp.status_code, 200)
+        self.assertTrue(test_resp.is_json)
+
+    def test_get_all_items_status(self):
+        test_resp = TestPassengerAPI.app.test_client().get('http://localhost:5000/passapi/all/live')
+        self.assertEqual(test_resp.status_code, 200)
+        self.assertTrue(test_resp.is_json)
+
+        test_resp = TestPassengerAPI.app.test_client().get('http://localhost:5000/passapi/all/dead')
+        self.assertEqual(test_resp.status_code, 200)
+        self.assertTrue(test_resp.is_json)
+
+        test_resp = TestPassengerAPI.app.test_client().get('http://localhost:5000/passapi/all/unknown')
+        self.assertEqual(test_resp.status_code, 200)
+        self.assertTrue(test_resp.is_json)
+
+    def test_get_specific_item(self):
+        test_resp = TestPassengerAPI.app.test_client().get('http://localhost:5000/passapi/2')
+        self.assertEqual(test_resp.status_code, 200)
+        self.assertTrue(test_resp.is_json)
+
+        test_resp = TestPassengerAPI.app.test_client().get('http://localhost:5000/passapi/3')
+        self.assertEqual(test_resp.status_code, 200)
+        self.assertTrue(test_resp.is_json)
+
+        test_resp = TestPassengerAPI.app.test_client().get('http://localhost:5000/passapi/10000')
+        self.assertEqual(test_resp.status_code, 404)
+        self.assertTrue(test_resp.is_json)
+
+        test_resp = TestPassengerAPI.app.test_client().get('http://localhost:5000/passapi/fgfdg')
+        self.assertEqual(test_resp.status_code, 400)
+        self.assertTrue(test_resp.is_json)
+
+    def test_create_delete_items(self):
+        test_item = {
+                        "address": "Somewhere",
+                        "comments": "",
+                        "dob": "1985-04-19",
+                        "fname": "Nick",
+                        "lname": "Nickelson",
+                        "seatno": "05A",
+                        "status": "live"
+                      }
+        headers = {'Content-Type': 'application/json'}
+
+        test_resp = TestPassengerAPI.app.test_client().post('http://localhost:5000/passapi', data=json.dumps(test_item), headers=headers)
+        self.assertEqual(test_resp.status_code, 200)
+        self.assertTrue(test_resp.is_json)
+        test_id = test_resp.json.get('id')
+
+        test_resp = TestPassengerAPI.app.test_client().delete('http://localhost:5000/passapi/'+str(test_id))
+        self.assertEqual(test_resp.status_code, 200)
+        self.assertTrue(test_resp.is_json)
+
+    def test_create_wrongpayload_items(self):
+        test_item = {
+                        "address": "Somewhere",
+                        "comments": "",
+                        "dob": "1985-04-19",
+                        "fname": "Nik",
+                        "lname": "Nickelson",
+                        "seatno": "05A",
+                        "status": "like" #wrong status
+                      }
+        headers = {'Content-Type': 'application/json'}
+        test_resp = TestPassengerAPI.app.test_client().post('http://localhost:5000/passapi', data=json.dumps(test_item), headers=headers)
+        self.assertEqual(test_resp.status_code, 400)
+        self.assertTrue(test_resp.is_json)
+
+        test_item = {
+                        "address": "Somewhere",
+                        "comments": "",
+                        "dob": "1985-04-19",
+                        "fname": "Nik",
+                        "lname": "Nickelson",
+                        "seatno": "AAA",  #wrong seatno
+                        "status": "live"
+                      }
+        test_resp = TestPassengerAPI.app.test_client().post('http://localhost:5000/passapi', data=json.dumps(test_item), headers=headers)
+        self.assertEqual(test_resp.status_code, 400)
+        self.assertTrue(test_resp.is_json)
+
+        long_str = 'k' * 46
+        test_item = {
+                        "address": "Somewhere",
+                        "comments": "",
+                        "dob": "1985-04-19",
+                        "fname": "Nik",
+                        "lname": long_str, #long lname
+                        "seatno": "05A",
+                        "status": "live"
+                      }
+        test_resp = TestPassengerAPI.app.test_client().post('http://localhost:5000/passapi', data=json.dumps(test_item), headers=headers)
+        self.assertEqual(test_resp.status_code, 400)
+        self.assertTrue(test_resp.is_json)
+
+        long_str = 'k' * 46
+        test_item = {
+                        "address": "Somewhere",
+                        "comments": "",
+                        "dob": "1985-04-19",
+                        "fname": long_str, #long fname
+                        "lname": "Nickelson",
+                        "seatno": "05A",
+                        "status": "live"
+                      }
+        test_resp = TestPassengerAPI.app.test_client().post('http://localhost:5000/passapi', data=json.dumps(test_item), headers=headers)
+        self.assertEqual(test_resp.status_code, 400)
+        self.assertTrue(test_resp.is_json)
+
+        long_str = 'k' * 101
+        test_item = {
+                        "address": long_str, #long address
+                        "comments": "",
+                        "dob": "1985-04-19",
+                        "fname": "Nik",
+                        "lname": "Nickelson",
+                        "seatno": "05A",
+                        "status": "live"
+                      }
+        test_resp = TestPassengerAPI.app.test_client().post('http://localhost:5000/passapi', data=json.dumps(test_item), headers=headers)
+        self.assertEqual(test_resp.status_code, 400)
+        self.assertTrue(test_resp.is_json)
+
+        long_str = 'k' * 141
+        test_item = {
+                        "address": "Somewhere",
+                        "comments": long_str, #long address
+                        "dob": "1985-04-19",
+                        "fname": "Nik",
+                        "lname": "Nickelson",
+                        "seatno": "05A",
+                        "status": "live"
+                      }
+        test_resp = TestPassengerAPI.app.test_client().post('http://localhost:5000/passapi', data=json.dumps(test_item), headers=headers)
+        self.assertEqual(test_resp.status_code, 400)
+        self.assertTrue(test_resp.is_json)
+
+    def test_create_update_delete_items(self):
+        test_item = {
+                        "address": "Somewhere",
+                        "comments": "",
+                        "dob": "1985-04-19",
+                        "fname": "Nik",
+                        "lname": "Nickelson",
+                        "seatno": "05A",
+                        "status": "live"
+                      }
+        headers = {'Content-Type': 'application/json'}
+
+        test_resp = TestPassengerAPI.app.test_client().post('http://localhost:5000/passapi', data=json.dumps(test_item), headers=headers)
+        self.assertEqual(test_resp.status_code, 200)
+        self.assertTrue(test_resp.is_json)
+        test_id = test_resp.json.get('id')
+        test_new_comment = {"comments": "NEW COMMENT"}
+
+        test_resp = TestPassengerAPI.app.test_client().post('http://localhost:5000/passapi/' + str(test_id), data=json.dumps(test_new_comment), headers=headers)
+        self.assertEqual(test_resp.status_code, 200)
+        self.assertTrue(test_resp.is_json)
+        self.assertEqual(test_resp.json.get('item').get('comments'), test_new_comment.get('comments'))
+
+        test_resp = TestPassengerAPI.app.test_client().delete('http://localhost:5000/passapi/'+ str(test_id))
+        self.assertEqual(test_resp.status_code, 200)
+        self.assertTrue(test_resp.is_json)
+
+    def test_delete_missing_invalid_items(self):
+        test_resp = TestPassengerAPI.app.test_client().delete('http://localhost:5000/passapi/dgdfg')
+        self.assertEqual(test_resp.status_code, 400)
+        self.assertTrue(test_resp.is_json)
+
+        test_resp = TestPassengerAPI.app.test_client().delete('http://localhost:5000/passapi/10000')
+        self.assertEqual(test_resp.status_code, 404)
+        self.assertTrue(test_resp.is_json)
+
+    def test_post_missing_invalid_items(self):
+        test_update = {"comments": "HAHA"}
+        headers = {'Content-Type': 'application/json'}
+        test_resp = TestPassengerAPI.app.test_client().post('http://localhost:5000/passapi/dgdfg', data=json.dumps(test_update), headers=headers)
+        self.assertEqual(test_resp.status_code, 400)
+        self.assertTrue(test_resp.is_json)
+ 
+        test_update = {"comments": "HAHA"}
+        headers = {'Content-Type': 'application/json'}
+        test_resp = TestPassengerAPI.app.test_client().post('http://localhost:5000/passapi/10000', data=json.dumps(test_update), headers=headers)
+        self.assertEqual(test_resp.status_code, 404)
+        self.assertTrue(test_resp.is_json)
+
