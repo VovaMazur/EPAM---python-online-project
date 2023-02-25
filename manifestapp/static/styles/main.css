@@ -1,0 +1,27 @@
+html, body {
+    height: 98%;
+    background-color: #5CDB95;
+}
+
+div {
+        height: 95%;
+        display: grid;
+        justify-content: center;
+        align-items: center;
+}
+
+img {
+    border-radius: 50%;
+    box-shadow: 0px 0px 76px 29px rgba(0, 0, 0, 0.4);
+}
+
+img:hover {
+    cursor: pointer;
+    transform: scale(1.03);
+}
+
+footer {
+    font-weight: bold;
+    font-size: 1.5rem;
+    padding: 10px;
+}

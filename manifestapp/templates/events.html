@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div>
+    <form action="{{ url_for('events.main') }}" id="Selector" method="POST">
+        <label for="datefrom">date from: </label>
+        <input type="date" id="datefrom" name="datefrom" value="{{dates[0]}}">
+
+        <label for="dateto">  to: </label>
+        <input type="date" id="dateto" name="dateto" value="{{dates[1]}}">
+
+        <label for="filtPassenger">filter by passenger:</label>
+        <select name="filter" id="filtPassenger">
+            {% for p in passengers %}
+            <option value="{{ p }}"
+                {% if selected_pass == passengers[p] %} 
+                    selected="selected"
+                {% endif %}>
+                {{ passengers[p] }}</option>
+            {% endfor %}
+        </select>
+
+        <button type="submit" form="Selector"><i class="fa-solid fa-arrows-rotate"></i></button>
+    </form>
+
+    <button onclick="location.href='{{ url_for('events.edit', item='add') }}';"><i class="fa-regular fa-square-plus"></i></i></button>
+
+</div>
+
+<main>
+    <h1>828 air flight</h1>
+    <h2>Registered callings of passenger(s): {{ selected_pass }}</h2>
+    <h3>between {{ dates[0] }} and {{ dates[1] }}</h3>
+
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Date</th>
+                <th>Passenger</th>
+                <th>Location</th>
+                <th>Description</th>
+                <th>Status</th>
+                <th>Other passengers</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for event in events %}
+            <tr>
+                <td>{{event.id}}</td>
+                <td>{{event.date}}</td>
+                <td>{{event.passenger}}</td>
+                <td>{{event.geo_location}}</td>
+                <td>{{event.description}}</td>
+                <td>{{event.status}}</td>
+                <td>{{event.other_pass}}</td>
+                <td>
+                    <button type="button" onclick="location.href='{{ url_for("events.edit", item=event.id) }}';"><i class="fa-solid fa-pencil"></i></button>
+                    <button type="button" onclick="if (confirm('Do you want to delete the item permanently?')) {location.href='{{ url_for("events.delete", item=event.id) }}';}"><i class="fa-regular fa-trash-can"></i></button>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+
+</main>
+{% endblock %}

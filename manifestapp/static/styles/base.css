@@ -1,0 +1,12 @@
+html,
+body {
+    background-color: #5CDB95;
+}
+
+input, select, button {
+    background-color: transparent;
+}
+
+button:hover {
+    cursor: pointer;
+}

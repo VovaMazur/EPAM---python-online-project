@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='images/icons8-star-filled-color-16.png') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/base.css') }}" type="text/css">
+    <title>Manifest TV - events tracker</title>
+    <script src="https://kit.fontawesome.com/870bdadc6a.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="{{ url_for('events.main') }}">Events</a></li>
+            <li><a href="{{ url_for('passengers.main') }}">Passengers</a></li>
+        </ul>
+    </nav>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+           {% for category, message in messages %}
+              <div id="div_flash" class="category">
+                  <button type="button" onclick="removeFlash()">
+                      <span>&times;</span>
+                  </button>
+                  {{ message }}
+              </div>
+           {% endfor %}
+        {% endif %}
+    {% endwith %}
+
+
+    {% block content %}
+
+    {% endblock %}
+
+</body>
+</html>
+
+<script>
+    function removeFlash() {
+        document.getElementById('div_flash').remove();
+    }
+</script>
+
+    <!-- <div>
+        <i class="fa-solid fa-arrows-rotate"></i>
+        <i class="fa-regular fa-square-plus"></i>
+        <i class="fa-solid fa-filter"></i>
+        <i class="fa-solid fa-pencil"></i>
+        <i class="fa-regular fa-trash-can"></i>
+        <i class="fa-regular fa-circle-check"></i>
+        <i class="fa-regular fa-circle-xmark"></i>
+    </div> -->

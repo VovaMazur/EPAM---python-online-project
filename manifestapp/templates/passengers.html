@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div>
+    <form action="{{ url_for('passengers.main') }}" id="status" method="POST">
+        
+        <label for="pstatus">status: </label>
+        <select name="selected_status" id="pstatus">
+            <option value="all">All</option>
+            <option value="unknown">Unknown</option>
+            <option value="live">Live</option>
+            <option value="dead">Dead</option>
+        </select>
+        
+        <button type="submit" form="status"><i class="fa-solid fa-arrows-rotate"></i></button>
+    </form>
+
+    <button onclick="location.href='{{ url_for('passengers.edit', item='add') }}';"><i class="fa-regular fa-square-plus"></i></i></button>
+
+</div>
+
+<main>
+    <h1>828 air flight</h1>
+    <h2>List of passengers</h2>
+    <h3>having "status": {{ cur_status }} </h3>
+
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>First name</th>
+                <th>Last name</th>
+                <th>Seat#</th>
+                <th>Address</th>
+                <th>Date of birth</th>
+                <th>Status</th>
+                <th>No of callings</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for passenger in passengers %}
+            <tr>
+                <td>{{passenger.id}}</td>
+                <td>{{passenger.fname}}</td>
+                <td>{{passenger.lname}}</td>
+                <td>{{passenger.seatno}}</td>
+                <td>{{passenger.address}}</td>
+                <td>{{passenger.dob}}</td>
+                <td>{{passenger.status}}</td>
+                <td>{{passenger.callings}}</td>
+                <td>
+                    <button type="button" onclick="location.href='{{ url_for("passengers.edit", item=passenger.id) }}';"><i class="fa-solid fa-pencil"></i></button>
+                    <button type="button" onclick="if (confirm('Do you want to delete the item permanently?')) {location.href='{{ url_for("passengers.delete", item=passenger.id) }}';}"><i class="fa-regular fa-trash-can"></i></button>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+
+</main>
+
+{% endblock %}

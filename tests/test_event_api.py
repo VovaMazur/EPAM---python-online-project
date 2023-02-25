@@ -18,25 +18,58 @@ class TestEventAPI(unittest.TestCase):
         self.assertEqual(test_resp.status_code, 200)
         self.assertTrue(test_resp.is_json)
 
+        test_resp = TestEventAPI.app.test_client().get('http://localhost:5000/eventapi/all/all')
+        self.assertEqual(test_resp.status_code, 200)
+        self.assertTrue(test_resp.is_json)
+
+    def test_get_all_events_for_pass(self):
+        test_resp = TestEventAPI.app.test_client().get('http://localhost:5000/eventapi/all/5')
+        self.assertEqual(test_resp.status_code, 200)
+        self.assertTrue(test_resp.is_json)
+
+        test_resp = TestEventAPI.app.test_client().get('http://localhost:5000/eventapi/all/1')
+        self.assertEqual(test_resp.status_code, 200)
+        self.assertTrue(test_resp.is_json)
+
+        test_resp = TestEventAPI.app.test_client().get('http://localhost:5000/eventapi/all/10000')
+        self.assertEqual(test_resp.status_code, 404)
+        self.assertTrue(test_resp.is_json)
+
+        test_resp = TestEventAPI.app.test_client().get('http://localhost:5000/eventapi/all/tyty')
+        self.assertEqual(test_resp.status_code, 200)
+        self.assertTrue(test_resp.is_json)
+
     def test_get_all_events_from_to(self):
-        test_resp = TestEventAPI.app.test_client().get('http://localhost:5000/eventapi/all/2022-01-01')
+        test_resp = TestEventAPI.app.test_client().get('http://localhost:5000/eventapi/all/all/2022-01-01')
         self.assertEqual(test_resp.status_code, 200)
         self.assertTrue(test_resp.is_json)
 
-        test_resp = TestEventAPI.app.test_client().get('http://localhost:5000/eventapi/all/2022-01-01/2022-12-31')
+        test_resp = TestEventAPI.app.test_client().get('http://localhost:5000/eventapi/all/all/2022-01-01/2022-12-31')
         self.assertEqual(test_resp.status_code, 200)
         self.assertTrue(test_resp.is_json)
 
-        test_resp = TestEventAPI.app.test_client().get('http://localhost:5000/eventapi/all/-/2022-12-31')
+        test_resp = TestEventAPI.app.test_client().get('http://localhost:5000/eventapi/all/all/-/2022-12-31')
         self.assertEqual(test_resp.status_code, 200)
         self.assertTrue(test_resp.is_json)
 
-        test_resp = TestEventAPI.app.test_client().get('http://localhost:5000/eventapi/all/rtert/2022-12-31')
+        test_resp = TestEventAPI.app.test_client().get('http://localhost:5000/eventapi/all/all/rtert/2022-12-31')
         self.assertEqual(test_resp.status_code, 400)
         self.assertTrue(test_resp.is_json)
 
-        test_resp = TestEventAPI.app.test_client().get('http://localhost:5000/eventapi/all/2022-01-01/ff31')
+        test_resp = TestEventAPI.app.test_client().get('http://localhost:5000/eventapi/all/all/2022-01-01/ff31')
         self.assertEqual(test_resp.status_code, 400)
+        self.assertTrue(test_resp.is_json)
+
+        test_resp = TestEventAPI.app.test_client().get('http://localhost:5000/eventapi/all/5/2022-01-01')
+        self.assertEqual(test_resp.status_code, 200)
+        self.assertTrue(test_resp.is_json)
+
+        test_resp = TestEventAPI.app.test_client().get('http://localhost:5000/eventapi/all/5/2022-01-01/2022-12-31')
+        self.assertEqual(test_resp.status_code, 200)
+        self.assertTrue(test_resp.is_json)
+
+        test_resp = TestEventAPI.app.test_client().get('http://localhost:5000/eventapi/all/5/-/2022-12-31')
+        self.assertEqual(test_resp.status_code, 200)
         self.assertTrue(test_resp.is_json)
 
     def test_get_specific_events(self):

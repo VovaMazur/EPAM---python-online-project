@@ -1,3 +1,3 @@
 """Routes initiation"""
-from .events import events_bp
-from .passengers import passengers_bp
+from .events_view import events_bp
+from .passengers_view import passengers_bp

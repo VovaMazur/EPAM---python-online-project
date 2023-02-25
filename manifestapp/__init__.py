@@ -1,7 +1,6 @@
 """Manifest application module"""
-
 import os
-from flask import Flask
+from flask import Flask, render_template
 from manifestapp.db_instance import db, migrate
 from manifestapp.models import Event, Passenger
 from manifestapp.rest import api
@@ -14,24 +13,23 @@ def create_app():
     application = Flask(__name__)
     application.config.from_pyfile('config.py')
 
-    # Initialize Flask extensions here
-    db.init_app(application)
+    with application.app_context():
+        # Initialize Flask extensions here
+        db.init_app(application)
 
-    migration_dir = os.path.join('manifestapp', 'migrations')
-    migrate.init_app(application, db, directory=migration_dir)
+        migration_dir = os.path.join('manifestapp', 'migrations')
+        migrate.init_app(application, db, directory=migration_dir)
 
-    api.init_app(application)
+        api.init_app(application)
 
-
-    # Register blueprints here
-    application.register_blueprint(events_bp, url_prefix='/events')
-    application.register_blueprint(passengers_bp, url_prefix='/passengers')
-
+        # Register blueprints here
+        application.register_blueprint(events_bp, url_prefix='/events')
+        application.register_blueprint(passengers_bp, url_prefix='/passengers')
 
     @application.route('/')
-    def home_page():
+    def title_page():
         """Function for home route"""
 
-        return '<h1>Testing the Flask Application Factory Pattern</h1>'
+        return render_template('main.html')
 
     return application

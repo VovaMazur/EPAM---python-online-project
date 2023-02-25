@@ -14,6 +14,7 @@ api.add_resource(PassengerApi,
 api.add_resource(EventApi,
                 '/eventapi',
                 '/eventapi/all',
-                '/eventapi/<event_id>',
-                '/eventapi/<event_id>/<datefrom>',
-                '/eventapi/<event_id>/<datefrom>/<dateto>')
+                '/eventapi/all/<pass_id>',
+                '/eventapi/all/<pass_id>/<datefrom>',
+                '/eventapi/all/<pass_id>/<datefrom>/<dateto>',
+                '/eventapi/<event_id>')

@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div>
+    <button type="submit" form="event-details"><i class="fa-regular fa-circle-check"></i></button>
+    <button type="button" onclick="location.href='{{ url_for('events.main') }}';"><i class="fa-regular fa-circle-xmark"></i></button>
+</div>
+<main>
+    <h1>Calling details:</h1>
+
+    <form action="{{ url_for("events.edit", item=item) }}" id="event-details" method="POST">
+        <label for="edate">Date*</label>
+        <input type="date" id="edate" name="date" value="{{ data.date }}" required><br>
+        
+        <label for="epassenger">Passenger*</label>
+        <select name="passengerID" id="epassenger" required>
+            {% for p in passengers %}
+                <option value="{{ p }}"
+                    {% if p == data.passengerID %}
+                        selected="selected"
+                    {% endif %}>
+                {{ passengers[p] }}</option>
+            {% endfor %}
+        </select><br>
+
+        <label for="geoloc">Geo location*</label>
+        <input type="text" id="geoloc" name="geo_location" placeholder="Format for lat & long > 'xx.xxx, xx.xxx'" value="{{ data.geo_location }}" required><br>
+
+        <label for="edescription">Description*</label>
+        <input type="text" id="edescription" name="description" placeholder="Short description of event" maxlength="90" value="{{ data.description }}" required><br>
+
+        <label for="estatus">Status*</label>
+        <select name="status" id="estatus" required>
+            <option value="unknown" 
+                    {% if data.status == 'unknown' %}
+                        selected="selected"
+                    {% endif %}>Unknown</option>
+
+            <option value="success"
+                    {% if data.status == 'success' %}
+                        selected="selected"
+                    {% endif %}>Success</option>
+
+            <option value="failure"
+                    {% if data.status == 'failure' %}
+                        selected="selected"
+                    {% endif %}>Failure</option>
+        </select><br>
+        
+        <label for="eothers">Other passengers</label>
+        <select name="other_pass" id="eothers" multiple>
+            {% for p in passengers %}
+                <option value="{{ p }}"
+                    {% if p in data.other_pass %}
+                        selected="selected"
+                    {% endif %}
+                >{{ passengers[p] }}</option>
+            {% endfor %}
+        </select><br>
+
+        <label for="ecomment">Comments</label>
+        <input type="text" id="ecomment" name="comments" placeholder="Add comments" maxlength="140" value="{{ data.comments }}">
+    </form>
+</main>
+
+{% endblock %}

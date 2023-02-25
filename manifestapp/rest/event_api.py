@@ -13,7 +13,7 @@ logger = logger_setup(__name__, '%(levelname)s::%(name)s::%(asctime)s'
 
 error_msgs = [
     [{'message': 'EventID parameter should be an integer'}, 400],
-    [{'message': 'Event not found'}, 404],
+    [{'message': 'Event(s) not found'}, 404],
     [{'message': 'Date parameter should be a valid date, format YYYY-MM-DD'}, 400],
     [{'message': 'Incorrect payload'}, 400],
     [{'message': 'Unknown error during record creation'}, 400]
@@ -54,42 +54,75 @@ def validatedate(datestring):
         return False
 
 
+def getdata(passid=None, datefrom=None, dateto=None):
+    """function to fetch the database"""
+
+    passid = None if not passid.isdigit() else int(passid)
+
+    if passid:
+        if datefrom and dateto:
+            items = Event.query.filter(Event.date >= datefrom,
+                                       Event.date <= dateto,
+                                       Event.passengerID == passid).all()
+        elif datefrom:
+            items = Event.query.filter(Event.date >= datefrom,
+                                       Event.passengerID == passid).all()
+
+        elif dateto:
+            items = Event.query.filter(Event.date <= dateto,
+                                       Event.passengerID == passid).all()
+
+        else:
+            items = Event.query.filter(Event.passengerID == passid).all()
+
+
+    else:
+        if datefrom and dateto:
+            items = Event.query.filter(Event.date >= datefrom,
+                                       Event.date <= dateto).all()
+        elif datefrom:
+            items = Event.query.filter(Event.date >= datefrom).all()
+
+        elif dateto:
+            items = Event.query.filter(Event.date <= dateto).all()
+
+        else:
+            items = Event.query.all()
+
+    return items
+
+
 class EventApi(Resource):
     """API class for events data"""
 
-    def get(self, event_id='all', datefrom=None, dateto=None):
+    def get(self, event_id='all', pass_id='all', datefrom=None, dateto=None):
         """GET method to retrieve events data"""
 
+        datefrom = None if datefrom in ('-', 'None') else datefrom
+        dateto = None if dateto in ('-', 'None') else dateto
+
+
         if event_id == 'all':
-            if not (datefrom or dateto):
-                resp = Event.fs_get_delete_put_post()
-                logger.debug('Get all items. Status code: %s', resp.status_code)
+            if (datefrom and not validatedate(datefrom)) or \
+                    (dateto and not validatedate(dateto)):
+                resp = Response(json.dumps(error_msgs[2][0]), error_msgs[2][1],
+                                mimetype='application/json')
+                logger.error('Invalid %s parameter. '
+                             'Status code: %s', ("datefrom" if datefrom else "dateto"),
+                             error_msgs[2][1])
 
             else:
-                datefrom = None if datefrom == '-' else datefrom
-
-                if (datefrom and not validatedate(datefrom)) or \
-                        (dateto and not validatedate(dateto)):
-                    resp = Response(json.dumps(error_msgs[2][0]), error_msgs[2][1],
-                                    mimetype='application/json')
-                    logger.error('Invalid %s parameter. '
-                                 'Status code: %s', ("datefrom" if datefrom else "dateto"),
-                                 error_msgs[2][1])
-
-                else:
-                    if datefrom and dateto:
-                        items = Event.query.filter(Event.date >= datefrom,
-                                                   Event.date <= dateto).all()
-
-                    elif datefrom:
-                        items = Event.query.filter(Event.date >= datefrom).all()
-
-                    else:
-                        items = Event.query.filter(Event.date <= dateto).all()
-
+                items = getdata(passid=pass_id, datefrom=datefrom, dateto=dateto)
+                if items:
                     resp = Event.fs_json_list(items)
-                    logger.debug('Get items from %s to %s. Status code: %s',
-                                 datefrom, dateto, resp.status_code)
+                    logger.debug('Get items. Passid:%s, datefrom:%s, dateto:%s. Status code: %s',
+                                 pass_id, datefrom, dateto, resp.status_code)
+                else:
+                    resp = Response(json.dumps(error_msgs[1][0]), error_msgs[1][1],
+                                    mimetype='application/json')
+                    logger.error('Items not found. Passid:%s, datefrom:%s, dateto:%s. '
+                                 'Status code: %s', pass_id, datefrom, dateto, error_msgs[1][1])
+
             return resp
 
         if event_id.isdigit():
