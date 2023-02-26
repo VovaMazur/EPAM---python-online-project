@@ -12,7 +12,7 @@ install:
 script:
   - pylint --exit-zero manifestapp
 #  - coverage run -m unittest tests
-  - coverage report
+  - coverage report -m
 
 after_success:
   - coveralls
