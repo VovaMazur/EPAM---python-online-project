@@ -27,7 +27,6 @@ MarkupSafe==2.1.2
 mccabe==0.7.0
 mysql-connector-python==8.0.32
 mysqlclient==2.1.1
-pathlib==1.0.1
 permissive-dict==1.0.4
 platformdirs==3.0.0
 protobuf==3.20.3
