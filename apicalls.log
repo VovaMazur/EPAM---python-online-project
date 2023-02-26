@@ -274,3 +274,191 @@ DEBUG::manifestapp.rest.event_api::02/25/2023 08:36:33 PM::Get items. Passid:all
 DEBUG::manifestapp.rest.passenger_api::02/25/2023 08:36:33 PM::Get all items. Status code: 200
 DEBUG::manifestapp.rest.passenger_api::02/25/2023 08:36:34 PM::Get all items. Status code: 200
 DEBUG::manifestapp.rest.event_api::02/25/2023 08:36:34 PM::Get items. Passid:all, datefrom:None, dateto:None. Status code: 200
+DEBUG::manifestapp.rest.event_api::02/26/2023 02:57:09 PM::Item is created. Status code: 200
+DEBUG::manifestapp.rest.event_api::02/26/2023 02:57:09 PM::Item with id 73 is deleted. Status code: 200
+DEBUG::manifestapp.rest.event_api::02/26/2023 02:57:09 PM::Item is created. Status code: 200
+DEBUG::manifestapp.rest.event_api::02/26/2023 02:57:09 PM::Item with id 74 is updated. Status code: 200
+DEBUG::manifestapp.rest.event_api::02/26/2023 02:57:09 PM::Item with id 74 is deleted. Status code: 200
+ERROR::manifestapp.rest.event_api::02/26/2023 02:57:09 PM::POST method. Invalid payload. 'gkhkkl' does not match 'unknown|success|failure'
+
+Failed validating 'pattern' in schema['properties']['status']:
+    {'pattern': 'unknown|success|failure', 'type': 'string'}
+
+On instance['status']:
+    'gkhkkl'. Status code: 400
+ERROR::manifestapp.rest.event_api::02/26/2023 02:57:09 PM::POST method. Invalid payload. '1' is not of type 'integer'
+
+Failed validating 'type' in schema['properties']['passengerID']:
+    {'type': 'integer'}
+
+On instance['passengerID']:
+    '1'. Status code: 400
+ERROR::manifestapp.rest.event_api::02/26/2023 02:57:10 PM::POST method. Invalid payload. '-20.344 / 130.031' does not match '^[-]?[0-9]+[.][0-9]+[,][ ]?[-]?[0-9]+[.][0-9]+$'
+
+Failed validating 'pattern' in schema['properties']['geo_location']:
+    {'pattern': '^[-]?[0-9]+[.][0-9]+[,][ ]?[-]?[0-9]+[.][0-9]+$',
+     'type': 'string'}
+
+On instance['geo_location']:
+    '-20.344 / 130.031'. Status code: 400
+ERROR::manifestapp.rest.event_api::02/26/2023 02:57:10 PM::POST method. Invalid payload. 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx' is too long
+
+Failed validating 'maxLength' in schema['properties']['description']:
+    {'maxLength': 90, 'type': 'string'}
+
+On instance['description']:
+    'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'. Status code: 400
+ERROR::manifestapp.rest.event_api::02/26/2023 02:57:10 PM::POST method. Invalid payload. 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx' is too long
+
+Failed validating 'maxLength' in schema['properties']['comments']:
+    {'maxLength': 140, 'type': 'string'}
+
+On instance['comments']:
+    'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'. Status code: 400
+ERROR::manifestapp.rest.event_api::02/26/2023 02:57:10 PM::DELETE method. Invalid event_id parameter. Status code: 400
+ERROR::manifestapp.rest.event_api::02/26/2023 02:57:10 PM::Item with id 10000 not found. Status code: 404
+DEBUG::manifestapp.rest.event_api::02/26/2023 02:57:10 PM::Get items. Passid:all, datefrom:None, dateto:None. Status code: 200
+DEBUG::manifestapp.rest.event_api::02/26/2023 02:57:10 PM::Get items. Passid:all, datefrom:None, dateto:None. Status code: 200
+DEBUG::manifestapp.rest.event_api::02/26/2023 02:57:10 PM::Get items. Passid:all, datefrom:None, dateto:None. Status code: 200
+DEBUG::manifestapp.rest.event_api::02/26/2023 02:57:10 PM::Get items. Passid:5, datefrom:None, dateto:None. Status code: 200
+DEBUG::manifestapp.rest.event_api::02/26/2023 02:57:10 PM::Get items. Passid:1, datefrom:None, dateto:None. Status code: 200
+ERROR::manifestapp.rest.event_api::02/26/2023 02:57:10 PM::Items not found. Passid:10000, datefrom:None, dateto:None. Status code: 404
+DEBUG::manifestapp.rest.event_api::02/26/2023 02:57:10 PM::Get items. Passid:tyty, datefrom:None, dateto:None. Status code: 200
+DEBUG::manifestapp.rest.event_api::02/26/2023 02:57:10 PM::Get items. Passid:all, datefrom:2022-01-01, dateto:None. Status code: 200
+DEBUG::manifestapp.rest.event_api::02/26/2023 02:57:10 PM::Get items. Passid:all, datefrom:2022-01-01, dateto:2022-12-31. Status code: 200
+DEBUG::manifestapp.rest.event_api::02/26/2023 02:57:10 PM::Get items. Passid:all, datefrom:None, dateto:2022-12-31. Status code: 200
+ERROR::manifestapp.rest.event_api::02/26/2023 02:57:10 PM::Invalid datefrom parameter. Status code: 400
+ERROR::manifestapp.rest.event_api::02/26/2023 02:57:10 PM::Invalid datefrom parameter. Status code: 400
+DEBUG::manifestapp.rest.event_api::02/26/2023 02:57:10 PM::Get items. Passid:5, datefrom:2022-01-01, dateto:None. Status code: 200
+DEBUG::manifestapp.rest.event_api::02/26/2023 02:57:10 PM::Get items. Passid:5, datefrom:2022-01-01, dateto:2022-12-31. Status code: 200
+DEBUG::manifestapp.rest.event_api::02/26/2023 02:57:10 PM::Get items. Passid:5, datefrom:None, dateto:2022-12-31. Status code: 200
+DEBUG::manifestapp.rest.event_api::02/26/2023 02:57:10 PM::Get item with id 2. Status code: 200
+DEBUG::manifestapp.rest.event_api::02/26/2023 02:57:10 PM::Get item with id 3. Status code: 200
+ERROR::manifestapp.rest.event_api::02/26/2023 02:57:10 PM::Item with id 10000 not found. Status code: 404
+ERROR::manifestapp.rest.event_api::02/26/2023 02:57:10 PM::Item with id 1 not found. Status code: 404
+ERROR::manifestapp.rest.event_api::02/26/2023 02:57:10 PM::GET method. Invalid event_id (fgfdg) parameter. Status code: 400
+ERROR::manifestapp.rest.event_api::02/26/2023 02:57:10 PM::POST (update). Invalid event_id dgdfg parameter. Status code: 400
+ERROR::manifestapp.rest.event_api::02/26/2023 02:57:11 PM::Item with id 10000 not found. Status code: 404
+DEBUG::manifestapp.rest.passenger_api::02/26/2023 02:57:11 PM::Item is created. Status code: 200
+DEBUG::manifestapp.rest.passenger_api::02/26/2023 02:57:11 PM::Item with id 22 is deleted. Status code: 200
+DEBUG::manifestapp.rest.passenger_api::02/26/2023 02:57:11 PM::Item is created. Status code: 200
+DEBUG::manifestapp.rest.passenger_api::02/26/2023 02:57:11 PM::Item with id 23 is updated. Status code: 200
+DEBUG::manifestapp.rest.passenger_api::02/26/2023 02:57:11 PM::Item with id 23 is deleted. Status code: 200
+ERROR::manifestapp.rest.passenger_api::02/26/2023 02:57:11 PM::POST (create). Invalid payload. 'like' does not match 'unknown|live|dead'
+
+Failed validating 'pattern' in schema['properties']['status']:
+    {'pattern': 'unknown|live|dead', 'type': 'string'}
+
+On instance['status']:
+    'like'. Status code: 400
+ERROR::manifestapp.rest.passenger_api::02/26/2023 02:57:11 PM::POST (create). Invalid payload. 'AAA' does not match '^[0-9]{2}[A-Z]$'
+
+Failed validating 'pattern' in schema['properties']['seatno']:
+    {'pattern': '^[0-9]{2}[A-Z]$', 'type': 'string'}
+
+On instance['seatno']:
+    'AAA'. Status code: 400
+ERROR::manifestapp.rest.passenger_api::02/26/2023 02:57:12 PM::POST (create). Invalid payload. 'kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk' is too long
+
+Failed validating 'maxLength' in schema['properties']['lname']:
+    {'maxLength': 45, 'type': 'string'}
+
+On instance['lname']:
+    'kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk'. Status code: 400
+ERROR::manifestapp.rest.passenger_api::02/26/2023 02:57:12 PM::POST (create). Invalid payload. 'kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk' is too long
+
+Failed validating 'maxLength' in schema['properties']['fname']:
+    {'maxLength': 45, 'type': 'string'}
+
+On instance['fname']:
+    'kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk'. Status code: 400
+ERROR::manifestapp.rest.passenger_api::02/26/2023 02:57:12 PM::POST (create). Invalid payload. 'kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk' is too long
+
+Failed validating 'maxLength' in schema['properties']['address']:
+    {'maxLength': 100, 'type': 'string'}
+
+On instance['address']:
+    'kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk'. Status code: 400
+ERROR::manifestapp.rest.passenger_api::02/26/2023 02:57:12 PM::POST (create). Invalid payload. 'kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk' is too long
+
+Failed validating 'maxLength' in schema['properties']['comments']:
+    {'maxLength': 140, 'type': 'string'}
+
+On instance['comments']:
+    'kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk'. Status code: 400
+ERROR::manifestapp.rest.passenger_api::02/26/2023 02:57:12 PM::DELETE method. Invalid pass_id dgdfg parameter. Status code: 400
+ERROR::manifestapp.rest.passenger_api::02/26/2023 02:57:12 PM::Item with id 10000 not found. Status code: 404
+DEBUG::manifestapp.rest.passenger_api::02/26/2023 02:57:12 PM::Get all items. Status code: 200
+DEBUG::manifestapp.rest.passenger_api::02/26/2023 02:57:12 PM::Get all items. Status code: 200
+DEBUG::manifestapp.rest.passenger_api::02/26/2023 02:57:12 PM::Get all items with status live. Status code: 200
+DEBUG::manifestapp.rest.passenger_api::02/26/2023 02:57:12 PM::Get all items with status dead. Status code: 200
+DEBUG::manifestapp.rest.passenger_api::02/26/2023 02:57:12 PM::Get all items with status unknown. Status code: 200
+DEBUG::manifestapp.rest.passenger_api::02/26/2023 02:57:12 PM::Get item with id 2. Status code: 200 
+DEBUG::manifestapp.rest.passenger_api::02/26/2023 02:57:12 PM::Get item with id 3. Status code: 200 
+ERROR::manifestapp.rest.passenger_api::02/26/2023 02:57:12 PM::Item with id 10000 not found. Status code: 404
+ERROR::manifestapp.rest.passenger_api::02/26/2023 02:57:12 PM::GET method. Invalid pass_id parameter. Status code: 400
+ERROR::manifestapp.rest.passenger_api::02/26/2023 02:57:12 PM::POST (update). Invalid pass_id dgdfg parameter. Status code: 400
+ERROR::manifestapp.rest.passenger_api::02/26/2023 02:57:12 PM::Item with id 10000 not found. Status code: 404
+DEBUG::manifestapp.rest.passenger_api::02/26/2023 03:12:55 PM::Get all items. Status code: 200
+DEBUG::manifestapp.rest.event_api::02/26/2023 03:12:55 PM::Get items. Passid:all, datefrom:None, dateto:None. Status code: 200
+DEBUG::manifestapp.rest.event_api::02/26/2023 03:12:59 PM::Get items. Passid:all, datefrom:None, dateto:None. Status code: 200
+DEBUG::manifestapp.rest.passenger_api::02/26/2023 03:12:59 PM::Get all items. Status code: 200
+DEBUG::manifestapp.rest.passenger_api::02/26/2023 03:13:02 PM::Get all items. Status code: 200
+DEBUG::manifestapp.rest.event_api::02/26/2023 03:13:02 PM::Get items. Passid:all, datefrom:None, dateto:None. Status code: 200
+DEBUG::manifestapp.rest.passenger_api::02/26/2023 03:13:12 PM::Get all items. Status code: 200
+ERROR::manifestapp.rest.event_api::02/26/2023 03:13:12 PM::Items not found. Passid:3, datefrom:None, dateto:None. Status code: 404
+DEBUG::manifestapp.rest.passenger_api::02/26/2023 03:13:15 PM::Get all items. Status code: 200
+DEBUG::manifestapp.rest.event_api::02/26/2023 03:13:15 PM::Get items. Passid:1, datefrom:None, dateto:None. Status code: 200
+DEBUG::manifestapp.rest.passenger_api::02/26/2023 03:13:23 PM::Get all items. Status code: 200
+DEBUG::manifestapp.rest.event_api::02/26/2023 03:13:23 PM::Get items. Passid:1, datefrom:None, dateto:2023-02-01. Status code: 200
+DEBUG::manifestapp.rest.event_api::02/26/2023 03:13:27 PM::Get item with id 6. Status code: 200
+DEBUG::manifestapp.rest.passenger_api::02/26/2023 03:13:32 PM::Get all items. Status code: 200
+DEBUG::manifestapp.rest.event_api::02/26/2023 03:13:32 PM::Get items. Passid:1, datefrom:None, dateto:2023-02-01. Status code: 200
+DEBUG::manifestapp.rest.event_api::02/26/2023 03:13:35 PM::Get item with id 6. Status code: 200
+DEBUG::manifestapp.rest.event_api::02/26/2023 03:13:38 PM::Get item with id 6. Status code: 200
+DEBUG::manifestapp.rest.event_api::02/26/2023 03:13:38 PM::Item with id 6 is updated. Status code: 200
+DEBUG::manifestapp.rest.passenger_api::02/26/2023 03:13:38 PM::Get all items. Status code: 200
+DEBUG::manifestapp.rest.event_api::02/26/2023 03:13:38 PM::Get items. Passid:1, datefrom:None, dateto:2023-02-01. Status code: 200
+DEBUG::manifestapp.rest.event_api::02/26/2023 03:13:59 PM::Get items. Passid:all, datefrom:None, dateto:None. Status code: 200
+DEBUG::manifestapp.rest.passenger_api::02/26/2023 03:13:59 PM::Get all items. Status code: 200
+DEBUG::manifestapp.rest.passenger_api::02/26/2023 03:14:03 PM::Get item with id 8. Status code: 200 
+DEBUG::manifestapp.rest.passenger_api::02/26/2023 03:14:06 PM::Get item with id 8. Status code: 200 
+DEBUG::manifestapp.rest.passenger_api::02/26/2023 03:14:06 PM::Item with id 8 is updated. Status code: 200
+DEBUG::manifestapp.rest.event_api::02/26/2023 03:14:06 PM::Get items. Passid:all, datefrom:None, dateto:None. Status code: 200
+DEBUG::manifestapp.rest.passenger_api::02/26/2023 03:14:06 PM::Get all items. Status code: 200
+DEBUG::manifestapp.rest.event_api::02/26/2023 03:14:13 PM::Get items. Passid:all, datefrom:None, dateto:None. Status code: 200
+DEBUG::manifestapp.rest.passenger_api::02/26/2023 03:14:13 PM::Get all items with status live. Status code: 200
+DEBUG::manifestapp.rest.event_api::02/26/2023 03:14:17 PM::Get items. Passid:all, datefrom:None, dateto:None. Status code: 200
+DEBUG::manifestapp.rest.passenger_api::02/26/2023 03:14:17 PM::Get all items with status dead. Status code: 200
+DEBUG::manifestapp.rest.event_api::02/26/2023 03:14:22 PM::Get items. Passid:all, datefrom:None, dateto:None. Status code: 200
+DEBUG::manifestapp.rest.passenger_api::02/26/2023 03:14:22 PM::Get all items with status live. Status code: 200
+DEBUG::manifestapp.rest.event_api::02/26/2023 03:14:27 PM::Get items. Passid:all, datefrom:None, dateto:None. Status code: 200
+DEBUG::manifestapp.rest.passenger_api::02/26/2023 03:14:27 PM::Get all items. Status code: 200
+DEBUG::manifestapp.rest.passenger_api::02/26/2023 03:14:30 PM::Get all items. Status code: 200
+DEBUG::manifestapp.rest.event_api::02/26/2023 03:14:30 PM::Get items. Passid:1, datefrom:None, dateto:2023-02-01. Status code: 200
+DEBUG::manifestapp.rest.passenger_api::02/26/2023 03:14:37 PM::Get all items. Status code: 200
+DEBUG::manifestapp.rest.event_api::02/26/2023 03:14:37 PM::Get items. Passid:all, datefrom:None, dateto:None. Status code: 200
+DEBUG::manifestapp.rest.event_api::02/26/2023 03:14:49 PM::Get items. Passid:all, datefrom:None, dateto:None. Status code: 200
+DEBUG::manifestapp.rest.passenger_api::02/26/2023 03:14:49 PM::Get all items. Status code: 200
+DEBUG::manifestapp.rest.passenger_api::02/26/2023 03:14:51 PM::Get all items. Status code: 200
+DEBUG::manifestapp.rest.event_api::02/26/2023 03:14:51 PM::Get items. Passid:all, datefrom:None, dateto:None. Status code: 200
+DEBUG::manifestapp.rest.event_api::02/26/2023 03:14:52 PM::Get items. Passid:all, datefrom:None, dateto:None. Status code: 200
+DEBUG::manifestapp.rest.passenger_api::02/26/2023 03:14:53 PM::Get all items. Status code: 200
+DEBUG::manifestapp.rest.event_api::02/26/2023 03:14:56 PM::Get items. Passid:all, datefrom:None, dateto:None. Status code: 200
+DEBUG::manifestapp.rest.passenger_api::02/26/2023 03:14:56 PM::Get all items with status live. Status code: 200
+DEBUG::manifestapp.rest.passenger_api::02/26/2023 03:14:58 PM::Get all items. Status code: 200
+DEBUG::manifestapp.rest.event_api::02/26/2023 03:14:58 PM::Get items. Passid:all, datefrom:None, dateto:None. Status code: 200
+DEBUG::manifestapp.rest.event_api::02/26/2023 03:14:59 PM::Get items. Passid:all, datefrom:None, dateto:None. Status code: 200
+DEBUG::manifestapp.rest.passenger_api::02/26/2023 03:14:59 PM::Get all items with status live. Status code: 200
+DEBUG::manifestapp.rest.passenger_api::02/26/2023 03:15:01 PM::Get all items. Status code: 200
+DEBUG::manifestapp.rest.event_api::02/26/2023 03:15:01 PM::Get items. Passid:all, datefrom:None, dateto:None. Status code: 200
+DEBUG::manifestapp.rest.event_api::02/26/2023 03:15:02 PM::Get items. Passid:all, datefrom:None, dateto:None. Status code: 200
+DEBUG::manifestapp.rest.passenger_api::02/26/2023 03:15:02 PM::Get all items with status live. Status code: 200
+DEBUG::manifestapp.rest.passenger_api::02/26/2023 03:15:03 PM::Get all items. Status code: 200
+DEBUG::manifestapp.rest.event_api::02/26/2023 03:15:03 PM::Get items. Passid:all, datefrom:None, dateto:None. Status code: 200
+DEBUG::manifestapp.rest.passenger_api::02/26/2023 03:15:07 PM::Get all items. Status code: 200
+DEBUG::manifestapp.rest.event_api::02/26/2023 03:15:07 PM::Get items. Passid:all, datefrom:None, dateto:2023-02-01. Status code: 200
+DEBUG::manifestapp.rest.event_api::02/26/2023 03:15:08 PM::Get items. Passid:all, datefrom:None, dateto:None. Status code: 200
+DEBUG::manifestapp.rest.passenger_api::02/26/2023 03:15:08 PM::Get all items with status live. Status code: 200
+DEBUG::manifestapp.rest.passenger_api::02/26/2023 03:15:11 PM::Get all items. Status code: 200
+DEBUG::manifestapp.rest.event_api::02/26/2023 03:15:11 PM::Get items. Passid:all, datefrom:None, dateto:2023-02-01. Status code: 200

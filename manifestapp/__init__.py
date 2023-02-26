@@ -26,6 +26,8 @@ def create_app():
         application.register_blueprint(events_bp, url_prefix='/events')
         application.register_blueprint(passengers_bp, url_prefix='/passengers')
 
+    application.app_context().push()
+
     @application.route('/')
     def title_page():
         """Function for home route"""

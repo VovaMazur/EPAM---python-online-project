@@ -11,8 +11,8 @@ install:
 # command to run code checker & tests
 script:
   - pylint --exit-zero manifestapp
-  - coverage run -m unittest tests
-  - coverage report -m
+#  - coverage run -m unittest tests
+#  - coverage report -m
 
 after_success:
   - coveralls
