@@ -795,3 +795,23 @@ DEBUG::manifestapp.rest.event_api::02/27/2023 08:03:18 PM::Get item with id 2. S
 DEBUG::manifestapp.rest.event_api::02/27/2023 08:06:32 PM::Get items. Passid:all, datefrom:None, dateto:None. Status code: 200
 DEBUG::manifestapp.rest.event_api::02/27/2023 08:08:18 PM::Get items. Passid:all, datefrom:None, dateto:None. Status code: 200
 DEBUG::manifestapp.rest.event_api::02/27/2023 08:14:57 PM::Get items. Passid:all, datefrom:None, dateto:None. Status code: 200
+DEBUG::manifestapp.rest.passenger_api::02/27/2023 11:01:34 PM::Get all items with status None. Status code: 200
+DEBUG::manifestapp.rest.event_api::02/27/2023 11:01:34 PM::Get items. Passid:all, datefrom:None, dateto:None. Status code: 200
+DEBUG::manifestapp.rest.event_api::02/27/2023 11:01:37 PM::Get items. Passid:all, datefrom:None, dateto:None. Status code: 200
+DEBUG::manifestapp.rest.passenger_api::02/27/2023 11:01:37 PM::Get all items with status None. Status code: 200
+DEBUG::manifestapp.rest.passenger_api::02/27/2023 11:01:39 PM::Get all items with status None. Status code: 200
+DEBUG::manifestapp.rest.event_api::02/27/2023 11:01:39 PM::Get items. Passid:all, datefrom:None, dateto:None. Status code: 200
+DEBUG::manifestapp.rest.passenger_api::02/27/2023 11:01:49 PM::Get all items with status None. Status code: 200
+DEBUG::manifestapp.rest.event_api::02/27/2023 11:01:51 PM::Get items. Passid:all, datefrom:None, dateto:None. Status code: 200
+DEBUG::manifestapp.rest.passenger_api::02/27/2023 11:01:54 PM::Get all items with status None. Status code: 200
+DEBUG::manifestapp.rest.event_api::02/27/2023 11:01:56 PM::Get items. Passid:all, datefrom:None, dateto:None. Status code: 200
+DEBUG::manifestapp.rest.passenger_api::02/27/2023 11:01:58 PM::Get all items with status None. Status code: 200
+DEBUG::manifestapp.rest.event_api::02/27/2023 11:02:00 PM::Get items. Passid:1, datefrom:None, dateto:None. Status code: 200
+DEBUG::manifestapp.rest.passenger_api::02/27/2023 11:02:02 PM::Get all items with status None. Status code: 200
+DEBUG::manifestapp.rest.event_api::02/27/2023 11:02:04 PM::Get items. Passid:all, datefrom:2022-01-01, dateto:None. Status code: 200
+DEBUG::manifestapp.rest.passenger_api::02/27/2023 11:02:06 PM::Get all items with status None. Status code: 200
+DEBUG::manifestapp.rest.event_api::02/27/2023 11:02:08 PM::Get items. Passid:all, datefrom:None, dateto:2023-01-31. Status code: 200
+DEBUG::manifestapp.rest.passenger_api::02/27/2023 11:02:10 PM::Get all items with status None. Status code: 200
+DEBUG::manifestapp.rest.event_api::02/27/2023 11:02:12 PM::Get items. Passid:all, datefrom:2022-01-01, dateto:2023-01-31. Status code: 200
+DEBUG::manifestapp.rest.passenger_api::02/27/2023 11:02:14 PM::Get all items with status None. Status code: 200
+DEBUG::manifestapp.rest.event_api::02/27/2023 11:02:16 PM::Get items. Passid:1, datefrom:2022-01-01, dateto:2023-01-31. Status code: 200

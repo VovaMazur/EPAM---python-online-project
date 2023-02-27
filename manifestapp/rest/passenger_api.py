@@ -3,6 +3,7 @@ import json
 from flask_restful import Resource
 from jsonschema import validate, exceptions
 from flask import request, Response
+from manifestapp.service import pass_get_bystatus, pass_get_byid
 from manifestapp.models import Passenger
 from manifestapp.logger import logger_setup
 
@@ -51,26 +52,21 @@ class PassengerApi(Resource):
         """GET method to retrieve passengers data"""
 
         if pass_id == 'all':
-            if status:
-                resp = Passenger.fs_get_delete_put_post(prop_filters={'status': status})
+            resp = pass_get_bystatus(status)
+            if resp:
                 logger.debug('Get all items with status %s. Status code: %s',
                              status, resp.status_code)
-            else:
-                resp = Passenger.fs_get_delete_put_post()
-                logger.debug('Get all items. Status code: %s', resp.status_code)
 
         elif pass_id.isdigit():
-            item = Passenger.query.get(pass_id)
-            if not item:
+            resp = pass_get_byid(pass_id)
+            if resp:
+                logger.debug('Get item with id %s. Status code: %s ',
+                             pass_id, resp.status_code)
+            else:
                 logger.error('Item with id %s not found. Status code: %s',
                              pass_id, error_msgs[1][1])
                 resp = Response(json.dumps(error_msgs[1][0]), error_msgs[1][1],
                                 mimetype='application/json')
-
-            else:
-                resp = Passenger.fs_json_list([item])
-                logger.debug('Get item with id %s. Status code: %s ',
-                             pass_id, resp.status_code)
 
         else:
             logger.error('GET method. Invalid pass_id parameter. Status code: %s',
@@ -84,7 +80,7 @@ class PassengerApi(Resource):
         """DELETE method to delete passenger record"""
 
         if pass_id.isdigit():
-            item = Passenger.query.get(pass_id)
+            item = pass_get_byid(pass_id)
             if not item:
                 logger.error('Item with id %s not found. Status code: %s',
                              pass_id, error_msgs[1][1])
@@ -130,7 +126,7 @@ class PassengerApi(Resource):
                                     mimetype='application/json')
 
             elif pass_id.isdigit():
-                item = Passenger.query.get(pass_id)
+                item = pass_get_byid(pass_id)
                 if not item:
                     logger.error('Item with id %s not found. Status code: %s',
                                  pass_id, error_msgs[1][1])

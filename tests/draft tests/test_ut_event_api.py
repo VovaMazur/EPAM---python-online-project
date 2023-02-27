@@ -1,12 +1,32 @@
 """Tests for Event API module"""
 import unittest
 import responses
-from manifestapp import create_app
+from flask import Flask
+from flask_sqlalchemy import SQLAlchemy
+from flask_restful import Api
+from manifestapp.rest.event_api import EventApi
 
 
 class TestUTEventAPI(unittest.TestCase):
+
     def setUp(self):
-        self.app = create_app()
+        self.app = Flask(__name__)
+        self.app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite://"
+        self.app.config['SECRET_KEY'] = "62b9e7e20ba41ca4d119bf39"
+
+        self.db = SQLAlchemy()
+        with self.app.app_context():
+            self.db.init_app(self.app)
+            self.db.create_all()
+            self.api = Api(self.app)
+            self.api.add_resource(EventApi,
+                             '/eventapi',
+                             '/eventapi/all',
+                             '/eventapi/all/<pass_id>',
+                             '/eventapi/all/<pass_id>/<datefrom>',
+                             '/eventapi/all/<pass_id>/<datefrom>/<dateto>',
+                             '/eventapi/<event_id>')
+
         self.client = self.app.test_client()
         self.test_valid_event = {
                             "comments": "",
@@ -19,6 +39,10 @@ class TestUTEventAPI(unittest.TestCase):
                             "status": "success"
                           }
         self.url = 'http://localhost:5000'
+
+    def tearDown(self):
+        self.db.session.remove()
+        self.db.drop_all()
 
     @responses.activate
     def test_get_all_events(self):

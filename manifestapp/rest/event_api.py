@@ -4,6 +4,7 @@ import json
 from flask_restful import Resource
 from jsonschema import validate, exceptions
 from flask import request, Response
+from manifestapp.service import event_get_bypass, event_get_byid
 from manifestapp.models import Event
 from manifestapp.logger import logger_setup
 
@@ -54,44 +55,6 @@ def validatedate(datestring):
         return False
 
 
-def getdata(passid=None, datefrom=None, dateto=None):
-    """function to fetch the database"""
-
-    passid = None if not passid.isdigit() else int(passid)
-
-    if passid:
-        if datefrom and dateto:
-            items = Event.query.filter(Event.date >= datefrom,
-                                       Event.date <= dateto,
-                                       Event.passengerID == passid).all()
-        elif datefrom:
-            items = Event.query.filter(Event.date >= datefrom,
-                                       Event.passengerID == passid).all()
-
-        elif dateto:
-            items = Event.query.filter(Event.date <= dateto,
-                                       Event.passengerID == passid).all()
-
-        else:
-            items = Event.query.filter(Event.passengerID == passid).all()
-
-
-    else:
-        if datefrom and dateto:
-            items = Event.query.filter(Event.date >= datefrom,
-                                       Event.date <= dateto).all()
-        elif datefrom:
-            items = Event.query.filter(Event.date >= datefrom).all()
-
-        elif dateto:
-            items = Event.query.filter(Event.date <= dateto).all()
-
-        else:
-            items = Event.query.all()
-
-    return items
-
-
 class EventApi(Resource):
     """API class for events data"""
 
@@ -112,9 +75,8 @@ class EventApi(Resource):
                              error_msgs[2][1])
 
             else:
-                items = getdata(passid=pass_id, datefrom=datefrom, dateto=dateto)
-                if items:
-                    resp = Event.fs_json_list(items)
+                resp = event_get_bypass(passid=pass_id, datefrom=datefrom, dateto=dateto)
+                if resp:
                     logger.debug('Get items. Passid:%s, datefrom:%s, dateto:%s. Status code: %s',
                                  pass_id, datefrom, dateto, resp.status_code)
                 else:
@@ -126,17 +88,15 @@ class EventApi(Resource):
             return resp
 
         if event_id.isdigit():
-            item = Event.query.get(event_id)
-            if not item:
+            resp = event_get_byid(event_id)
+            if resp:
+                logger.debug('Get item with id %s. Status code: %s',
+                             event_id, resp.status_code)
+            else:
                 logger.error('Item with id %s not found. Status code: %s',
                              event_id, error_msgs[1][1])
                 resp = Response(json.dumps(error_msgs[1][0]), error_msgs[1][1],
                                 mimetype='application/json')
-
-            else:
-                resp = Event.fs_json_list([item])
-                logger.debug('Get item with id %s. Status code: %s',
-                             event_id, resp.status_code)
 
         else:
             logger.error('GET method. Invalid event_id (%s) parameter. Status code: %s',
@@ -150,17 +110,16 @@ class EventApi(Resource):
         """DELETE method to delete event record"""
 
         if event_id.isdigit():
-            item = Event.query.get(event_id)
-            if not item:
+            item = event_get_byid(event_id)
+            if item:
+                resp = Event.fs_get_delete_put_post(event_id)
+                logger.debug('Item with id %s is deleted. Status code: %s',
+                             event_id, resp.status_code)
+            else:
                 logger.error('Item with id %s not found. Status code: %s',
                              event_id, error_msgs[1][1])
                 resp = Response(json.dumps(error_msgs[1][0]), error_msgs[1][1],
                                 mimetype='application/json')
-
-            else:
-                resp = Event.fs_get_delete_put_post(event_id)
-                logger.debug('Item with id %s is deleted. Status code: %s',
-                             event_id, resp.status_code)
 
         else:
             resp = Response(json.dumps(error_msgs[0][0]), error_msgs[0][1],
@@ -195,17 +154,17 @@ class EventApi(Resource):
                                     mimetype='application/json')
 
             elif event_id.isdigit():
-                item = Event.query.get(event_id)
-                if not item:
+                item = event_get_byid(event_id)
+                if item:
+                    resp = Event.fs_get_delete_put_post(event_id)
+                    logger.debug('Item with id %s is updated. Status code: %s',
+                                 event_id, resp.status_code)
+
+                else:
                     logger.error('Item with id %s not found. Status code: %s',
                                  event_id, error_msgs[1][1])
                     resp = Response(json.dumps(error_msgs[1][0]), error_msgs[1][1],
                                     mimetype='application/json')
-
-                else:
-                    resp = Event.fs_get_delete_put_post(event_id)
-                    logger.debug('Item with id %s is updated. Status code: %s',
-                                 event_id, resp.status_code)
 
             else:
                 logger.error('POST (update). Invalid event_id %s parameter. Status code: %s',
