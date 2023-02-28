@@ -44,6 +44,7 @@ a {
     border-radius: 10px;
     padding: 10px;
     box-shadow: 5px 5px 10px 0px rgba(138, 133, 138, 1);
+
 }
 
 a:hover {
@@ -51,64 +52,66 @@ a:hover {
     background-color: black;
 }
 
-div#div_flash {
-    font-weight: bold;
-    margin-block: 20px;
-    padding-block: 10px;
-    border-radius: 10px;
-    box-shadow: 10px 10px 15px 0px rgba(0, 0, 0, 0.75);
-}
-
-div#div_flash.success {
-    background-color: red;
-}
-
-div.success#div_flash {
-    background-color: lightgreen;
-}
-
-div.form {
-    display: flex;
-    align-items: flex-end;
-    padding-block: 10px;
-    font-size: 1.2rem;
+div.main-buttons {
+    margin-top: 100px;
+    margin-bottom: 50px;
 }
 
 button {
-    margin-inline: 10px;
-    height: 35px;
-    width: 35px;
+    margin-inline: 20px;
+    height: 60px;
+    width: 60px;
+    color: white;
+    border: none;
+    box-shadow: 5px 5px 10px 0px rgba(138, 133, 138, 1);
 }
 
-input#dateto {
-    margin-right: 20px;
+i {
+    scale: 2;
 }
 
-h2 {
-    margin-bottom: 10px;
+button.yes {
+    background-color: green;
 }
 
-h3 {
-    margin-block: 0;
+button.no {
+    background-color: firebrick;
 }
 
-table {
-    margin-top: 40px;
-    width: 95%;
-    text-align: center;
-    border: 1px solid grey;
+button:hover {
+    color: black;
 }
 
-th {
-    background-color: #f0a87c;
-    height: 50px;
-    font-size: 1.3rem;
+form {
+    width: 520px;
+    border: 2px solid grey;
+    padding: 10px;
 }
 
-tr:nth-child(even) {
-    background-color: #ece6e2;
+form div {
+    margin-bottom: 20px;
+    position: relative;
 }
 
-tr:hover {
-    background-color: salmon;
+form div label {
+    font-weight: bold;
+}
+
+form div input,
+form div select {
+    position: absolute;
+    left: 200px;
+}
+
+form div input {
+    width: 300px;
+}
+
+form div select {
+    width: 305px;
+}
+
+div.comments {
+    margin-top: 90px;
+    margin-bottom: 5px;
 }

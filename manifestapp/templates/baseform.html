@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='images/icons8-star-filled-color-16.png') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/forms.css') }}" type="text/css">
+    <title>Manifest TV - events tracker</title>
+    <script src="https://kit.fontawesome.com/870bdadc6a.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="{{ url_for('events.main') }}">Events</a></li>
+            <li><a href="{{ url_for('passengers.main') }}">Passengers</a></li>
+        </ul>
+    </nav>
+
+    {% block content %}
+
+    {% endblock %}
+
+</body>
+</html>

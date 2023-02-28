@@ -7,8 +7,8 @@ from manifestapp import create_app
 class TestPassengerAPI(unittest.TestCase):
     def setUp(self):
         self.app = create_app()
+        self.app.testing = True
         self.client = self.app.test_client()
-        #http://localhost:5000
 
     def test_get_all_items(self):
         test_resp = self.client.get('/passapi')

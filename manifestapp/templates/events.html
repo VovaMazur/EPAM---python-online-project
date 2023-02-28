@@ -2,9 +2,9 @@
 
 {% block content %}
 
-<div>
+<div class="form">
     <form action="{{ url_for('events.main') }}" id="Selector" method="POST">
-        <label for="datefrom">date from: </label>
+        <label for="datefrom">Date from: </label>
         <input type="date" id="datefrom" name="datefrom" value="{{dates[0]}}">
 
         <label for="dateto">  to: </label>
@@ -21,10 +21,10 @@
             {% endfor %}
         </select>
 
-        <button type="submit" form="Selector"><i class="fa-solid fa-arrows-rotate"></i></button>
+        <button id="refresh" type="submit" form="Selector"><i class="fa-solid fa-arrows-rotate"></i></button>
     </form>
 
-    <button onclick="location.href='{{ url_for('events.edit', item='add') }}';"><i class="fa-regular fa-square-plus"></i></i></button>
+    <button id="add" onclick="location.href='{{ url_for('events.edit', item='add') }}';"><i class="fa-regular fa-square-plus"></i></i></button>
 
 </div>
 
@@ -39,7 +39,7 @@
                 <th>ID</th>
                 <th>Date</th>
                 <th>Passenger</th>
-                <th>Location</th>
+                <th>Location (lat, long)</th>
                 <th>Description</th>
                 <th>Status</th>
                 <th>Other passengers</th>

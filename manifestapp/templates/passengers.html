@@ -2,10 +2,10 @@
 
 {% block content %}
 
-<div>
+<div class="form">
     <form action="{{ url_for('passengers.main') }}" id="status" method="POST">
         
-        <label for="pstatus">status: </label>
+        <label for="pstatus">Status: </label>
         <select name="selected_status" id="pstatus">
             <option value="all">All</option>
             <option value="unknown">Unknown</option>
@@ -35,7 +35,7 @@
                 <th>Address</th>
                 <th>Date of birth</th>
                 <th>Status</th>
-                <th>No of callings</th>
+                <th>#callings</th>
                 <th></th>
             </tr>
         </thead>

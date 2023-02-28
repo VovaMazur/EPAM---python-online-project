@@ -19,7 +19,7 @@
     {% with messages = get_flashed_messages(with_categories=true) %}
         {% if messages %}
            {% for category, message in messages %}
-              <div id="div_flash" class="category">
+              <div id="div_flash" class="{{category}}">
                   <button type="button" onclick="removeFlash()">
                       <span>&times;</span>
                   </button>
