@@ -1330,3 +1330,1423 @@ DEBUG::manifestapp.rest.event_api::02/28/2023 10:39:51 PM::Get items. Passid:all
 DEBUG::manifestapp.rest.passenger_api::02/28/2023 10:39:51 PM::Get all items with status None. Status code: 200
 DEBUG::manifestapp.rest.event_api::02/28/2023 10:39:57 PM::Get items. Passid:all, datefrom:None, dateto:None. Status code: 200
 DEBUG::manifestapp.rest.passenger_api::02/28/2023 10:39:57 PM::Get all items with status None. Status code: 200
+DEBUG::manifestapp.rest.passenger_api::03/01/2023 01:41:00 PM::Get all items with status None. Status code: 200
+DEBUG::manifestapp.rest.event_api::03/01/2023 01:41:01 PM::Get items. Passid:all, datefrom:None, dateto:None. Status code: 200
+DEBUG::manifestapp.rest.event_api::03/01/2023 01:41:13 PM::Get items. Passid:all, datefrom:None, dateto:None. Status code: 200
+DEBUG::manifestapp.rest.passenger_api::03/01/2023 01:41:13 PM::Get all items with status None. Status code: 200
+DEBUG::manifestapp.rest.event_api::03/01/2023 01:41:17 PM::Get items. Passid:all, datefrom:None, dateto:None. Status code: 200
+DEBUG::manifestapp.rest.passenger_api::03/01/2023 01:41:17 PM::Get all items with status None. Status code: 200
+DEBUG::manifestapp.rest.event_api::03/01/2023 01:42:53 PM::Get items. Passid:all, datefrom:None, dateto:None. Status code: 200
+DEBUG::manifestapp.rest.passenger_api::03/01/2023 01:42:53 PM::Get all items with status None. Status code: 200
+DEBUG::manifestapp.rest.event_api::03/01/2023 01:42:56 PM::Get items. Passid:all, datefrom:None, dateto:None. Status code: 200
+DEBUG::manifestapp.rest.passenger_api::03/01/2023 01:42:57 PM::Get all items with status None. Status code: 200
+DEBUG::manifestapp.rest.event_api::03/01/2023 01:43:45 PM::Get items. Passid:all, datefrom:None, dateto:None. Status code: 200
+DEBUG::manifestapp.rest.passenger_api::03/01/2023 01:43:45 PM::Get all items with status None. Status code: 200
+DEBUG::manifestapp.rest.event_api::03/01/2023 01:44:01 PM::Get items. Passid:all, datefrom:None, dateto:None. Status code: 200
+DEBUG::manifestapp.rest.passenger_api::03/01/2023 01:44:01 PM::Get all items with status None. Status code: 200
+DEBUG::manifestapp.rest.passenger_api::03/01/2023 01:44:05 PM::Get item with id 1. Status code: 200 
+DEBUG::manifestapp.rest.event_api::03/01/2023 01:44:07 PM::Get items. Passid:all, datefrom:None, dateto:None. Status code: 200
+DEBUG::manifestapp.rest.passenger_api::03/01/2023 01:44:07 PM::Get all items with status None. Status code: 200
+DEBUG::manifestapp.rest.passenger_api::03/01/2023 01:44:09 PM::Get item with id 1. Status code: 200 
+DEBUG::manifestapp.rest.passenger_api::03/01/2023 01:44:11 PM::Get all items with status None. Status code: 200
+DEBUG::manifestapp.rest.event_api::03/01/2023 01:44:11 PM::Get items. Passid:all, datefrom:None, dateto:None. Status code: 200
+DEBUG::manifestapp.rest.event_api::03/01/2023 01:44:12 PM::Get item with id 2. Status code: 200
+DEBUG::manifestapp.rest.passenger_api::03/01/2023 01:44:26 PM::Get all items with status None. Status code: 200
+DEBUG::manifestapp.rest.event_api::03/01/2023 01:44:26 PM::Get items. Passid:all, datefrom:None, dateto:None. Status code: 200
+DEBUG::manifestapp.rest.event_api::03/01/2023 01:44:30 PM::Get item with id 2. Status code: 200
+DEBUG::manifestapp.rest.passenger_api::03/01/2023 01:44:36 PM::Get all items with status None. Status code: 200
+DEBUG::manifestapp.rest.event_api::03/01/2023 01:44:36 PM::Get items. Passid:all, datefrom:None, dateto:None. Status code: 200
+DEBUG::manifestapp.rest.event_api::03/01/2023 01:44:38 PM::Get items. Passid:all, datefrom:None, dateto:None. Status code: 200
+DEBUG::manifestapp.rest.passenger_api::03/01/2023 01:44:38 PM::Get all items with status None. Status code: 200
+DEBUG::manifestapp.rest.event_api::03/01/2023 01:44:45 PM::Get items. Passid:all, datefrom:None, dateto:None. Status code: 200
+DEBUG::manifestapp.rest.passenger_api::03/01/2023 01:44:45 PM::Get all items with status None. Status code: 200
+DEBUG::manifestapp.rest.event_api::03/01/2023 10:49:33 PM::Get items. Passid:all, datefrom:None, dateto:None. Status code: 200
+DEBUG::manifestapp.rest.event_api::03/02/2023 12:25:24 AM::POST. Item created. Status code: 200
+DEBUG::manifestapp.rest.event_api::03/02/2023 12:25:24 AM::DELETE. Item deleted. Status code: 200
+DEBUG::manifestapp.rest.event_api::03/02/2023 12:25:24 AM::POST. Item created. Status code: 200
+DEBUG::manifestapp.rest.event_api::03/02/2023 12:25:24 AM::POST. Item updated. Status code: 200
+DEBUG::manifestapp.rest.event_api::03/02/2023 12:25:24 AM::DELETE. Item deleted. Status code: 200
+ERROR::manifestapp.rest.event_api::03/02/2023 12:25:24 AM::POST. Incorrect payload 'gkhkkl' does not match 'unknown|success|failure'
+
+Failed validating 'pattern' in schema['properties']['status']:
+    {'pattern': 'unknown|success|failure', 'type': 'string'}
+
+On instance['status']:
+    'gkhkkl'. Status code: 400
+ERROR::manifestapp.rest.event_api::03/02/2023 12:25:24 AM::POST. Incorrect payload 'gkhkkl' does not match 'unknown|success|failure'
+
+Failed validating 'pattern' in schema['properties']['status']:
+    {'pattern': 'unknown|success|failure', 'type': 'string'}
+
+On instance['status']:
+    'gkhkkl' '1' is not of type 'integer'
+
+Failed validating 'type' in schema['properties']['passengerID']:
+    {'type': 'integer'}
+
+On instance['passengerID']:
+    '1'. Status code: 400
+ERROR::manifestapp.rest.event_api::03/02/2023 12:25:24 AM::POST. Incorrect payload 'gkhkkl' does not match 'unknown|success|failure'
+
+Failed validating 'pattern' in schema['properties']['status']:
+    {'pattern': 'unknown|success|failure', 'type': 'string'}
+
+On instance['status']:
+    'gkhkkl' '1' is not of type 'integer'
+
+Failed validating 'type' in schema['properties']['passengerID']:
+    {'type': 'integer'}
+
+On instance['passengerID']:
+    '1' '-20.344 / 130.031' does not match '^[-]?[0-9]+[.][0-9]+[,][ ]?[-]?[0-9]+[.][0-9]+$'
+
+Failed validating 'pattern' in schema['properties']['geo_location']:
+    {'pattern': '^[-]?[0-9]+[.][0-9]+[,][ ]?[-]?[0-9]+[.][0-9]+$',
+     'type': 'string'}
+
+On instance['geo_location']:
+    '-20.344 / 130.031'. Status code: 400
+ERROR::manifestapp.rest.event_api::03/02/2023 12:25:24 AM::POST. Incorrect payload 'gkhkkl' does not match 'unknown|success|failure'
+
+Failed validating 'pattern' in schema['properties']['status']:
+    {'pattern': 'unknown|success|failure', 'type': 'string'}
+
+On instance['status']:
+    'gkhkkl' '1' is not of type 'integer'
+
+Failed validating 'type' in schema['properties']['passengerID']:
+    {'type': 'integer'}
+
+On instance['passengerID']:
+    '1' '-20.344 / 130.031' does not match '^[-]?[0-9]+[.][0-9]+[,][ ]?[-]?[0-9]+[.][0-9]+$'
+
+Failed validating 'pattern' in schema['properties']['geo_location']:
+    {'pattern': '^[-]?[0-9]+[.][0-9]+[,][ ]?[-]?[0-9]+[.][0-9]+$',
+     'type': 'string'}
+
+On instance['geo_location']:
+    '-20.344 / 130.031' 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx' is too long
+
+Failed validating 'maxLength' in schema['properties']['description']:
+    {'maxLength': 90, 'type': 'string'}
+
+On instance['description']:
+    'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'. Status code: 400
+ERROR::manifestapp.rest.event_api::03/02/2023 12:25:24 AM::POST. Incorrect payload 'gkhkkl' does not match 'unknown|success|failure'
+
+Failed validating 'pattern' in schema['properties']['status']:
+    {'pattern': 'unknown|success|failure', 'type': 'string'}
+
+On instance['status']:
+    'gkhkkl' '1' is not of type 'integer'
+
+Failed validating 'type' in schema['properties']['passengerID']:
+    {'type': 'integer'}
+
+On instance['passengerID']:
+    '1' '-20.344 / 130.031' does not match '^[-]?[0-9]+[.][0-9]+[,][ ]?[-]?[0-9]+[.][0-9]+$'
+
+Failed validating 'pattern' in schema['properties']['geo_location']:
+    {'pattern': '^[-]?[0-9]+[.][0-9]+[,][ ]?[-]?[0-9]+[.][0-9]+$',
+     'type': 'string'}
+
+On instance['geo_location']:
+    '-20.344 / 130.031' 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx' is too long
+
+Failed validating 'maxLength' in schema['properties']['description']:
+    {'maxLength': 90, 'type': 'string'}
+
+On instance['description']:
+    'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx' 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx' is too long
+
+Failed validating 'maxLength' in schema['properties']['comments']:
+    {'maxLength': 140, 'type': 'string'}
+
+On instance['comments']:
+    'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'. Status code: 400
+ERROR::manifestapp.rest.event_api::03/02/2023 12:25:24 AM::DELETE. Item(s) not found. Status code: 404
+ERROR::manifestapp.rest.event_api::03/02/2023 12:25:24 AM::DELETE. Item(s) not found. Status code: 404
+DEBUG::manifestapp.rest.event_api::03/02/2023 12:25:25 AM::Get items. Passid:all, datefrom:None, dateto:None. Status code: 200
+DEBUG::manifestapp.rest.event_api::03/02/2023 12:25:25 AM::Get items. Passid:all, datefrom:None, dateto:None. Status code: 200
+DEBUG::manifestapp.rest.event_api::03/02/2023 12:25:25 AM::Get items. Passid:all, datefrom:None, dateto:None. Status code: 200
+DEBUG::manifestapp.rest.event_api::03/02/2023 12:25:25 AM::Get items. Passid:5, datefrom:None, dateto:None. Status code: 200
+DEBUG::manifestapp.rest.event_api::03/02/2023 12:25:25 AM::Get items. Passid:1, datefrom:None, dateto:None. Status code: 200
+ERROR::manifestapp.rest.event_api::03/02/2023 12:25:25 AM::Item(s) not found. Passid:10000, datefrom:None, dateto:None. Status code: 404
+DEBUG::manifestapp.rest.event_api::03/02/2023 12:25:25 AM::Get items. Passid:tyty, datefrom:None, dateto:None. Status code: 200
+DEBUG::manifestapp.rest.event_api::03/02/2023 12:25:25 AM::Get items. Passid:all, datefrom:2022-01-01, dateto:None. Status code: 200
+DEBUG::manifestapp.rest.event_api::03/02/2023 12:25:25 AM::Get items. Passid:all, datefrom:2022-01-01, dateto:2022-12-31. Status code: 200
+DEBUG::manifestapp.rest.event_api::03/02/2023 12:25:25 AM::Get items. Passid:all, datefrom:None, dateto:2022-12-31. Status code: 200
+ERROR::manifestapp.rest.event_api::03/02/2023 12:25:25 AM::Invalid datefrom parameter. Status code: 400
+ERROR::manifestapp.rest.event_api::03/02/2023 12:25:25 AM::Invalid datefrom parameter. Status code: 400
+DEBUG::manifestapp.rest.event_api::03/02/2023 12:25:25 AM::Get items. Passid:5, datefrom:2022-01-01, dateto:None. Status code: 200
+DEBUG::manifestapp.rest.event_api::03/02/2023 12:25:25 AM::Get items. Passid:5, datefrom:2022-01-01, dateto:2022-12-31. Status code: 200
+DEBUG::manifestapp.rest.event_api::03/02/2023 12:25:25 AM::Get items. Passid:5, datefrom:None, dateto:2022-12-31. Status code: 200
+DEBUG::manifestapp.rest.event_api::03/02/2023 12:25:25 AM::Get items. Passid:all, datefrom:None, dateto:None. Status code: 200
+DEBUG::manifestapp.rest.event_api::03/02/2023 12:25:25 AM::Get items. Passid:all, datefrom:None, dateto:None. Status code: 200
+ERROR::manifestapp.rest.event_api::03/02/2023 12:25:25 AM::Item(s) not found. EventID:10000, datefrom:None, dateto:None. Status code: 404
+ERROR::manifestapp.rest.event_api::03/02/2023 12:25:25 AM::Item(s) not found. EventID:1, datefrom:None, dateto:None. Status code: 404
+ERROR::manifestapp.rest.event_api::03/02/2023 12:25:25 AM::Item(s) not found. EventID:fgfdg, datefrom:None, dateto:None. Status code: 404
+ERROR::manifestapp.rest.event_api::03/02/2023 12:25:25 AM::POST. Item(s) not found. Status code: 404
+ERROR::manifestapp.rest.event_api::03/02/2023 12:25:25 AM::POST. Item(s) not found. Status code: 404
+DEBUG::manifestapp.rest.passenger_api::03/02/2023 12:25:25 AM::POST. Item created. Status code: 200
+DEBUG::manifestapp.rest.passenger_api::03/02/2023 12:25:25 AM::DELETE. Item deleted. Status code: 200
+DEBUG::manifestapp.rest.passenger_api::03/02/2023 12:25:25 AM::POST. Item created. Status code: 200
+DEBUG::manifestapp.rest.passenger_api::03/02/2023 12:25:25 AM::POST. Item updated. Status code: 200
+DEBUG::manifestapp.rest.passenger_api::03/02/2023 12:25:25 AM::DELETE. Item deleted. Status code: 200
+ERROR::manifestapp.rest.passenger_api::03/02/2023 12:25:25 AM::POST. Incorrect payload 'gkhkkl' does not match 'unknown|success|failure'
+
+Failed validating 'pattern' in schema['properties']['status']:
+    {'pattern': 'unknown|success|failure', 'type': 'string'}
+
+On instance['status']:
+    'gkhkkl' '1' is not of type 'integer'
+
+Failed validating 'type' in schema['properties']['passengerID']:
+    {'type': 'integer'}
+
+On instance['passengerID']:
+    '1' '-20.344 / 130.031' does not match '^[-]?[0-9]+[.][0-9]+[,][ ]?[-]?[0-9]+[.][0-9]+$'
+
+Failed validating 'pattern' in schema['properties']['geo_location']:
+    {'pattern': '^[-]?[0-9]+[.][0-9]+[,][ ]?[-]?[0-9]+[.][0-9]+$',
+     'type': 'string'}
+
+On instance['geo_location']:
+    '-20.344 / 130.031' 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx' is too long
+
+Failed validating 'maxLength' in schema['properties']['description']:
+    {'maxLength': 90, 'type': 'string'}
+
+On instance['description']:
+    'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx' 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx' is too long
+
+Failed validating 'maxLength' in schema['properties']['comments']:
+    {'maxLength': 140, 'type': 'string'}
+
+On instance['comments']:
+    'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx' 'like' does not match 'unknown|live|dead'
+
+Failed validating 'pattern' in schema['properties']['status']:
+    {'pattern': 'unknown|live|dead', 'type': 'string'}
+
+On instance['status']:
+    'like'. Status code: 400
+ERROR::manifestapp.rest.passenger_api::03/02/2023 12:25:25 AM::POST. Incorrect payload 'gkhkkl' does not match 'unknown|success|failure'
+
+Failed validating 'pattern' in schema['properties']['status']:
+    {'pattern': 'unknown|success|failure', 'type': 'string'}
+
+On instance['status']:
+    'gkhkkl' '1' is not of type 'integer'
+
+Failed validating 'type' in schema['properties']['passengerID']:
+    {'type': 'integer'}
+
+On instance['passengerID']:
+    '1' '-20.344 / 130.031' does not match '^[-]?[0-9]+[.][0-9]+[,][ ]?[-]?[0-9]+[.][0-9]+$'
+
+Failed validating 'pattern' in schema['properties']['geo_location']:
+    {'pattern': '^[-]?[0-9]+[.][0-9]+[,][ ]?[-]?[0-9]+[.][0-9]+$',
+     'type': 'string'}
+
+On instance['geo_location']:
+    '-20.344 / 130.031' 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx' is too long
+
+Failed validating 'maxLength' in schema['properties']['description']:
+    {'maxLength': 90, 'type': 'string'}
+
+On instance['description']:
+    'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx' 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx' is too long
+
+Failed validating 'maxLength' in schema['properties']['comments']:
+    {'maxLength': 140, 'type': 'string'}
+
+On instance['comments']:
+    'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx' 'like' does not match 'unknown|live|dead'
+
+Failed validating 'pattern' in schema['properties']['status']:
+    {'pattern': 'unknown|live|dead', 'type': 'string'}
+
+On instance['status']:
+    'like' 'AAA' does not match '^[0-9]{2}[A-Z]$'
+
+Failed validating 'pattern' in schema['properties']['seatno']:
+    {'pattern': '^[0-9]{2}[A-Z]$', 'type': 'string'}
+
+On instance['seatno']:
+    'AAA'. Status code: 400
+ERROR::manifestapp.rest.passenger_api::03/02/2023 12:25:25 AM::POST. Incorrect payload 'gkhkkl' does not match 'unknown|success|failure'
+
+Failed validating 'pattern' in schema['properties']['status']:
+    {'pattern': 'unknown|success|failure', 'type': 'string'}
+
+On instance['status']:
+    'gkhkkl' '1' is not of type 'integer'
+
+Failed validating 'type' in schema['properties']['passengerID']:
+    {'type': 'integer'}
+
+On instance['passengerID']:
+    '1' '-20.344 / 130.031' does not match '^[-]?[0-9]+[.][0-9]+[,][ ]?[-]?[0-9]+[.][0-9]+$'
+
+Failed validating 'pattern' in schema['properties']['geo_location']:
+    {'pattern': '^[-]?[0-9]+[.][0-9]+[,][ ]?[-]?[0-9]+[.][0-9]+$',
+     'type': 'string'}
+
+On instance['geo_location']:
+    '-20.344 / 130.031' 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx' is too long
+
+Failed validating 'maxLength' in schema['properties']['description']:
+    {'maxLength': 90, 'type': 'string'}
+
+On instance['description']:
+    'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx' 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx' is too long
+
+Failed validating 'maxLength' in schema['properties']['comments']:
+    {'maxLength': 140, 'type': 'string'}
+
+On instance['comments']:
+    'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx' 'like' does not match 'unknown|live|dead'
+
+Failed validating 'pattern' in schema['properties']['status']:
+    {'pattern': 'unknown|live|dead', 'type': 'string'}
+
+On instance['status']:
+    'like' 'AAA' does not match '^[0-9]{2}[A-Z]$'
+
+Failed validating 'pattern' in schema['properties']['seatno']:
+    {'pattern': '^[0-9]{2}[A-Z]$', 'type': 'string'}
+
+On instance['seatno']:
+    'AAA' 'kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk' is too long
+
+Failed validating 'maxLength' in schema['properties']['lname']:
+    {'maxLength': 45, 'type': 'string'}
+
+On instance['lname']:
+    'kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk'. Status code: 400
+ERROR::manifestapp.rest.passenger_api::03/02/2023 12:25:25 AM::POST. Incorrect payload 'gkhkkl' does not match 'unknown|success|failure'
+
+Failed validating 'pattern' in schema['properties']['status']:
+    {'pattern': 'unknown|success|failure', 'type': 'string'}
+
+On instance['status']:
+    'gkhkkl' '1' is not of type 'integer'
+
+Failed validating 'type' in schema['properties']['passengerID']:
+    {'type': 'integer'}
+
+On instance['passengerID']:
+    '1' '-20.344 / 130.031' does not match '^[-]?[0-9]+[.][0-9]+[,][ ]?[-]?[0-9]+[.][0-9]+$'
+
+Failed validating 'pattern' in schema['properties']['geo_location']:
+    {'pattern': '^[-]?[0-9]+[.][0-9]+[,][ ]?[-]?[0-9]+[.][0-9]+$',
+     'type': 'string'}
+
+On instance['geo_location']:
+    '-20.344 / 130.031' 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx' is too long
+
+Failed validating 'maxLength' in schema['properties']['description']:
+    {'maxLength': 90, 'type': 'string'}
+
+On instance['description']:
+    'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx' 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx' is too long
+
+Failed validating 'maxLength' in schema['properties']['comments']:
+    {'maxLength': 140, 'type': 'string'}
+
+On instance['comments']:
+    'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx' 'like' does not match 'unknown|live|dead'
+
+Failed validating 'pattern' in schema['properties']['status']:
+    {'pattern': 'unknown|live|dead', 'type': 'string'}
+
+On instance['status']:
+    'like' 'AAA' does not match '^[0-9]{2}[A-Z]$'
+
+Failed validating 'pattern' in schema['properties']['seatno']:
+    {'pattern': '^[0-9]{2}[A-Z]$', 'type': 'string'}
+
+On instance['seatno']:
+    'AAA' 'kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk' is too long
+
+Failed validating 'maxLength' in schema['properties']['lname']:
+    {'maxLength': 45, 'type': 'string'}
+
+On instance['lname']:
+    'kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk' 'kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk' is too long
+
+Failed validating 'maxLength' in schema['properties']['fname']:
+    {'maxLength': 45, 'type': 'string'}
+
+On instance['fname']:
+    'kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk'. Status code: 400
+ERROR::manifestapp.rest.passenger_api::03/02/2023 12:25:25 AM::POST. Incorrect payload 'gkhkkl' does not match 'unknown|success|failure'
+
+Failed validating 'pattern' in schema['properties']['status']:
+    {'pattern': 'unknown|success|failure', 'type': 'string'}
+
+On instance['status']:
+    'gkhkkl' '1' is not of type 'integer'
+
+Failed validating 'type' in schema['properties']['passengerID']:
+    {'type': 'integer'}
+
+On instance['passengerID']:
+    '1' '-20.344 / 130.031' does not match '^[-]?[0-9]+[.][0-9]+[,][ ]?[-]?[0-9]+[.][0-9]+$'
+
+Failed validating 'pattern' in schema['properties']['geo_location']:
+    {'pattern': '^[-]?[0-9]+[.][0-9]+[,][ ]?[-]?[0-9]+[.][0-9]+$',
+     'type': 'string'}
+
+On instance['geo_location']:
+    '-20.344 / 130.031' 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx' is too long
+
+Failed validating 'maxLength' in schema['properties']['description']:
+    {'maxLength': 90, 'type': 'string'}
+
+On instance['description']:
+    'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx' 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx' is too long
+
+Failed validating 'maxLength' in schema['properties']['comments']:
+    {'maxLength': 140, 'type': 'string'}
+
+On instance['comments']:
+    'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx' 'like' does not match 'unknown|live|dead'
+
+Failed validating 'pattern' in schema['properties']['status']:
+    {'pattern': 'unknown|live|dead', 'type': 'string'}
+
+On instance['status']:
+    'like' 'AAA' does not match '^[0-9]{2}[A-Z]$'
+
+Failed validating 'pattern' in schema['properties']['seatno']:
+    {'pattern': '^[0-9]{2}[A-Z]$', 'type': 'string'}
+
+On instance['seatno']:
+    'AAA' 'kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk' is too long
+
+Failed validating 'maxLength' in schema['properties']['lname']:
+    {'maxLength': 45, 'type': 'string'}
+
+On instance['lname']:
+    'kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk' 'kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk' is too long
+
+Failed validating 'maxLength' in schema['properties']['fname']:
+    {'maxLength': 45, 'type': 'string'}
+
+On instance['fname']:
+    'kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk' 'kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk' is too long
+
+Failed validating 'maxLength' in schema['properties']['address']:
+    {'maxLength': 100, 'type': 'string'}
+
+On instance['address']:
+    'kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk'. Status code: 400
+ERROR::manifestapp.rest.passenger_api::03/02/2023 12:25:25 AM::POST. Incorrect payload 'gkhkkl' does not match 'unknown|success|failure'
+
+Failed validating 'pattern' in schema['properties']['status']:
+    {'pattern': 'unknown|success|failure', 'type': 'string'}
+
+On instance['status']:
+    'gkhkkl' '1' is not of type 'integer'
+
+Failed validating 'type' in schema['properties']['passengerID']:
+    {'type': 'integer'}
+
+On instance['passengerID']:
+    '1' '-20.344 / 130.031' does not match '^[-]?[0-9]+[.][0-9]+[,][ ]?[-]?[0-9]+[.][0-9]+$'
+
+Failed validating 'pattern' in schema['properties']['geo_location']:
+    {'pattern': '^[-]?[0-9]+[.][0-9]+[,][ ]?[-]?[0-9]+[.][0-9]+$',
+     'type': 'string'}
+
+On instance['geo_location']:
+    '-20.344 / 130.031' 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx' is too long
+
+Failed validating 'maxLength' in schema['properties']['description']:
+    {'maxLength': 90, 'type': 'string'}
+
+On instance['description']:
+    'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx' 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx' is too long
+
+Failed validating 'maxLength' in schema['properties']['comments']:
+    {'maxLength': 140, 'type': 'string'}
+
+On instance['comments']:
+    'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx' 'like' does not match 'unknown|live|dead'
+
+Failed validating 'pattern' in schema['properties']['status']:
+    {'pattern': 'unknown|live|dead', 'type': 'string'}
+
+On instance['status']:
+    'like' 'AAA' does not match '^[0-9]{2}[A-Z]$'
+
+Failed validating 'pattern' in schema['properties']['seatno']:
+    {'pattern': '^[0-9]{2}[A-Z]$', 'type': 'string'}
+
+On instance['seatno']:
+    'AAA' 'kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk' is too long
+
+Failed validating 'maxLength' in schema['properties']['lname']:
+    {'maxLength': 45, 'type': 'string'}
+
+On instance['lname']:
+    'kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk' 'kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk' is too long
+
+Failed validating 'maxLength' in schema['properties']['fname']:
+    {'maxLength': 45, 'type': 'string'}
+
+On instance['fname']:
+    'kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk' 'kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk' is too long
+
+Failed validating 'maxLength' in schema['properties']['address']:
+    {'maxLength': 100, 'type': 'string'}
+
+On instance['address']:
+    'kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk' 'kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk' is too long
+
+Failed validating 'maxLength' in schema['properties']['comments']:
+    {'maxLength': 140, 'type': 'string'}
+
+On instance['comments']:
+    'kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk'. Status code: 400
+ERROR::manifestapp.rest.passenger_api::03/02/2023 12:25:25 AM::DELETE. Item(s) not found. Status code: 404
+ERROR::manifestapp.rest.passenger_api::03/02/2023 12:25:25 AM::DELETE. Item(s) not found. Status code: 404
+DEBUG::manifestapp.rest.passenger_api::03/02/2023 12:25:25 AM::Get all items with status None. Status code: 200
+DEBUG::manifestapp.rest.passenger_api::03/02/2023 12:25:25 AM::Get all items with status None. Status code: 200
+DEBUG::manifestapp.rest.passenger_api::03/02/2023 12:25:26 AM::Get all items with status live. Status code: 200
+DEBUG::manifestapp.rest.passenger_api::03/02/2023 12:25:26 AM::Get all items with status dead. Status code: 200
+DEBUG::manifestapp.rest.passenger_api::03/02/2023 12:25:26 AM::Get all items with status unknown. Status code: 200
+DEBUG::manifestapp.rest.passenger_api::03/02/2023 12:25:26 AM::Get item with id 2. Status code: 200 
+DEBUG::manifestapp.rest.passenger_api::03/02/2023 12:25:26 AM::Get item with id 3. Status code: 200 
+ERROR::manifestapp.rest.passenger_api::03/02/2023 12:25:26 AM::Item with id 10000 not found. Status code: 404
+ERROR::manifestapp.rest.passenger_api::03/02/2023 12:25:26 AM::Item with id fgfdg not found. Status code: 404
+ERROR::manifestapp.rest.passenger_api::03/02/2023 12:25:26 AM::POST. Item(s) not found. Status code: 404
+ERROR::manifestapp.rest.passenger_api::03/02/2023 12:25:26 AM::POST. Item(s) not found. Status code: 404
+DEBUG::manifestapp.rest.event_api::03/02/2023 12:37:48 AM::POST. Item created. Status code: 200
+DEBUG::manifestapp.rest.event_api::03/02/2023 12:37:49 AM::DELETE. Item deleted. Status code: 200
+DEBUG::manifestapp.rest.event_api::03/02/2023 12:37:49 AM::POST. Item created. Status code: 200
+DEBUG::manifestapp.rest.event_api::03/02/2023 12:37:49 AM::POST. Item updated. Status code: 200
+DEBUG::manifestapp.rest.event_api::03/02/2023 12:37:49 AM::DELETE. Item deleted. Status code: 200
+ERROR::manifestapp.rest.event_api::03/02/2023 12:37:49 AM::POST. Incorrect payload 'gkhkkl' does not match 'unknown|success|failure'
+
+Failed validating 'pattern' in schema['properties']['status']:
+    {'pattern': 'unknown|success|failure', 'type': 'string'}
+
+On instance['status']:
+    'gkhkkl'. Status code: 400
+ERROR::manifestapp.rest.event_api::03/02/2023 12:37:49 AM::POST. Incorrect payload 'gkhkkl' does not match 'unknown|success|failure'
+
+Failed validating 'pattern' in schema['properties']['status']:
+    {'pattern': 'unknown|success|failure', 'type': 'string'}
+
+On instance['status']:
+    'gkhkkl' '1' is not of type 'integer'
+
+Failed validating 'type' in schema['properties']['passengerID']:
+    {'type': 'integer'}
+
+On instance['passengerID']:
+    '1'. Status code: 400
+ERROR::manifestapp.rest.event_api::03/02/2023 12:37:49 AM::POST. Incorrect payload 'gkhkkl' does not match 'unknown|success|failure'
+
+Failed validating 'pattern' in schema['properties']['status']:
+    {'pattern': 'unknown|success|failure', 'type': 'string'}
+
+On instance['status']:
+    'gkhkkl' '1' is not of type 'integer'
+
+Failed validating 'type' in schema['properties']['passengerID']:
+    {'type': 'integer'}
+
+On instance['passengerID']:
+    '1' '-20.344 / 130.031' does not match '^[-]?[0-9]+[.][0-9]+[,][ ]?[-]?[0-9]+[.][0-9]+$'
+
+Failed validating 'pattern' in schema['properties']['geo_location']:
+    {'pattern': '^[-]?[0-9]+[.][0-9]+[,][ ]?[-]?[0-9]+[.][0-9]+$',
+     'type': 'string'}
+
+On instance['geo_location']:
+    '-20.344 / 130.031'. Status code: 400
+ERROR::manifestapp.rest.event_api::03/02/2023 12:37:49 AM::POST. Incorrect payload 'gkhkkl' does not match 'unknown|success|failure'
+
+Failed validating 'pattern' in schema['properties']['status']:
+    {'pattern': 'unknown|success|failure', 'type': 'string'}
+
+On instance['status']:
+    'gkhkkl' '1' is not of type 'integer'
+
+Failed validating 'type' in schema['properties']['passengerID']:
+    {'type': 'integer'}
+
+On instance['passengerID']:
+    '1' '-20.344 / 130.031' does not match '^[-]?[0-9]+[.][0-9]+[,][ ]?[-]?[0-9]+[.][0-9]+$'
+
+Failed validating 'pattern' in schema['properties']['geo_location']:
+    {'pattern': '^[-]?[0-9]+[.][0-9]+[,][ ]?[-]?[0-9]+[.][0-9]+$',
+     'type': 'string'}
+
+On instance['geo_location']:
+    '-20.344 / 130.031' 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx' is too long
+
+Failed validating 'maxLength' in schema['properties']['description']:
+    {'maxLength': 90, 'type': 'string'}
+
+On instance['description']:
+    'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'. Status code: 400
+ERROR::manifestapp.rest.event_api::03/02/2023 12:37:49 AM::POST. Incorrect payload 'gkhkkl' does not match 'unknown|success|failure'
+
+Failed validating 'pattern' in schema['properties']['status']:
+    {'pattern': 'unknown|success|failure', 'type': 'string'}
+
+On instance['status']:
+    'gkhkkl' '1' is not of type 'integer'
+
+Failed validating 'type' in schema['properties']['passengerID']:
+    {'type': 'integer'}
+
+On instance['passengerID']:
+    '1' '-20.344 / 130.031' does not match '^[-]?[0-9]+[.][0-9]+[,][ ]?[-]?[0-9]+[.][0-9]+$'
+
+Failed validating 'pattern' in schema['properties']['geo_location']:
+    {'pattern': '^[-]?[0-9]+[.][0-9]+[,][ ]?[-]?[0-9]+[.][0-9]+$',
+     'type': 'string'}
+
+On instance['geo_location']:
+    '-20.344 / 130.031' 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx' is too long
+
+Failed validating 'maxLength' in schema['properties']['description']:
+    {'maxLength': 90, 'type': 'string'}
+
+On instance['description']:
+    'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx' 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx' is too long
+
+Failed validating 'maxLength' in schema['properties']['comments']:
+    {'maxLength': 140, 'type': 'string'}
+
+On instance['comments']:
+    'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'. Status code: 400
+ERROR::manifestapp.rest.event_api::03/02/2023 12:37:49 AM::DELETE. Item(s) not found. Status code: 404
+ERROR::manifestapp.rest.event_api::03/02/2023 12:37:49 AM::DELETE. Item(s) not found. Status code: 404
+DEBUG::manifestapp.rest.event_api::03/02/2023 12:37:49 AM::Get items. Passid:all, datefrom:None, dateto:None. Status code: 200
+DEBUG::manifestapp.rest.event_api::03/02/2023 12:37:49 AM::Get items. Passid:all, datefrom:None, dateto:None. Status code: 200
+DEBUG::manifestapp.rest.event_api::03/02/2023 12:37:49 AM::Get items. Passid:all, datefrom:None, dateto:None. Status code: 200
+DEBUG::manifestapp.rest.event_api::03/02/2023 12:37:49 AM::Get items. Passid:5, datefrom:None, dateto:None. Status code: 200
+DEBUG::manifestapp.rest.event_api::03/02/2023 12:37:49 AM::Get items. Passid:1, datefrom:None, dateto:None. Status code: 200
+ERROR::manifestapp.rest.event_api::03/02/2023 12:37:49 AM::Item(s) not found. Passid:10000, datefrom:None, dateto:None. Status code: 404
+DEBUG::manifestapp.rest.event_api::03/02/2023 12:37:49 AM::Get items. Passid:tyty, datefrom:None, dateto:None. Status code: 200
+DEBUG::manifestapp.rest.event_api::03/02/2023 12:37:49 AM::Get items. Passid:all, datefrom:2022-01-01, dateto:None. Status code: 200
+DEBUG::manifestapp.rest.event_api::03/02/2023 12:37:49 AM::Get items. Passid:all, datefrom:2022-01-01, dateto:2022-12-31. Status code: 200
+DEBUG::manifestapp.rest.event_api::03/02/2023 12:37:49 AM::Get items. Passid:all, datefrom:None, dateto:2022-12-31. Status code: 200
+ERROR::manifestapp.rest.event_api::03/02/2023 12:37:49 AM::Invalid datefrom parameter. Status code: 400
+ERROR::manifestapp.rest.event_api::03/02/2023 12:37:49 AM::Invalid datefrom parameter. Status code: 400
+DEBUG::manifestapp.rest.event_api::03/02/2023 12:37:49 AM::Get items. Passid:5, datefrom:2022-01-01, dateto:None. Status code: 200
+DEBUG::manifestapp.rest.event_api::03/02/2023 12:37:49 AM::Get items. Passid:5, datefrom:2022-01-01, dateto:2022-12-31. Status code: 200
+DEBUG::manifestapp.rest.event_api::03/02/2023 12:37:49 AM::Get items. Passid:5, datefrom:None, dateto:2022-12-31. Status code: 200
+DEBUG::manifestapp.rest.event_api::03/02/2023 12:37:49 AM::Get items. Passid:all, datefrom:None, dateto:None. Status code: 200
+DEBUG::manifestapp.rest.event_api::03/02/2023 12:37:49 AM::Get items. Passid:all, datefrom:None, dateto:None. Status code: 200
+ERROR::manifestapp.rest.event_api::03/02/2023 12:37:49 AM::Item(s) not found. EventID:10000, datefrom:None, dateto:None. Status code: 404
+ERROR::manifestapp.rest.event_api::03/02/2023 12:37:49 AM::Item(s) not found. EventID:1, datefrom:None, dateto:None. Status code: 404
+ERROR::manifestapp.rest.event_api::03/02/2023 12:37:49 AM::Item(s) not found. EventID:fgfdg, datefrom:None, dateto:None. Status code: 404
+ERROR::manifestapp.rest.event_api::03/02/2023 12:37:49 AM::POST. Item(s) not found. Status code: 404
+ERROR::manifestapp.rest.event_api::03/02/2023 12:37:49 AM::POST. Item(s) not found. Status code: 404
+DEBUG::manifestapp.rest.passenger_api::03/02/2023 12:37:49 AM::POST. Item created. Status code: 200
+DEBUG::manifestapp.rest.passenger_api::03/02/2023 12:37:49 AM::DELETE. Item deleted. Status code: 200
+DEBUG::manifestapp.rest.passenger_api::03/02/2023 12:37:50 AM::POST. Item created. Status code: 200
+DEBUG::manifestapp.rest.passenger_api::03/02/2023 12:37:50 AM::POST. Item updated. Status code: 200
+DEBUG::manifestapp.rest.passenger_api::03/02/2023 12:37:50 AM::DELETE. Item deleted. Status code: 200
+ERROR::manifestapp.rest.passenger_api::03/02/2023 12:37:50 AM::POST. Incorrect payload 'gkhkkl' does not match 'unknown|success|failure'
+
+Failed validating 'pattern' in schema['properties']['status']:
+    {'pattern': 'unknown|success|failure', 'type': 'string'}
+
+On instance['status']:
+    'gkhkkl' '1' is not of type 'integer'
+
+Failed validating 'type' in schema['properties']['passengerID']:
+    {'type': 'integer'}
+
+On instance['passengerID']:
+    '1' '-20.344 / 130.031' does not match '^[-]?[0-9]+[.][0-9]+[,][ ]?[-]?[0-9]+[.][0-9]+$'
+
+Failed validating 'pattern' in schema['properties']['geo_location']:
+    {'pattern': '^[-]?[0-9]+[.][0-9]+[,][ ]?[-]?[0-9]+[.][0-9]+$',
+     'type': 'string'}
+
+On instance['geo_location']:
+    '-20.344 / 130.031' 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx' is too long
+
+Failed validating 'maxLength' in schema['properties']['description']:
+    {'maxLength': 90, 'type': 'string'}
+
+On instance['description']:
+    'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx' 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx' is too long
+
+Failed validating 'maxLength' in schema['properties']['comments']:
+    {'maxLength': 140, 'type': 'string'}
+
+On instance['comments']:
+    'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx' 'like' does not match 'unknown|live|dead'
+
+Failed validating 'pattern' in schema['properties']['status']:
+    {'pattern': 'unknown|live|dead', 'type': 'string'}
+
+On instance['status']:
+    'like'. Status code: 400
+ERROR::manifestapp.rest.passenger_api::03/02/2023 12:37:50 AM::POST. Incorrect payload 'gkhkkl' does not match 'unknown|success|failure'
+
+Failed validating 'pattern' in schema['properties']['status']:
+    {'pattern': 'unknown|success|failure', 'type': 'string'}
+
+On instance['status']:
+    'gkhkkl' '1' is not of type 'integer'
+
+Failed validating 'type' in schema['properties']['passengerID']:
+    {'type': 'integer'}
+
+On instance['passengerID']:
+    '1' '-20.344 / 130.031' does not match '^[-]?[0-9]+[.][0-9]+[,][ ]?[-]?[0-9]+[.][0-9]+$'
+
+Failed validating 'pattern' in schema['properties']['geo_location']:
+    {'pattern': '^[-]?[0-9]+[.][0-9]+[,][ ]?[-]?[0-9]+[.][0-9]+$',
+     'type': 'string'}
+
+On instance['geo_location']:
+    '-20.344 / 130.031' 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx' is too long
+
+Failed validating 'maxLength' in schema['properties']['description']:
+    {'maxLength': 90, 'type': 'string'}
+
+On instance['description']:
+    'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx' 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx' is too long
+
+Failed validating 'maxLength' in schema['properties']['comments']:
+    {'maxLength': 140, 'type': 'string'}
+
+On instance['comments']:
+    'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx' 'like' does not match 'unknown|live|dead'
+
+Failed validating 'pattern' in schema['properties']['status']:
+    {'pattern': 'unknown|live|dead', 'type': 'string'}
+
+On instance['status']:
+    'like' 'AAA' does not match '^[0-9]{2}[A-Z]$'
+
+Failed validating 'pattern' in schema['properties']['seatno']:
+    {'pattern': '^[0-9]{2}[A-Z]$', 'type': 'string'}
+
+On instance['seatno']:
+    'AAA'. Status code: 400
+ERROR::manifestapp.rest.passenger_api::03/02/2023 12:37:50 AM::POST. Incorrect payload 'gkhkkl' does not match 'unknown|success|failure'
+
+Failed validating 'pattern' in schema['properties']['status']:
+    {'pattern': 'unknown|success|failure', 'type': 'string'}
+
+On instance['status']:
+    'gkhkkl' '1' is not of type 'integer'
+
+Failed validating 'type' in schema['properties']['passengerID']:
+    {'type': 'integer'}
+
+On instance['passengerID']:
+    '1' '-20.344 / 130.031' does not match '^[-]?[0-9]+[.][0-9]+[,][ ]?[-]?[0-9]+[.][0-9]+$'
+
+Failed validating 'pattern' in schema['properties']['geo_location']:
+    {'pattern': '^[-]?[0-9]+[.][0-9]+[,][ ]?[-]?[0-9]+[.][0-9]+$',
+     'type': 'string'}
+
+On instance['geo_location']:
+    '-20.344 / 130.031' 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx' is too long
+
+Failed validating 'maxLength' in schema['properties']['description']:
+    {'maxLength': 90, 'type': 'string'}
+
+On instance['description']:
+    'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx' 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx' is too long
+
+Failed validating 'maxLength' in schema['properties']['comments']:
+    {'maxLength': 140, 'type': 'string'}
+
+On instance['comments']:
+    'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx' 'like' does not match 'unknown|live|dead'
+
+Failed validating 'pattern' in schema['properties']['status']:
+    {'pattern': 'unknown|live|dead', 'type': 'string'}
+
+On instance['status']:
+    'like' 'AAA' does not match '^[0-9]{2}[A-Z]$'
+
+Failed validating 'pattern' in schema['properties']['seatno']:
+    {'pattern': '^[0-9]{2}[A-Z]$', 'type': 'string'}
+
+On instance['seatno']:
+    'AAA' 'kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk' is too long
+
+Failed validating 'maxLength' in schema['properties']['lname']:
+    {'maxLength': 45, 'type': 'string'}
+
+On instance['lname']:
+    'kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk'. Status code: 400
+ERROR::manifestapp.rest.passenger_api::03/02/2023 12:37:50 AM::POST. Incorrect payload 'gkhkkl' does not match 'unknown|success|failure'
+
+Failed validating 'pattern' in schema['properties']['status']:
+    {'pattern': 'unknown|success|failure', 'type': 'string'}
+
+On instance['status']:
+    'gkhkkl' '1' is not of type 'integer'
+
+Failed validating 'type' in schema['properties']['passengerID']:
+    {'type': 'integer'}
+
+On instance['passengerID']:
+    '1' '-20.344 / 130.031' does not match '^[-]?[0-9]+[.][0-9]+[,][ ]?[-]?[0-9]+[.][0-9]+$'
+
+Failed validating 'pattern' in schema['properties']['geo_location']:
+    {'pattern': '^[-]?[0-9]+[.][0-9]+[,][ ]?[-]?[0-9]+[.][0-9]+$',
+     'type': 'string'}
+
+On instance['geo_location']:
+    '-20.344 / 130.031' 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx' is too long
+
+Failed validating 'maxLength' in schema['properties']['description']:
+    {'maxLength': 90, 'type': 'string'}
+
+On instance['description']:
+    'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx' 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx' is too long
+
+Failed validating 'maxLength' in schema['properties']['comments']:
+    {'maxLength': 140, 'type': 'string'}
+
+On instance['comments']:
+    'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx' 'like' does not match 'unknown|live|dead'
+
+Failed validating 'pattern' in schema['properties']['status']:
+    {'pattern': 'unknown|live|dead', 'type': 'string'}
+
+On instance['status']:
+    'like' 'AAA' does not match '^[0-9]{2}[A-Z]$'
+
+Failed validating 'pattern' in schema['properties']['seatno']:
+    {'pattern': '^[0-9]{2}[A-Z]$', 'type': 'string'}
+
+On instance['seatno']:
+    'AAA' 'kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk' is too long
+
+Failed validating 'maxLength' in schema['properties']['lname']:
+    {'maxLength': 45, 'type': 'string'}
+
+On instance['lname']:
+    'kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk' 'kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk' is too long
+
+Failed validating 'maxLength' in schema['properties']['fname']:
+    {'maxLength': 45, 'type': 'string'}
+
+On instance['fname']:
+    'kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk'. Status code: 400
+ERROR::manifestapp.rest.passenger_api::03/02/2023 12:37:50 AM::POST. Incorrect payload 'gkhkkl' does not match 'unknown|success|failure'
+
+Failed validating 'pattern' in schema['properties']['status']:
+    {'pattern': 'unknown|success|failure', 'type': 'string'}
+
+On instance['status']:
+    'gkhkkl' '1' is not of type 'integer'
+
+Failed validating 'type' in schema['properties']['passengerID']:
+    {'type': 'integer'}
+
+On instance['passengerID']:
+    '1' '-20.344 / 130.031' does not match '^[-]?[0-9]+[.][0-9]+[,][ ]?[-]?[0-9]+[.][0-9]+$'
+
+Failed validating 'pattern' in schema['properties']['geo_location']:
+    {'pattern': '^[-]?[0-9]+[.][0-9]+[,][ ]?[-]?[0-9]+[.][0-9]+$',
+     'type': 'string'}
+
+On instance['geo_location']:
+    '-20.344 / 130.031' 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx' is too long
+
+Failed validating 'maxLength' in schema['properties']['description']:
+    {'maxLength': 90, 'type': 'string'}
+
+On instance['description']:
+    'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx' 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx' is too long
+
+Failed validating 'maxLength' in schema['properties']['comments']:
+    {'maxLength': 140, 'type': 'string'}
+
+On instance['comments']:
+    'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx' 'like' does not match 'unknown|live|dead'
+
+Failed validating 'pattern' in schema['properties']['status']:
+    {'pattern': 'unknown|live|dead', 'type': 'string'}
+
+On instance['status']:
+    'like' 'AAA' does not match '^[0-9]{2}[A-Z]$'
+
+Failed validating 'pattern' in schema['properties']['seatno']:
+    {'pattern': '^[0-9]{2}[A-Z]$', 'type': 'string'}
+
+On instance['seatno']:
+    'AAA' 'kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk' is too long
+
+Failed validating 'maxLength' in schema['properties']['lname']:
+    {'maxLength': 45, 'type': 'string'}
+
+On instance['lname']:
+    'kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk' 'kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk' is too long
+
+Failed validating 'maxLength' in schema['properties']['fname']:
+    {'maxLength': 45, 'type': 'string'}
+
+On instance['fname']:
+    'kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk' 'kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk' is too long
+
+Failed validating 'maxLength' in schema['properties']['address']:
+    {'maxLength': 100, 'type': 'string'}
+
+On instance['address']:
+    'kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk'. Status code: 400
+ERROR::manifestapp.rest.passenger_api::03/02/2023 12:37:50 AM::POST. Incorrect payload 'gkhkkl' does not match 'unknown|success|failure'
+
+Failed validating 'pattern' in schema['properties']['status']:
+    {'pattern': 'unknown|success|failure', 'type': 'string'}
+
+On instance['status']:
+    'gkhkkl' '1' is not of type 'integer'
+
+Failed validating 'type' in schema['properties']['passengerID']:
+    {'type': 'integer'}
+
+On instance['passengerID']:
+    '1' '-20.344 / 130.031' does not match '^[-]?[0-9]+[.][0-9]+[,][ ]?[-]?[0-9]+[.][0-9]+$'
+
+Failed validating 'pattern' in schema['properties']['geo_location']:
+    {'pattern': '^[-]?[0-9]+[.][0-9]+[,][ ]?[-]?[0-9]+[.][0-9]+$',
+     'type': 'string'}
+
+On instance['geo_location']:
+    '-20.344 / 130.031' 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx' is too long
+
+Failed validating 'maxLength' in schema['properties']['description']:
+    {'maxLength': 90, 'type': 'string'}
+
+On instance['description']:
+    'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx' 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx' is too long
+
+Failed validating 'maxLength' in schema['properties']['comments']:
+    {'maxLength': 140, 'type': 'string'}
+
+On instance['comments']:
+    'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx' 'like' does not match 'unknown|live|dead'
+
+Failed validating 'pattern' in schema['properties']['status']:
+    {'pattern': 'unknown|live|dead', 'type': 'string'}
+
+On instance['status']:
+    'like' 'AAA' does not match '^[0-9]{2}[A-Z]$'
+
+Failed validating 'pattern' in schema['properties']['seatno']:
+    {'pattern': '^[0-9]{2}[A-Z]$', 'type': 'string'}
+
+On instance['seatno']:
+    'AAA' 'kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk' is too long
+
+Failed validating 'maxLength' in schema['properties']['lname']:
+    {'maxLength': 45, 'type': 'string'}
+
+On instance['lname']:
+    'kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk' 'kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk' is too long
+
+Failed validating 'maxLength' in schema['properties']['fname']:
+    {'maxLength': 45, 'type': 'string'}
+
+On instance['fname']:
+    'kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk' 'kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk' is too long
+
+Failed validating 'maxLength' in schema['properties']['address']:
+    {'maxLength': 100, 'type': 'string'}
+
+On instance['address']:
+    'kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk' 'kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk' is too long
+
+Failed validating 'maxLength' in schema['properties']['comments']:
+    {'maxLength': 140, 'type': 'string'}
+
+On instance['comments']:
+    'kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk'. Status code: 400
+ERROR::manifestapp.rest.passenger_api::03/02/2023 12:37:50 AM::DELETE. Item(s) not found. Status code: 404
+ERROR::manifestapp.rest.passenger_api::03/02/2023 12:37:50 AM::DELETE. Item(s) not found. Status code: 404
+DEBUG::manifestapp.rest.passenger_api::03/02/2023 12:37:50 AM::Get all items with status None. Status code: 200
+DEBUG::manifestapp.rest.passenger_api::03/02/2023 12:37:50 AM::Get all items with status None. Status code: 200
+DEBUG::manifestapp.rest.passenger_api::03/02/2023 12:37:50 AM::Get all items with status live. Status code: 200
+DEBUG::manifestapp.rest.passenger_api::03/02/2023 12:37:50 AM::Get all items with status dead. Status code: 200
+DEBUG::manifestapp.rest.passenger_api::03/02/2023 12:37:50 AM::Get all items with status unknown. Status code: 200
+DEBUG::manifestapp.rest.passenger_api::03/02/2023 12:37:50 AM::Get item with id 2. Status code: 200 
+DEBUG::manifestapp.rest.passenger_api::03/02/2023 12:37:50 AM::Get item with id 3. Status code: 200 
+ERROR::manifestapp.rest.passenger_api::03/02/2023 12:37:50 AM::Item with id 10000 not found. Status code: 404
+ERROR::manifestapp.rest.passenger_api::03/02/2023 12:37:50 AM::Item with id fgfdg not found. Status code: 404
+ERROR::manifestapp.rest.passenger_api::03/02/2023 12:37:50 AM::POST. Item(s) not found. Status code: 404
+ERROR::manifestapp.rest.passenger_api::03/02/2023 12:37:50 AM::POST. Item(s) not found. Status code: 404
+DEBUG::manifestapp.rest.event_api::03/02/2023 12:41:34 AM::POST. Item created. Status code: 200
+DEBUG::manifestapp.rest.event_api::03/02/2023 12:41:34 AM::DELETE. Item deleted. Status code: 200
+DEBUG::manifestapp.rest.event_api::03/02/2023 12:41:35 AM::POST. Item created. Status code: 200
+DEBUG::manifestapp.rest.event_api::03/02/2023 12:41:35 AM::POST. Item updated. Status code: 200
+DEBUG::manifestapp.rest.event_api::03/02/2023 12:41:35 AM::DELETE. Item deleted. Status code: 200
+ERROR::manifestapp.rest.event_api::03/02/2023 12:41:35 AM::POST. Incorrect payload 'gkhkkl' does not match 'unknown|success|failure'
+
+Failed validating 'pattern' in schema['properties']['status']:
+    {'pattern': 'unknown|success|failure', 'type': 'string'}
+
+On instance['status']:
+    'gkhkkl'. Status code: 400
+ERROR::manifestapp.rest.event_api::03/02/2023 12:41:35 AM::POST. Incorrect payload 'gkhkkl' does not match 'unknown|success|failure'
+
+Failed validating 'pattern' in schema['properties']['status']:
+    {'pattern': 'unknown|success|failure', 'type': 'string'}
+
+On instance['status']:
+    'gkhkkl' '1' is not of type 'integer'
+
+Failed validating 'type' in schema['properties']['passengerID']:
+    {'type': 'integer'}
+
+On instance['passengerID']:
+    '1'. Status code: 400
+ERROR::manifestapp.rest.event_api::03/02/2023 12:41:35 AM::POST. Incorrect payload 'gkhkkl' does not match 'unknown|success|failure'
+
+Failed validating 'pattern' in schema['properties']['status']:
+    {'pattern': 'unknown|success|failure', 'type': 'string'}
+
+On instance['status']:
+    'gkhkkl' '1' is not of type 'integer'
+
+Failed validating 'type' in schema['properties']['passengerID']:
+    {'type': 'integer'}
+
+On instance['passengerID']:
+    '1' '-20.344 / 130.031' does not match '^[-]?[0-9]+[.][0-9]+[,][ ]?[-]?[0-9]+[.][0-9]+$'
+
+Failed validating 'pattern' in schema['properties']['geo_location']:
+    {'pattern': '^[-]?[0-9]+[.][0-9]+[,][ ]?[-]?[0-9]+[.][0-9]+$',
+     'type': 'string'}
+
+On instance['geo_location']:
+    '-20.344 / 130.031'. Status code: 400
+ERROR::manifestapp.rest.event_api::03/02/2023 12:41:35 AM::POST. Incorrect payload 'gkhkkl' does not match 'unknown|success|failure'
+
+Failed validating 'pattern' in schema['properties']['status']:
+    {'pattern': 'unknown|success|failure', 'type': 'string'}
+
+On instance['status']:
+    'gkhkkl' '1' is not of type 'integer'
+
+Failed validating 'type' in schema['properties']['passengerID']:
+    {'type': 'integer'}
+
+On instance['passengerID']:
+    '1' '-20.344 / 130.031' does not match '^[-]?[0-9]+[.][0-9]+[,][ ]?[-]?[0-9]+[.][0-9]+$'
+
+Failed validating 'pattern' in schema['properties']['geo_location']:
+    {'pattern': '^[-]?[0-9]+[.][0-9]+[,][ ]?[-]?[0-9]+[.][0-9]+$',
+     'type': 'string'}
+
+On instance['geo_location']:
+    '-20.344 / 130.031' 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx' is too long
+
+Failed validating 'maxLength' in schema['properties']['description']:
+    {'maxLength': 90, 'type': 'string'}
+
+On instance['description']:
+    'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'. Status code: 400
+ERROR::manifestapp.rest.event_api::03/02/2023 12:41:35 AM::POST. Incorrect payload 'gkhkkl' does not match 'unknown|success|failure'
+
+Failed validating 'pattern' in schema['properties']['status']:
+    {'pattern': 'unknown|success|failure', 'type': 'string'}
+
+On instance['status']:
+    'gkhkkl' '1' is not of type 'integer'
+
+Failed validating 'type' in schema['properties']['passengerID']:
+    {'type': 'integer'}
+
+On instance['passengerID']:
+    '1' '-20.344 / 130.031' does not match '^[-]?[0-9]+[.][0-9]+[,][ ]?[-]?[0-9]+[.][0-9]+$'
+
+Failed validating 'pattern' in schema['properties']['geo_location']:
+    {'pattern': '^[-]?[0-9]+[.][0-9]+[,][ ]?[-]?[0-9]+[.][0-9]+$',
+     'type': 'string'}
+
+On instance['geo_location']:
+    '-20.344 / 130.031' 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx' is too long
+
+Failed validating 'maxLength' in schema['properties']['description']:
+    {'maxLength': 90, 'type': 'string'}
+
+On instance['description']:
+    'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx' 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx' is too long
+
+Failed validating 'maxLength' in schema['properties']['comments']:
+    {'maxLength': 140, 'type': 'string'}
+
+On instance['comments']:
+    'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'. Status code: 400
+ERROR::manifestapp.rest.event_api::03/02/2023 12:41:35 AM::DELETE. Item(s) not found. Status code: 404
+ERROR::manifestapp.rest.event_api::03/02/2023 12:41:35 AM::DELETE. Item(s) not found. Status code: 404
+DEBUG::manifestapp.rest.event_api::03/02/2023 12:41:35 AM::Get items. Passid:all, datefrom:None, dateto:None. Status code: 200
+DEBUG::manifestapp.rest.event_api::03/02/2023 12:41:35 AM::Get items. Passid:all, datefrom:None, dateto:None. Status code: 200
+DEBUG::manifestapp.rest.event_api::03/02/2023 12:41:35 AM::Get items. Passid:all, datefrom:None, dateto:None. Status code: 200
+DEBUG::manifestapp.rest.event_api::03/02/2023 12:41:35 AM::Get items. Passid:5, datefrom:None, dateto:None. Status code: 200
+DEBUG::manifestapp.rest.event_api::03/02/2023 12:41:35 AM::Get items. Passid:1, datefrom:None, dateto:None. Status code: 200
+ERROR::manifestapp.rest.event_api::03/02/2023 12:41:35 AM::Item(s) not found. Passid:10000, datefrom:None, dateto:None. Status code: 404
+DEBUG::manifestapp.rest.event_api::03/02/2023 12:41:35 AM::Get items. Passid:tyty, datefrom:None, dateto:None. Status code: 200
+DEBUG::manifestapp.rest.event_api::03/02/2023 12:41:35 AM::Get items. Passid:all, datefrom:2022-01-01, dateto:None. Status code: 200
+DEBUG::manifestapp.rest.event_api::03/02/2023 12:41:35 AM::Get items. Passid:all, datefrom:2022-01-01, dateto:2022-12-31. Status code: 200
+DEBUG::manifestapp.rest.event_api::03/02/2023 12:41:35 AM::Get items. Passid:all, datefrom:None, dateto:2022-12-31. Status code: 200
+ERROR::manifestapp.rest.event_api::03/02/2023 12:41:35 AM::Invalid datefrom parameter. Status code: 400
+ERROR::manifestapp.rest.event_api::03/02/2023 12:41:35 AM::Invalid datefrom parameter. Status code: 400
+DEBUG::manifestapp.rest.event_api::03/02/2023 12:41:35 AM::Get items. Passid:5, datefrom:2022-01-01, dateto:None. Status code: 200
+DEBUG::manifestapp.rest.event_api::03/02/2023 12:41:35 AM::Get items. Passid:5, datefrom:2022-01-01, dateto:2022-12-31. Status code: 200
+DEBUG::manifestapp.rest.event_api::03/02/2023 12:41:35 AM::Get items. Passid:5, datefrom:None, dateto:2022-12-31. Status code: 200
+DEBUG::manifestapp.rest.event_api::03/02/2023 12:41:35 AM::Get items. Passid:all, datefrom:None, dateto:None. Status code: 200
+DEBUG::manifestapp.rest.event_api::03/02/2023 12:41:35 AM::Get items. Passid:all, datefrom:None, dateto:None. Status code: 200
+ERROR::manifestapp.rest.event_api::03/02/2023 12:41:35 AM::Item(s) not found. EventID:10000, datefrom:None, dateto:None. Status code: 404
+ERROR::manifestapp.rest.event_api::03/02/2023 12:41:35 AM::Item(s) not found. EventID:1, datefrom:None, dateto:None. Status code: 404
+ERROR::manifestapp.rest.event_api::03/02/2023 12:41:35 AM::Item(s) not found. EventID:fgfdg, datefrom:None, dateto:None. Status code: 404
+ERROR::manifestapp.rest.event_api::03/02/2023 12:41:35 AM::POST. Item(s) not found. Status code: 404
+ERROR::manifestapp.rest.event_api::03/02/2023 12:41:35 AM::POST. Item(s) not found. Status code: 404
+DEBUG::manifestapp.rest.passenger_api::03/02/2023 12:41:35 AM::POST. Item created. Status code: 200
+DEBUG::manifestapp.rest.passenger_api::03/02/2023 12:41:35 AM::DELETE. Item deleted. Status code: 200
+DEBUG::manifestapp.rest.passenger_api::03/02/2023 12:41:35 AM::POST. Item created. Status code: 200
+DEBUG::manifestapp.rest.passenger_api::03/02/2023 12:41:35 AM::POST. Item updated. Status code: 200
+DEBUG::manifestapp.rest.passenger_api::03/02/2023 12:41:36 AM::DELETE. Item deleted. Status code: 200
+ERROR::manifestapp.rest.passenger_api::03/02/2023 12:41:36 AM::POST. Incorrect payload 'gkhkkl' does not match 'unknown|success|failure'
+
+Failed validating 'pattern' in schema['properties']['status']:
+    {'pattern': 'unknown|success|failure', 'type': 'string'}
+
+On instance['status']:
+    'gkhkkl' '1' is not of type 'integer'
+
+Failed validating 'type' in schema['properties']['passengerID']:
+    {'type': 'integer'}
+
+On instance['passengerID']:
+    '1' '-20.344 / 130.031' does not match '^[-]?[0-9]+[.][0-9]+[,][ ]?[-]?[0-9]+[.][0-9]+$'
+
+Failed validating 'pattern' in schema['properties']['geo_location']:
+    {'pattern': '^[-]?[0-9]+[.][0-9]+[,][ ]?[-]?[0-9]+[.][0-9]+$',
+     'type': 'string'}
+
+On instance['geo_location']:
+    '-20.344 / 130.031' 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx' is too long
+
+Failed validating 'maxLength' in schema['properties']['description']:
+    {'maxLength': 90, 'type': 'string'}
+
+On instance['description']:
+    'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx' 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx' is too long
+
+Failed validating 'maxLength' in schema['properties']['comments']:
+    {'maxLength': 140, 'type': 'string'}
+
+On instance['comments']:
+    'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx' 'like' does not match 'unknown|live|dead'
+
+Failed validating 'pattern' in schema['properties']['status']:
+    {'pattern': 'unknown|live|dead', 'type': 'string'}
+
+On instance['status']:
+    'like'. Status code: 400
+ERROR::manifestapp.rest.passenger_api::03/02/2023 12:41:36 AM::POST. Incorrect payload 'gkhkkl' does not match 'unknown|success|failure'
+
+Failed validating 'pattern' in schema['properties']['status']:
+    {'pattern': 'unknown|success|failure', 'type': 'string'}
+
+On instance['status']:
+    'gkhkkl' '1' is not of type 'integer'
+
+Failed validating 'type' in schema['properties']['passengerID']:
+    {'type': 'integer'}
+
+On instance['passengerID']:
+    '1' '-20.344 / 130.031' does not match '^[-]?[0-9]+[.][0-9]+[,][ ]?[-]?[0-9]+[.][0-9]+$'
+
+Failed validating 'pattern' in schema['properties']['geo_location']:
+    {'pattern': '^[-]?[0-9]+[.][0-9]+[,][ ]?[-]?[0-9]+[.][0-9]+$',
+     'type': 'string'}
+
+On instance['geo_location']:
+    '-20.344 / 130.031' 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx' is too long
+
+Failed validating 'maxLength' in schema['properties']['description']:
+    {'maxLength': 90, 'type': 'string'}
+
+On instance['description']:
+    'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx' 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx' is too long
+
+Failed validating 'maxLength' in schema['properties']['comments']:
+    {'maxLength': 140, 'type': 'string'}
+
+On instance['comments']:
+    'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx' 'like' does not match 'unknown|live|dead'
+
+Failed validating 'pattern' in schema['properties']['status']:
+    {'pattern': 'unknown|live|dead', 'type': 'string'}
+
+On instance['status']:
+    'like' 'AAA' does not match '^[0-9]{2}[A-Z]$'
+
+Failed validating 'pattern' in schema['properties']['seatno']:
+    {'pattern': '^[0-9]{2}[A-Z]$', 'type': 'string'}
+
+On instance['seatno']:
+    'AAA'. Status code: 400
+ERROR::manifestapp.rest.passenger_api::03/02/2023 12:41:36 AM::POST. Incorrect payload 'gkhkkl' does not match 'unknown|success|failure'
+
+Failed validating 'pattern' in schema['properties']['status']:
+    {'pattern': 'unknown|success|failure', 'type': 'string'}
+
+On instance['status']:
+    'gkhkkl' '1' is not of type 'integer'
+
+Failed validating 'type' in schema['properties']['passengerID']:
+    {'type': 'integer'}
+
+On instance['passengerID']:
+    '1' '-20.344 / 130.031' does not match '^[-]?[0-9]+[.][0-9]+[,][ ]?[-]?[0-9]+[.][0-9]+$'
+
+Failed validating 'pattern' in schema['properties']['geo_location']:
+    {'pattern': '^[-]?[0-9]+[.][0-9]+[,][ ]?[-]?[0-9]+[.][0-9]+$',
+     'type': 'string'}
+
+On instance['geo_location']:
+    '-20.344 / 130.031' 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx' is too long
+
+Failed validating 'maxLength' in schema['properties']['description']:
+    {'maxLength': 90, 'type': 'string'}
+
+On instance['description']:
+    'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx' 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx' is too long
+
+Failed validating 'maxLength' in schema['properties']['comments']:
+    {'maxLength': 140, 'type': 'string'}
+
+On instance['comments']:
+    'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx' 'like' does not match 'unknown|live|dead'
+
+Failed validating 'pattern' in schema['properties']['status']:
+    {'pattern': 'unknown|live|dead', 'type': 'string'}
+
+On instance['status']:
+    'like' 'AAA' does not match '^[0-9]{2}[A-Z]$'
+
+Failed validating 'pattern' in schema['properties']['seatno']:
+    {'pattern': '^[0-9]{2}[A-Z]$', 'type': 'string'}
+
+On instance['seatno']:
+    'AAA' 'kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk' is too long
+
+Failed validating 'maxLength' in schema['properties']['lname']:
+    {'maxLength': 45, 'type': 'string'}
+
+On instance['lname']:
+    'kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk'. Status code: 400
+ERROR::manifestapp.rest.passenger_api::03/02/2023 12:41:36 AM::POST. Incorrect payload 'gkhkkl' does not match 'unknown|success|failure'
+
+Failed validating 'pattern' in schema['properties']['status']:
+    {'pattern': 'unknown|success|failure', 'type': 'string'}
+
+On instance['status']:
+    'gkhkkl' '1' is not of type 'integer'
+
+Failed validating 'type' in schema['properties']['passengerID']:
+    {'type': 'integer'}
+
+On instance['passengerID']:
+    '1' '-20.344 / 130.031' does not match '^[-]?[0-9]+[.][0-9]+[,][ ]?[-]?[0-9]+[.][0-9]+$'
+
+Failed validating 'pattern' in schema['properties']['geo_location']:
+    {'pattern': '^[-]?[0-9]+[.][0-9]+[,][ ]?[-]?[0-9]+[.][0-9]+$',
+     'type': 'string'}
+
+On instance['geo_location']:
+    '-20.344 / 130.031' 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx' is too long
+
+Failed validating 'maxLength' in schema['properties']['description']:
+    {'maxLength': 90, 'type': 'string'}
+
+On instance['description']:
+    'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx' 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx' is too long
+
+Failed validating 'maxLength' in schema['properties']['comments']:
+    {'maxLength': 140, 'type': 'string'}
+
+On instance['comments']:
+    'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx' 'like' does not match 'unknown|live|dead'
+
+Failed validating 'pattern' in schema['properties']['status']:
+    {'pattern': 'unknown|live|dead', 'type': 'string'}
+
+On instance['status']:
+    'like' 'AAA' does not match '^[0-9]{2}[A-Z]$'
+
+Failed validating 'pattern' in schema['properties']['seatno']:
+    {'pattern': '^[0-9]{2}[A-Z]$', 'type': 'string'}
+
+On instance['seatno']:
+    'AAA' 'kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk' is too long
+
+Failed validating 'maxLength' in schema['properties']['lname']:
+    {'maxLength': 45, 'type': 'string'}
+
+On instance['lname']:
+    'kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk' 'kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk' is too long
+
+Failed validating 'maxLength' in schema['properties']['fname']:
+    {'maxLength': 45, 'type': 'string'}
+
+On instance['fname']:
+    'kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk'. Status code: 400
+ERROR::manifestapp.rest.passenger_api::03/02/2023 12:41:36 AM::POST. Incorrect payload 'gkhkkl' does not match 'unknown|success|failure'
+
+Failed validating 'pattern' in schema['properties']['status']:
+    {'pattern': 'unknown|success|failure', 'type': 'string'}
+
+On instance['status']:
+    'gkhkkl' '1' is not of type 'integer'
+
+Failed validating 'type' in schema['properties']['passengerID']:
+    {'type': 'integer'}
+
+On instance['passengerID']:
+    '1' '-20.344 / 130.031' does not match '^[-]?[0-9]+[.][0-9]+[,][ ]?[-]?[0-9]+[.][0-9]+$'
+
+Failed validating 'pattern' in schema['properties']['geo_location']:
+    {'pattern': '^[-]?[0-9]+[.][0-9]+[,][ ]?[-]?[0-9]+[.][0-9]+$',
+     'type': 'string'}
+
+On instance['geo_location']:
+    '-20.344 / 130.031' 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx' is too long
+
+Failed validating 'maxLength' in schema['properties']['description']:
+    {'maxLength': 90, 'type': 'string'}
+
+On instance['description']:
+    'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx' 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx' is too long
+
+Failed validating 'maxLength' in schema['properties']['comments']:
+    {'maxLength': 140, 'type': 'string'}
+
+On instance['comments']:
+    'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx' 'like' does not match 'unknown|live|dead'
+
+Failed validating 'pattern' in schema['properties']['status']:
+    {'pattern': 'unknown|live|dead', 'type': 'string'}
+
+On instance['status']:
+    'like' 'AAA' does not match '^[0-9]{2}[A-Z]$'
+
+Failed validating 'pattern' in schema['properties']['seatno']:
+    {'pattern': '^[0-9]{2}[A-Z]$', 'type': 'string'}
+
+On instance['seatno']:
+    'AAA' 'kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk' is too long
+
+Failed validating 'maxLength' in schema['properties']['lname']:
+    {'maxLength': 45, 'type': 'string'}
+
+On instance['lname']:
+    'kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk' 'kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk' is too long
+
+Failed validating 'maxLength' in schema['properties']['fname']:
+    {'maxLength': 45, 'type': 'string'}
+
+On instance['fname']:
+    'kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk' 'kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk' is too long
+
+Failed validating 'maxLength' in schema['properties']['address']:
+    {'maxLength': 100, 'type': 'string'}
+
+On instance['address']:
+    'kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk'. Status code: 400
+ERROR::manifestapp.rest.passenger_api::03/02/2023 12:41:36 AM::POST. Incorrect payload 'gkhkkl' does not match 'unknown|success|failure'
+
+Failed validating 'pattern' in schema['properties']['status']:
+    {'pattern': 'unknown|success|failure', 'type': 'string'}
+
+On instance['status']:
+    'gkhkkl' '1' is not of type 'integer'
+
+Failed validating 'type' in schema['properties']['passengerID']:
+    {'type': 'integer'}
+
+On instance['passengerID']:
+    '1' '-20.344 / 130.031' does not match '^[-]?[0-9]+[.][0-9]+[,][ ]?[-]?[0-9]+[.][0-9]+$'
+
+Failed validating 'pattern' in schema['properties']['geo_location']:
+    {'pattern': '^[-]?[0-9]+[.][0-9]+[,][ ]?[-]?[0-9]+[.][0-9]+$',
+     'type': 'string'}
+
+On instance['geo_location']:
+    '-20.344 / 130.031' 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx' is too long
+
+Failed validating 'maxLength' in schema['properties']['description']:
+    {'maxLength': 90, 'type': 'string'}
+
+On instance['description']:
+    'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx' 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx' is too long
+
+Failed validating 'maxLength' in schema['properties']['comments']:
+    {'maxLength': 140, 'type': 'string'}
+
+On instance['comments']:
+    'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx' 'like' does not match 'unknown|live|dead'
+
+Failed validating 'pattern' in schema['properties']['status']:
+    {'pattern': 'unknown|live|dead', 'type': 'string'}
+
+On instance['status']:
+    'like' 'AAA' does not match '^[0-9]{2}[A-Z]$'
+
+Failed validating 'pattern' in schema['properties']['seatno']:
+    {'pattern': '^[0-9]{2}[A-Z]$', 'type': 'string'}
+
+On instance['seatno']:
+    'AAA' 'kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk' is too long
+
+Failed validating 'maxLength' in schema['properties']['lname']:
+    {'maxLength': 45, 'type': 'string'}
+
+On instance['lname']:
+    'kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk' 'kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk' is too long
+
+Failed validating 'maxLength' in schema['properties']['fname']:
+    {'maxLength': 45, 'type': 'string'}
+
+On instance['fname']:
+    'kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk' 'kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk' is too long
+
+Failed validating 'maxLength' in schema['properties']['address']:
+    {'maxLength': 100, 'type': 'string'}
+
+On instance['address']:
+    'kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk' 'kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk' is too long
+
+Failed validating 'maxLength' in schema['properties']['comments']:
+    {'maxLength': 140, 'type': 'string'}
+
+On instance['comments']:
+    'kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk'. Status code: 400
+ERROR::manifestapp.rest.passenger_api::03/02/2023 12:41:36 AM::DELETE. Item(s) not found. Status code: 404
+ERROR::manifestapp.rest.passenger_api::03/02/2023 12:41:36 AM::DELETE. Item(s) not found. Status code: 404
+DEBUG::manifestapp.rest.passenger_api::03/02/2023 12:41:36 AM::Get all items with status None. Status code: 200
+DEBUG::manifestapp.rest.passenger_api::03/02/2023 12:41:36 AM::Get all items with status None. Status code: 200
+DEBUG::manifestapp.rest.passenger_api::03/02/2023 12:41:36 AM::Get all items with status live. Status code: 200
+DEBUG::manifestapp.rest.passenger_api::03/02/2023 12:41:36 AM::Get all items with status dead. Status code: 200
+DEBUG::manifestapp.rest.passenger_api::03/02/2023 12:41:36 AM::Get all items with status unknown. Status code: 200
+DEBUG::manifestapp.rest.passenger_api::03/02/2023 12:41:36 AM::Get item with id 2. Status code: 200 
+DEBUG::manifestapp.rest.passenger_api::03/02/2023 12:41:36 AM::Get item with id 3. Status code: 200 
+ERROR::manifestapp.rest.passenger_api::03/02/2023 12:41:36 AM::Item with id 10000 not found. Status code: 404
+ERROR::manifestapp.rest.passenger_api::03/02/2023 12:41:36 AM::Item with id fgfdg not found. Status code: 404
+ERROR::manifestapp.rest.passenger_api::03/02/2023 12:41:36 AM::POST. Item(s) not found. Status code: 404
+ERROR::manifestapp.rest.passenger_api::03/02/2023 12:41:36 AM::POST. Item(s) not found. Status code: 404

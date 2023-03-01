@@ -17,9 +17,29 @@
         </ul>
     </nav>
 
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <div id="div_flash" class="{{category}}">
+                    <button type="button" onclick="removeFlash()">
+                        <span>&times;</span>
+                    </button>
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+
+
     {% block content %}
 
     {% endblock %}
 
 </body>
 </html>
+<script>
+    
+    function removeFlash() {
+        document.getElementById('div_flash').remove();
+    }
+</script>

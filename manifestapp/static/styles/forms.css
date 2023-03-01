@@ -52,6 +52,22 @@ a:hover {
     background-color: black;
 }
 
+div#div_flash {
+    font-weight: bold;
+    margin-block: 20px;
+    padding-block: 10px;
+    border-radius: 10px;
+    box-shadow: 10px 10px 15px 0px rgba(0, 0, 0, 0.75);
+}
+
+div.error#div_flash {
+    background-color: red;
+}
+
+div.success#div_flash {
+    background-color: lightgreen;
+}
+
 div.main-buttons {
     margin-top: 100px;
     margin-bottom: 50px;

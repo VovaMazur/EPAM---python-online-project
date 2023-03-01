@@ -59,7 +59,7 @@ div#div_flash {
     box-shadow: 10px 10px 15px 0px rgba(0, 0, 0, 0.75);
 }
 
-div#div_flash.success {
+div.error#div_flash {
     background-color: red;
 }
 

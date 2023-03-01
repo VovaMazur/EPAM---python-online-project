@@ -91,7 +91,7 @@ class TestEventAPI(unittest.TestCase):
         self.assertTrue(test_resp.is_json)
 
         test_resp = self.client.get('/eventapi/fgfdg')
-        self.assertEqual(test_resp.status_code, 400)
+        self.assertEqual(test_resp.status_code, 404)
         self.assertTrue(test_resp.is_json)
 
     def test_create_delete_events(self):
@@ -103,12 +103,10 @@ class TestEventAPI(unittest.TestCase):
                     "passengerID": 1,
                     "status": "success"}
 
-        headers = {'Content-Type': 'application/json'}
-
-        test_resp = self.client.post('/eventapi', data=json.dumps(test_event), headers=headers)
+        test_resp = self.client.post('/eventapi', json=test_event)
         self.assertEqual(test_resp.status_code, 200)
         self.assertTrue(test_resp.is_json)
-        test_id = test_resp.json.get('id')
+        test_id = test_resp.json.get('item').get('id')
 
         test_resp = self.client.delete('/eventapi/'+str(test_id))
         self.assertEqual(test_resp.status_code, 200)
@@ -122,8 +120,7 @@ class TestEventAPI(unittest.TestCase):
                     "geo_location": "-20.344, 130.031",
                     "passengerID": 1,
                     "status": "gkhkkl"} #wrong status
-        headers = {'Content-Type': 'application/json'}
-        test_resp = self.client.post('/eventapi', data=json.dumps(test_event), headers=headers)
+        test_resp = self.client.post('/eventapi', json=test_event)
         self.assertEqual(test_resp.status_code, 400)
         self.assertTrue(test_resp.is_json)
 
@@ -134,7 +131,7 @@ class TestEventAPI(unittest.TestCase):
                     "geo_location": "-20.344, 130.031",
                     "passengerID": '1', #wrong ID
                     "status": "success"}
-        test_resp = self.client.post('/eventapi', data=json.dumps(test_event), headers=headers)
+        test_resp = self.client.post('/eventapi', json=test_event)
         self.assertEqual(test_resp.status_code, 400)
         self.assertTrue(test_resp.is_json)
 
@@ -145,7 +142,7 @@ class TestEventAPI(unittest.TestCase):
                     "geo_location": "-20.344 / 130.031", #wrong geo location
                     "passengerID": 1,
                     "status": "success"}
-        test_resp = self.client.post('/eventapi', data=json.dumps(test_event), headers=headers)
+        test_resp = self.client.post('/eventapi', json=test_event)
         self.assertEqual(test_resp.status_code, 400)
         self.assertTrue(test_resp.is_json)
 
@@ -157,7 +154,7 @@ class TestEventAPI(unittest.TestCase):
                     "geo_location": "-20.344, 130.031",
                     "passengerID": 1,
                     "status": "success"}
-        test_resp = self.client.post('/eventapi', data=json.dumps(test_event), headers=headers)
+        test_resp = self.client.post('/eventapi', json=test_event)
         self.assertEqual(test_resp.status_code, 400)
         self.assertTrue(test_resp.is_json)
 
@@ -169,7 +166,7 @@ class TestEventAPI(unittest.TestCase):
                     "geo_location": "-20.344, 130.031",
                     "passengerID": 1,
                     "status": "success"}
-        test_resp = self.client.post('/eventapi', data=json.dumps(test_event), headers=headers)
+        test_resp = self.client.post('/eventapi', json=test_event)
         self.assertEqual(test_resp.status_code, 400)
         self.assertTrue(test_resp.is_json)
 
@@ -182,15 +179,13 @@ class TestEventAPI(unittest.TestCase):
                     "passengerID": 1,
                     "status": "success"}
 
-        headers = {'Content-Type': 'application/json'}
-
-        test_resp = self.client.post('/eventapi', data=json.dumps(test_event), headers=headers)
+        test_resp = self.client.post('/eventapi', json=test_event)
         self.assertEqual(test_resp.status_code, 200)
         self.assertTrue(test_resp.is_json)
-        test_id = test_resp.json.get('id')
+        test_id = test_resp.json.get('item').get('id')
         test_new_comment = {"comments": "NEW COMMENT"}
 
-        test_resp = self.client.post('/eventapi/' + str(test_id), data=json.dumps(test_new_comment), headers=headers)
+        test_resp = self.client.post('/eventapi/' + str(test_id), json=test_new_comment)
         self.assertEqual(test_resp.status_code, 200)
         self.assertTrue(test_resp.is_json)
         self.assertEqual(test_resp.json.get('item').get('comments'), test_new_comment.get('comments'))
@@ -201,7 +196,7 @@ class TestEventAPI(unittest.TestCase):
 
     def test_delete_missing_invalid_events(self):
         test_resp = self.client.delete('/eventapi/dgdfg')
-        self.assertEqual(test_resp.status_code, 400)
+        self.assertEqual(test_resp.status_code, 404)
         self.assertTrue(test_resp.is_json)
 
         test_resp = self.client.delete('/eventapi/10000')
@@ -210,14 +205,12 @@ class TestEventAPI(unittest.TestCase):
 
     def test_post_missing_invalid_events(self):
         test_update = {"comments": "HAHA"}
-        headers = {'Content-Type': 'application/json'}
-        test_resp = self.client.post('/eventapi/dgdfg', data=json.dumps(test_update), headers=headers)
-        self.assertEqual(test_resp.status_code, 400)
+        test_resp = self.client.post('/eventapi/dgdfg', json=test_update)
+        self.assertEqual(test_resp.status_code, 404)
         self.assertTrue(test_resp.is_json)
 
         test_update = {"comments": "HAHA"}
-        headers = {'Content-Type': 'application/json'}
-        test_resp = self.client.post('/eventapi/10000', data=json.dumps(test_update), headers=headers)
+        test_resp = self.client.post('/eventapi/10000', json=test_update)
         self.assertEqual(test_resp.status_code, 404)
         self.assertTrue(test_resp.is_json)
 

@@ -4,7 +4,7 @@ from flask import Flask, render_template
 from manifestapp.db_instance import db, migrate
 from manifestapp.models import Event, Passenger
 from manifestapp.rest import api
-from manifestapp.views import events_bp, passengers_bp
+from manifestapp.views import events_bp, passengers_bp, test_bp
 
 
 def create_app():
@@ -23,8 +23,9 @@ def create_app():
     api.init_app(application)
 
     # Register blueprints here
-    application.register_blueprint(events_bp, url_prefix='/events')
-    application.register_blueprint(passengers_bp, url_prefix='/passengers')
+    application.register_blueprint(events_bp)
+    application.register_blueprint(passengers_bp)
+    application.register_blueprint(test_bp)
 
     # application.app_context().push()
 

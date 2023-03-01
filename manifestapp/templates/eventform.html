@@ -9,7 +9,7 @@
 <main>
     <h1>Calling details:</h1>
 
-    <form action="{{ url_for("events.edit", item=item) }}" id="event-details" method="POST">
+    <form action="{{ url_for('events.edit', item=item) }}" id="event-details" method="POST">
         <div>
             <label for="edate">Date*</label>
             <input type="date" id="edate" name="date" value="{{ data.date }}" required>

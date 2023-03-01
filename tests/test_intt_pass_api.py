@@ -46,7 +46,7 @@ class TestPassengerAPI(unittest.TestCase):
         self.assertTrue(test_resp.is_json)
 
         test_resp = self.client.get('/passapi/fgfdg')
-        self.assertEqual(test_resp.status_code, 400)
+        self.assertEqual(test_resp.status_code, 404)
         self.assertTrue(test_resp.is_json)
 
     def test_create_delete_items(self):
@@ -59,12 +59,11 @@ class TestPassengerAPI(unittest.TestCase):
                         "seatno": "05A",
                         "status": "live"
                       }
-        headers = {'Content-Type': 'application/json'}
 
-        test_resp = self.client.post('/passapi', data=json.dumps(test_item), headers=headers)
+        test_resp = self.client.post('/passapi', json=test_item)
         self.assertEqual(test_resp.status_code, 200)
         self.assertTrue(test_resp.is_json)
-        test_id = test_resp.json.get('id')
+        test_id = test_resp.json.get('item').get('id')
 
         test_resp = self.client.delete('/passapi/'+str(test_id))
         self.assertEqual(test_resp.status_code, 200)
@@ -80,8 +79,8 @@ class TestPassengerAPI(unittest.TestCase):
                         "seatno": "05A",
                         "status": "like" #wrong status
                       }
-        headers = {'Content-Type': 'application/json'}
-        test_resp = self.client.post('/passapi', data=json.dumps(test_item), headers=headers)
+
+        test_resp = self.client.post('/passapi', json=test_item)
         self.assertEqual(test_resp.status_code, 400)
         self.assertTrue(test_resp.is_json)
 
@@ -94,7 +93,7 @@ class TestPassengerAPI(unittest.TestCase):
                         "seatno": "AAA",  #wrong seatno
                         "status": "live"
                       }
-        test_resp = self.client.post('/passapi', data=json.dumps(test_item), headers=headers)
+        test_resp = self.client.post('/passapi', json=test_item)
         self.assertEqual(test_resp.status_code, 400)
         self.assertTrue(test_resp.is_json)
 
@@ -108,7 +107,7 @@ class TestPassengerAPI(unittest.TestCase):
                         "seatno": "05A",
                         "status": "live"
                       }
-        test_resp = self.client.post('/passapi', data=json.dumps(test_item), headers=headers)
+        test_resp = self.client.post('/passapi', json=test_item)
         self.assertEqual(test_resp.status_code, 400)
         self.assertTrue(test_resp.is_json)
 
@@ -122,7 +121,7 @@ class TestPassengerAPI(unittest.TestCase):
                         "seatno": "05A",
                         "status": "live"
                       }
-        test_resp = self.client.post('/passapi', data=json.dumps(test_item), headers=headers)
+        test_resp = self.client.post('/passapi', json=test_item)
         self.assertEqual(test_resp.status_code, 400)
         self.assertTrue(test_resp.is_json)
 
@@ -136,7 +135,7 @@ class TestPassengerAPI(unittest.TestCase):
                         "seatno": "05A",
                         "status": "live"
                       }
-        test_resp = self.client.post('/passapi', data=json.dumps(test_item), headers=headers)
+        test_resp = self.client.post('/passapi', json=test_item)
         self.assertEqual(test_resp.status_code, 400)
         self.assertTrue(test_resp.is_json)
 
@@ -150,7 +149,7 @@ class TestPassengerAPI(unittest.TestCase):
                         "seatno": "05A",
                         "status": "live"
                       }
-        test_resp = self.client.post('/passapi', data=json.dumps(test_item), headers=headers)
+        test_resp = self.client.post('/passapi', json=test_item)
         self.assertEqual(test_resp.status_code, 400)
         self.assertTrue(test_resp.is_json)
 
@@ -164,15 +163,14 @@ class TestPassengerAPI(unittest.TestCase):
                         "seatno": "05A",
                         "status": "live"
                       }
-        headers = {'Content-Type': 'application/json'}
 
-        test_resp = self.client.post('/passapi', data=json.dumps(test_item), headers=headers)
+        test_resp = self.client.post('/passapi', json=test_item)
         self.assertEqual(test_resp.status_code, 200)
         self.assertTrue(test_resp.is_json)
-        test_id = test_resp.json.get('id')
+        test_id = test_resp.json.get('item').get('id')
         test_new_comment = {"comments": "NEW COMMENT"}
 
-        test_resp = self.client.post('/passapi/' + str(test_id), data=json.dumps(test_new_comment), headers=headers)
+        test_resp = self.client.post('/passapi/' + str(test_id), json=test_new_comment)
         self.assertEqual(test_resp.status_code, 200)
         self.assertTrue(test_resp.is_json)
         self.assertEqual(test_resp.json.get('item').get('comments'), test_new_comment.get('comments'))
@@ -183,7 +181,7 @@ class TestPassengerAPI(unittest.TestCase):
 
     def test_delete_missing_invalid_items(self):
         test_resp = self.client.delete('/passapi/dgdfg')
-        self.assertEqual(test_resp.status_code, 400)
+        self.assertEqual(test_resp.status_code, 404)
         self.assertTrue(test_resp.is_json)
 
         test_resp = self.client.delete('/passapi/10000')
@@ -192,14 +190,12 @@ class TestPassengerAPI(unittest.TestCase):
 
     def test_post_missing_invalid_items(self):
         test_update = {"comments": "HAHA"}
-        headers = {'Content-Type': 'application/json'}
-        test_resp = self.client.post('/passapi/dgdfg', data=json.dumps(test_update), headers=headers)
-        self.assertEqual(test_resp.status_code, 400)
+        test_resp = self.client.post('/passapi/dgdfg', json=test_update)
+        self.assertEqual(test_resp.status_code, 404)
         self.assertTrue(test_resp.is_json)
  
         test_update = {"comments": "HAHA"}
-        headers = {'Content-Type': 'application/json'}
-        test_resp = self.client.post('/passapi/10000', data=json.dumps(test_update), headers=headers)
+        test_resp = self.client.post('/passapi/10000', json=test_update)
         self.assertEqual(test_resp.status_code, 404)
         self.assertTrue(test_resp.is_json)
 
