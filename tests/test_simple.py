@@ -12,3 +12,7 @@ class TestSimpleTest(unittest.TestCase):
     def test_get_all_events(self):
         self.assertEqual(200, 200)
 
+        test_resp = self.client.get('/eventapi')
+        self.assertEqual(test_resp.status_code, 200)
+        self.assertTrue(test_resp.is_json)
+
