@@ -41,6 +41,7 @@ class EventApi(Resource):
         else:
             if event_id == 'all':
                 resp = event_get_bypass(passid=pass_id, datefrom=datefrom, dateto=dateto)
+
                 if resp[1] == 200:
                     logger.debug('Get items. Passid:%s, datefrom:%s, dateto:%s. Status code: %s',
                                  pass_id, datefrom, dateto, resp[1])

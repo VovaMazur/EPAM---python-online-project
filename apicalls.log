@@ -2750,3 +2750,4 @@ ERROR::manifestapp.rest.passenger_api::03/02/2023 12:41:36 AM::Item with id 1000
 ERROR::manifestapp.rest.passenger_api::03/02/2023 12:41:36 AM::Item with id fgfdg not found. Status code: 404
 ERROR::manifestapp.rest.passenger_api::03/02/2023 12:41:36 AM::POST. Item(s) not found. Status code: 404
 ERROR::manifestapp.rest.passenger_api::03/02/2023 12:41:36 AM::POST. Item(s) not found. Status code: 404
+DEBUG::manifestapp.rest.event_api::03/02/2023 06:53:33 PM::Get items. Passid:all, datefrom:None, dateto:None. Status code: 200
