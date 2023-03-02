@@ -1,0 +1,6 @@
+include manifestapp/schema.sql
+graft manifestapp/static
+graft manifestapp/templates
+global-exclude *.pyc
+prune manifestapp/migrations
+prune tests
