@@ -49,4 +49,4 @@ test_p2 = Passenger(
     comments='bad guy')
 
 test_events = [test_e1, test_e2, test_e3]
-test_pass = [test_p1, test_p2]
+test_passes = [test_p1, test_p2]

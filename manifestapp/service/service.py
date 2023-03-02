@@ -157,7 +157,6 @@ def event_post(payload, event_id=None):
                         setattr(item, k, payload[k])
                     else:
                         setattr(item, k, datetime.strptime(payload[k], '%Y-%m-%d').date())
-                print(item.date, type(item.date))
                 db.session.add(item)
                 db.session.commit()
                 resp = error_msgs[5]
@@ -280,7 +279,10 @@ def pass_post(payload, pass_id=None):
                 #create new item
                 item = Passenger()
                 for k in payload:
-                    setattr(item, k, payload[k])
+                    if k != 'dob':
+                        setattr(item, k, payload[k])
+                    else:
+                        setattr(item, k, datetime.strptime(payload[k], '%Y-%m-%d').date())
                 db.session.add(item)
                 db.session.commit()
                 resp = error_msgs[5]

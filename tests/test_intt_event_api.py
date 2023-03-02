@@ -1,13 +1,16 @@
 """Tests for Event API module"""
 import unittest
 from manifestapp import create_app, db
-from .test_data import test_events, test_pass
+from .test_data import test_events
 
 
 class TestEventAPI(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
+        print('TestEventAPI setup')
         test_config = {
+            'ENV': 'development',
+            'DEBUG': True,
             'TESTING': True,
             'SQLALCHEMY_DATABASE_URI': 'sqlite:///test.db',
             'SECRET_KEY': 'test'
@@ -17,10 +20,6 @@ class TestEventAPI(unittest.TestCase):
         with cls.app.app_context():
             db.create_all()
 
-            for obj in test_pass:
-                db.session.add(obj)
-                db.session.commit()
-
             for obj in test_events:
                 db.session.add(obj)
                 db.session.commit()
@@ -29,7 +28,9 @@ class TestEventAPI(unittest.TestCase):
 
     @classmethod
     def tearDownClass(cls):
+        print('TestEventAPI teardown')
         with cls.app.app_context():
+            db.session.remove()
             db.drop_all()
 
     def test_get_all_events(self):
