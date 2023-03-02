@@ -1,4 +1,5 @@
 """CRUD Functions with app models"""
+from datetime import datetime
 from jsonschema import validate, exceptions
 from manifestapp.db_instance import db
 from manifestapp.models import Event, Passenger
@@ -70,7 +71,11 @@ update_schema_pass.pop('required')
 def event_get_bypass(passid=None, datefrom=None, dateto=None):
     """Read function with Event model by other parameters"""
 
-    passid = None if (passid is None or not passid.isdigit()) else int(passid)
+    if passid in (None, 'all'):
+        passid = None
+    elif passid.isdigit():
+        passid = int(passid)
+
     datefrom = None if datefrom == '-' else datefrom
     dateto = None if dateto == '-' else dateto
 
@@ -148,13 +153,18 @@ def event_post(payload, event_id=None):
                 #create new item
                 item = Event()
                 for k in payload:
-                    setattr(item, k, payload[k])
+                    if k != 'date':
+                        setattr(item, k, payload[k])
+                    else:
+                        setattr(item, k, datetime.strptime(payload[k], '%Y-%m-%d').date())
+                print(item.date, type(item.date))
                 db.session.add(item)
                 db.session.commit()
                 resp = error_msgs[5]
                 resp[0]['item'] = item.fs_as_dict
 
-            except Exception:
+            except Exception as err:
+                print(err)
                 resp = error_msgs[4]
 
         else:
