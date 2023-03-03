@@ -117,6 +117,7 @@ def event_get_bypass(passid=None, datefrom=None, dateto=None):
         resp[0]['item'] = temp
     else:
         resp = error_msgs[1]
+        resp[0]['item'] = {}
 
     return resp
 
@@ -130,6 +131,7 @@ def event_get_byid(event_id):
         resp[0]['item'] = item.fs_as_dict
     else:
         resp = error_msgs[1]
+        resp[0]['item'] = {}
 
     return resp
 
@@ -149,22 +151,17 @@ def event_post(payload, event_id=None):
 
     else:
         if not event_id:
-            try:
-                #create new item
-                item = Event()
-                for key in payload:
-                    if key != 'date':
-                        setattr(item, key, payload[key])
-                    else:
-                        setattr(item, key, datetime.strptime(payload[key], '%Y-%m-%d').date())
-                db.session.add(item)
-                db.session.commit()
-                resp = error_msgs[5]
-                resp[0]['item'] = item.fs_as_dict
-
-            except Exception as err:
-                print(err)
-                resp = error_msgs[4]
+            #create new item
+            item = Event()
+            for key in payload:
+                if key != 'date':
+                    setattr(item, key, payload[key])
+                else:
+                    setattr(item, key, datetime.strptime(payload[key], '%Y-%m-%d').date())
+            db.session.add(item)
+            db.session.commit()
+            resp = error_msgs[5]
+            resp[0]['item'] = item.fs_as_dict
 
         else:
             #update existing item
@@ -247,6 +244,7 @@ def pass_get_byid(passid):
         resp[0]['item'] = item.fs_as_dict
     else:
         resp = error_msgs[1]
+        resp[0]['item'] = {}
 
     return resp
 
@@ -278,22 +276,17 @@ def pass_post(payload, pass_id=None):
 
     else:
         if not pass_id:
-            try:
-                #create new item
-                item = Passenger()
-                for key in payload:
-                    if key != 'dob':
-                        setattr(item, key, payload[key])
-                    else:
-                        setattr(item, key, datetime.strptime(payload[key], '%Y-%m-%d').date())
-                db.session.add(item)
-                db.session.commit()
-                resp = error_msgs[5]
-                resp[0]['item'] = item.fs_as_dict
-
-            except Exception as err:
-                print(err)
-                resp = error_msgs[4]
+            #create new item
+            item = Passenger()
+            for key in payload:
+                if key != 'dob':
+                    setattr(item, key, payload[key])
+                else:
+                    setattr(item, key, datetime.strptime(payload[key], '%Y-%m-%d').date())
+            db.session.add(item)
+            db.session.commit()
+            resp = error_msgs[5]
+            resp[0]['item'] = item.fs_as_dict
 
         else:
             #update existing item

@@ -33,8 +33,6 @@ def main():
     all_events = event_get_bypass(pass_id, datefrom, dateto)
     if all_events:
         all_events = all_events[0]['item']
-    else:
-        all_events = []
 
     #processing raw data
     events = []
@@ -68,14 +66,9 @@ def edit(item):
 
     item_data = {}
     if item != 'add':
-        item_data = event_get_byid(int(item))
-        if item_data:
-            item_data = item_data[0]['item']
-        else:
-            item_data = {}
-
+        item_data = event_get_byid(int(item))[0]['item']
         item_data['other_pass'] = [int(x) for x in item_data.get('other_pass').split(',')] \
-            if item_data.get('other_pass') != '' else []
+                if item_data.get('other_pass') != '' else []
 
     if request.method == 'POST':
         updated_item = {}

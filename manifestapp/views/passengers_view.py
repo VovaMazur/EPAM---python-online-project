@@ -50,11 +50,7 @@ def edit(item):
 
     item_data = {}
     if item != 'add':
-        item_data = pass_get_byid(item)
-        if item_data:
-            item_data = item_data[0]['item']
-        else:
-            item_data = {}
+        item_data = pass_get_byid(item)[0]['item']
 
     if request.method == 'POST':
         updated_item = {}

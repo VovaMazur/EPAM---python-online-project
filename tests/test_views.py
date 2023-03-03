@@ -39,6 +39,10 @@ class TestViews(unittest.TestCase):
             db.drop_all()
 
     def test_main_routes_get(self):
+        test_resp = TestViews.client.get('/')
+        self.assertEqual(test_resp.status_code, 200)
+        self.assertEqual(test_resp.mimetype, 'text/html')
+
         test_resp = TestViews.client.get('/events/')
         self.assertEqual(test_resp.status_code, 200)
         self.assertEqual(test_resp.mimetype, 'text/html')
