@@ -1,7 +1,7 @@
 """Tests for Event API module"""
 import unittest
 from manifestapp import create_app, db
-from .test_data import test_events
+from .data import test_events
 
 
 class TestEventAPI(unittest.TestCase):

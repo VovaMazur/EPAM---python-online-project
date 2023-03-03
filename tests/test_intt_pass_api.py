@@ -1,7 +1,7 @@
 """Tests for Passenger API module"""
 import unittest
 from manifestapp import create_app, db
-from .test_data import test_passes
+from .data import test_passes
 
 
 class TestPassengerAPI(unittest.TestCase):
