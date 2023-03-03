@@ -2,7 +2,8 @@
 from flask import Blueprint, request, flash
 from flask import render_template, redirect, url_for
 from manifestapp.logger import logger_setup
-from manifestapp.service import pass_get_bystatus, pass_get_byid, pass_post, pass_delete, event_get_summary
+from manifestapp.service import pass_get_bystatus, pass_get_byid, \
+    pass_post, pass_delete, event_get_summary
 
 passengers_bp = Blueprint('passengers', __name__, static_folder='static', url_prefix='/passengers')
 
@@ -26,14 +27,17 @@ def main():
         status = request.form.get('selected_status')
         logger.debug('Page filter is updated. %s', status)
 
-    db_passes = pass_get_bystatus(status=status)[0]['item']
+    db_passes = pass_get_bystatus(status=status)
+    if db_passes[1] == 200:
+        db_passes = db_passes[0]['item']
+    else:
+        db_passes = []
 
     data = []
     #processing raw data
     for passenger in db_passes:
         data.append(passenger)
-        data[-1]['callings'] = events_summary[passenger['id']] \
-            if passenger['id'] in events_summary else 0
+        data[-1]['callings'] = events_summary.get(passenger['id'], 0)
 
     logger.debug('Page to be rendered. Parameters: %s', status)
 
@@ -46,7 +50,11 @@ def edit(item):
 
     item_data = {}
     if item != 'add':
-        item_data = pass_get_byid(item)[0]['item']
+        item_data = pass_get_byid(item)
+        if item_data:
+            item_data = item_data[0]['item']
+        else:
+            item_data = {}
 
     if request.method == 'POST':
         updated_item = {}
@@ -85,6 +93,10 @@ def edit(item):
 @passengers_bp.route('/delete/<item>')
 def delete(item):
     """edit route"""
+
+    global events_summary
+
+    events_summary = event_get_summary()
 
     if int(item) not in events_summary:
         resp = pass_delete(item)

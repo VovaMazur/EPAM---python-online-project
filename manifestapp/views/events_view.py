@@ -1,10 +1,9 @@
 """Events routes"""
-import json
-import requests
 from flask import Blueprint, request, flash
 from flask import render_template, redirect, url_for
 from manifestapp.logger import logger_setup
-from manifestapp.service import event_get_bypass, pass_getall_list, event_get_byid, event_post, event_delete
+from manifestapp.service import event_get_bypass, pass_getall_list, \
+    event_get_byid, event_post, event_delete
 
 events_bp = Blueprint('events', __name__, static_folder='static', url_prefix='/events')
 
@@ -31,7 +30,12 @@ def main():
         dateto = request.form.get('dateto') if request.form.get('dateto') else '-'
         logger.debug('Page filters are updated. %s %s %s', pass_id, datefrom, dateto)
 
-    all_events = event_get_bypass(pass_id, datefrom, dateto)[0]['item']
+    all_events = event_get_bypass(pass_id, datefrom, dateto)
+    if all_events:
+        all_events = all_events[0]['item']
+    else:
+        all_events = []
+
     #processing raw data
     events = []
     for event in all_events:
@@ -64,7 +68,12 @@ def edit(item):
 
     item_data = {}
     if item != 'add':
-        item_data = event_get_byid(int(item))[0]['item']
+        item_data = event_get_byid(int(item))
+        if item_data:
+            item_data = item_data[0]['item']
+        else:
+            item_data = {}
+
         item_data['other_pass'] = [int(x) for x in item_data.get('other_pass').split(',')] \
             if item_data.get('other_pass') != '' else []
 

@@ -1,14 +1,15 @@
 """Tests for Passenger API module"""
 import unittest
 from manifestapp import create_app, db
-from .data import test_passes
+from manifestapp.models import Passenger
+from .data import t_passes
 
 
 class TestPassengerAPI(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         print('TestPassAPI setup')
-        test_config = {
+        t_config = {
             'ENV': 'development',
             'DEBUG': True,
             'TESTING': True,
@@ -16,14 +17,15 @@ class TestPassengerAPI(unittest.TestCase):
             'SECRET_KEY': 'test'
         }
 
-        cls.app = create_app(test_config)
+        cls.app = create_app(t_config)
 
         with cls.app.app_context():
             db.create_all()
 
-            for obj in test_passes:
-                db.session.add(obj)
-                db.session.commit()
+            db.session.add_all(t_passes)
+            db.session.commit()
+
+            print('Number of pass records', len(Passenger.query.all()))
 
         cls.client = cls.app.test_client()
 

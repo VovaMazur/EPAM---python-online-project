@@ -152,11 +152,11 @@ def event_post(payload, event_id=None):
             try:
                 #create new item
                 item = Event()
-                for k in payload:
-                    if k != 'date':
-                        setattr(item, k, payload[k])
+                for key in payload:
+                    if key != 'date':
+                        setattr(item, key, payload[key])
                     else:
-                        setattr(item, k, datetime.strptime(payload[k], '%Y-%m-%d').date())
+                        setattr(item, key, datetime.strptime(payload[key], '%Y-%m-%d').date())
                 db.session.add(item)
                 db.session.commit()
                 resp = error_msgs[5]
@@ -170,8 +170,11 @@ def event_post(payload, event_id=None):
             #update existing item
             old_item = Event.query.filter(Event.id == event_id).first()
             if old_item:
-                for k, v in payload.items():
-                    setattr(old_item, k, v)
+                for key, value in payload.items():
+                    if key != 'date':
+                        setattr(old_item, key, value)
+                    else:
+                        setattr(old_item, key, datetime.strptime(value, '%Y-%m-%d').date())
                 db.session.commit()
                 resp = error_msgs[6]
                 resp[0]['item'] = old_item.fs_as_dict
@@ -278,25 +281,26 @@ def pass_post(payload, pass_id=None):
             try:
                 #create new item
                 item = Passenger()
-                for k in payload:
-                    if k != 'dob':
-                        setattr(item, k, payload[k])
+                for key in payload:
+                    if key != 'dob':
+                        setattr(item, key, payload[key])
                     else:
-                        setattr(item, k, datetime.strptime(payload[k], '%Y-%m-%d').date())
+                        setattr(item, key, datetime.strptime(payload[key], '%Y-%m-%d').date())
                 db.session.add(item)
                 db.session.commit()
                 resp = error_msgs[5]
                 resp[0]['item'] = item.fs_as_dict
 
-            except Exception:
+            except Exception as err:
+                print(err)
                 resp = error_msgs[4]
 
         else:
             #update existing item
             old_item = Passenger.query.filter(Passenger.id == pass_id).first()
             if old_item:
-                for k, v in payload.items():
-                    setattr(old_item, k, v)
+                for key, value in payload.items():
+                    setattr(old_item, key, value)
                 db.session.commit()
                 resp = error_msgs[6]
                 resp[0]['item'] = old_item.fs_as_dict

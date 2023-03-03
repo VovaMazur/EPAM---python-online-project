@@ -3,7 +3,8 @@ import datetime
 import json
 from flask_restful import Resource
 from flask import request, Response
-from manifestapp.service import event_get_bypass, event_get_byid, event_post, event_delete, error_msgs
+from manifestapp.service import event_get_bypass, event_get_byid, \
+    event_post, event_delete, error_msgs
 from manifestapp.logger import logger_setup
 
 logger = logger_setup(__name__, '%(levelname)s::%(name)s::%(asctime)s'
@@ -47,7 +48,8 @@ class EventApi(Resource):
                                  pass_id, datefrom, dateto, resp[1])
                 else:
                     logger.error('%s. Passid:%s, datefrom:%s, dateto:%s. '
-                                 'Status code: %s', resp[0]['message'], pass_id, datefrom, dateto, resp[1])
+                                 'Status code: %s', resp[0]['message'],
+                                 pass_id, datefrom, dateto, resp[1])
                     resp = Response(json.dumps(resp[0]), resp[1], mimetype='application/json')
             else:
                 resp = event_get_byid(event_id)
@@ -56,7 +58,8 @@ class EventApi(Resource):
                                  pass_id, datefrom, dateto, resp[1])
                 else:
                     logger.error('%s. EventID:%s, datefrom:%s, dateto:%s. '
-                                 'Status code: %s', resp[0]['message'], event_id, datefrom, dateto, resp[1])
+                                 'Status code: %s', resp[0]['message'],
+                                 event_id, datefrom, dateto, resp[1])
                     resp = Response(json.dumps(resp[0]), resp[1], mimetype='application/json')
 
         return resp

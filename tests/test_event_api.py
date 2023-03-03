@@ -1,14 +1,15 @@
 """Tests for Event API module"""
 import unittest
 from manifestapp import create_app, db
-from .data import test_events
+from manifestapp.models import Event
+from .data import t_events
 
 
 class TestEventAPI(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         print('TestEventAPI setup')
-        test_config = {
+        t_config = {
             'ENV': 'development',
             'DEBUG': True,
             'TESTING': True,
@@ -16,13 +17,14 @@ class TestEventAPI(unittest.TestCase):
             'SECRET_KEY': 'test'
         }
 
-        cls.app = create_app(test_config)
+        cls.app = create_app(t_config)
         with cls.app.app_context():
             db.create_all()
 
-            for obj in test_events:
-                db.session.add(obj)
-                db.session.commit()
+            db.session.add_all(t_events)
+            db.session.commit()
+
+            print('Number of event records', len(Event.query.all()))
 
         cls.client = cls.app.test_client()
 
