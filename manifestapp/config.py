@@ -1,5 +1,5 @@
 """Manifest application config file"""
 import os
 
-SQLALCHEMY_DATABASE_URI = 'mysql://app:password@localhost:3306/manifestapp'
+SQLALCHEMY_DATABASE_URI = 'mysql://app:password@192.168.0.110:3306/manifestapp'
 SECRET_KEY = os.urandom(12)
