@@ -33,21 +33,21 @@ Application CRUDs 2 entities related to the mentioned TV show:
 | --- | --- | --- | --- |
 |***web api***|  |  |  |
 |eventapi|DELETE, GET, POST|`/eventapi/all/<pass_id>/<datefrom>/<dateto>`|access all events by pass_id between datefrom and dateto|
-|eventapi|DELETE, GET, POST|/eventapi/all/<pass_id> /<datefrom>|access all events by pass_id starting from datefrom|
-|eventapi|DELETE, GET, POST|/eventapi/all/<pass_id>|access all events by pass_id|
-|eventapi|DELETE, GET, POST|/eventapi/<event_id>|access event with event_id|
-|eventapi|DELETE, GET, POST|/eventapi|access all events in the database|
-|eventapi|DELETE, GET, POST|/eventapi/all|access all events in the database|
+|eventapi|DELETE, GET, POST|`/eventapi/all/<pass_id>/<datefrom>`|access all events by pass_id starting from datefrom|
+|eventapi|DELETE, GET, POST|`/eventapi/all/<pass_id>`|access all events by pass_id|
+|eventapi|DELETE, GET, POST|`/eventapi/<event_id>`|access event with event_id|
+|eventapi|DELETE, GET, POST|`/eventapi`|access all events in the database|
+|eventapi|DELETE, GET, POST|`/eventapi/all`|access all events in the database|
 | | | | |
-|passengerapi|DELETE, GET, POST|/passapi/<pass_id>/<string:status>|access passenger data with passenger_id (can be 'all') and having status|
-|passengerapi|DELETE, GET, POST|/passapi/<pass_id>|access passenger data with passenger_id (can be 'all')| 
-|passengerapi|DELETE, GET, POST|/passapi|access all passengers data|
+|passengerapi|DELETE, GET, POST|`/passapi/<pass_id>/<string:status>`|access passenger data with passenger_id (can be 'all') and having status|
+|passengerapi|DELETE, GET, POST|`/passapi/<pass_id>`|access passenger data with passenger_id (can be 'all')| 
+|passengerapi|DELETE, GET, POST|`/passapi`|access all passengers data|
 | | | | |
 |***web app***|  |  |  |
-|events.main|GET, POST|/events/|events list, main screen for events|
-|events.delete|GET|/events/delete/<item>|delete selected event|
-|events.edit|GET, POST|/events/edit/<item>|update & create an event data|
+|events.main|GET, POST|`/events/`|events list, main screen for events|
+|events.delete|GET|`/events/delete/<item>`|delete selected event|
+|events.edit|GET, POST|`/events/edit/<item>`|update & create an event data|
 | | | | |
-|passengers.main|GET, POST|/passengers/|passengers list, main screen for passengers data|
-|passengers.delete|GET|/passengers/delete/<item>|delete selected passenger|
-|passengers.edit|GET, POST|/passengers/edit/<item>|update & create an passenger data|
+|passengers.main|GET, POST|`/passengers/`|passengers list, main screen for passengers data|
+|passengers.delete|GET|`/passengers/delete/<item>`|delete selected passenger|
+|passengers.edit|GET, POST|`/passengers/edit/<item>`|update & create an passenger data|
