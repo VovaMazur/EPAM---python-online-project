@@ -1,30 +1,31 @@
-***
-
 [![Build Status](https://app.travis-ci.com/VovaMazur/EPAM---python-online-project.svg?branch=master)](https://app.travis-ci.com/VovaMazur/EPAM---python-online-project)
 [![linting: pylint](https://img.shields.io/badge/linting-pylint-yellowgreen)](https://github.com/PyCQA/pylint)
 [![Coverage Status](https://coveralls.io/repos/github/VovaMazur/EPAM---python-online-project/badge.svg?branch=master)](https://coveralls.io/github/VovaMazur/EPAM---python-online-project?branch=master)
-
-
-Project description:
+***
+**Project description:**
 Manifestapp is the pet project on Python with the Flask framework. MySQL DB is used for the data storage.
 Instance is run on the local machine (http://localhost:5000).
 
-Application has web app and web api service. It was inspired by the MANIFEST TV Series (https://en.wikipedia.org/wiki/Manifest_(TV_series)).
+Application has web app and web api service. It was inspired by the [MANIFEST TV Series](https://en.wikipedia.org/wiki/Manifest_(TV_series)
 
 Application CRUDs 2 entities related to the mentioned TV show:
- > events details (callings of passengers)
- > passenger details
+- events details (callings of passengers)
+- passenger details
 
-Instructions:
+**Instructions:**
+Make sure you have python3.8+ and pip installed on your machine.
+App uses MySQL so you may need mysql-client installed as well.
+Create your virtual environment (e.g. <python -m venv venv>) and git clone from this repo.
+Enter installed new directory (EPAM--..., equal to the project name).
+To install all dependencies, run <pip install -r requirements.txt>
+If all were done well, you may run application (<python app.py> in the root folder).
 
+***Enjoy!***
 
-
-Endpoints available:
-
-Endpoint           Methods            Rule                                          Description
------------------  -----------------  -------------------------------------------   ------------------------------------------------------------
+**Endpoints available:**
+Endpoint | Methods | Rule | Description
 ***web api***
-eventapi           DELETE, GET, POST  /eventapi/all/<pass_id>/<datefrom>/<dateto>   access all events by passenger_id between datefrom and dateto
+eventapi | DELETE, GET, POST | /eventapi/all/<pass_id>/<datefrom>/<dateto> | access all events by passenger_id between datefrom and dateto
 eventapi           DELETE, GET, POST  /eventapi/all/<pass_id>/<datefrom>            access all events by passenger_id starting from datefrom
 eventapi           DELETE, GET, POST  /eventapi/all/<pass_id>                       access all events by passenger_id
 eventapi           DELETE, GET, POST  /eventapi/<event_id>                          access event with event_id

@@ -12,7 +12,6 @@ logger = logger_setup(__name__, '%(levelname)s::%(name)s::%(asctime)s'
 
 
 #initial setup
-passengers = {}
 pass_id, datefrom, dateto = 'all', '-', '-'
 
 

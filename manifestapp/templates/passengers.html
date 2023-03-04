@@ -7,10 +7,26 @@
         
         <label for="pstatus">Status: </label>
         <select name="selected_status" id="pstatus">
-            <option value="all">All</option>
-            <option value="unknown">Unknown</option>
-            <option value="live">Live</option>
-            <option value="dead">Dead</option>
+            <option value="all"
+                {% if cur_status == 'all' %}
+                    selected="selected"
+                {% endif %}
+            >All</option>
+            <option value="unknown"
+                {% if cur_status == 'unknown' %}
+                    selected="selected"
+                {% endif %}
+            >Unknown</option>
+            <option value="live"
+                {% if cur_status == 'live' %}
+                    selected="selected"
+                {% endif %}
+            >Live</option>
+            <option value="dead"
+                {% if cur_status == 'dead' %}
+                    selected="selected"
+                {% endif %}
+            >Dead</option>
         </select>
         
         <button type="submit" form="status"><i class="fa-solid fa-arrows-rotate"></i></button>
