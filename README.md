@@ -32,7 +32,7 @@ Application CRUDs 2 entities related to the mentioned TV show:
 |Endpoint|Methods|Rule|Description|
 | --- | --- | --- | --- |
 |***web api***|  |  |  |
-|eventapi|DELETE, GET, POST|/eventapi/all/<pass_id> /<datefrom>/<dateto>|access all events by pass_id between datefrom and dateto|
+|eventapi|DELETE, GET, POST|`/eventapi/all/<pass_id>/<datefrom>/<dateto>`|access all events by pass_id between datefrom and dateto|
 |eventapi|DELETE, GET, POST|/eventapi/all/<pass_id> /<datefrom>|access all events by pass_id starting from datefrom|
 |eventapi|DELETE, GET, POST|/eventapi/all/<pass_id>|access all events by pass_id|
 |eventapi|DELETE, GET, POST|/eventapi/<event_id>|access event with event_id|
