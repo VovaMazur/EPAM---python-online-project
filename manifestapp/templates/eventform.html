@@ -80,7 +80,7 @@
 
         <div class="map">
             {% if 'geo_location' in data %}
-                <img src="https://maps.googleapis.com/maps/api/staticmap?center={{ data.geo_location }}&zoom=5&size=550x365&markers=color:red%7C{{ data.geo_location }}&maptype=roadmap&key=AIzaSyCRG8EaD_twJreQo3L1pZqX-m9gvn3G5a4" alt="Geo location of event">
+                <img src="https://maps.googleapis.com/maps/api/staticmap?center={{ data.geo_location }}&zoom=5&size=550x365&markers=color:red%7C{{ data.geo_location }}&maptype=roadmap&key={{ key }}" alt="Geo location of event">
             {% endif %}
         </div>        
     </div>

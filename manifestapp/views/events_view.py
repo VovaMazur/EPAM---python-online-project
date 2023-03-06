@@ -1,4 +1,6 @@
 """Events routes"""
+import os
+from dotenv import load_dotenv
 from flask import Blueprint, request, flash
 from flask import render_template, redirect, url_for
 from manifestapp.logger import logger_setup
@@ -10,10 +12,9 @@ events_bp = Blueprint('events', __name__, static_folder='static', url_prefix='/e
 logger = logger_setup(__name__, '%(levelname)s::%(name)s::%(asctime)s'
                                 '::%(message)s', 'webapp.log', 'DEBUG')
 
-
 #initial setup
 pass_id, datefrom, dateto = 'all', '-', '-'
-
+load_dotenv()
 
 @events_bp.route('/', methods=['GET', 'POST'])
 def main():
@@ -103,7 +104,9 @@ def edit(item):
     else:
         item_data['other_pass'] = []
 
-    return render_template('eventform.html', item=item, data=item_data, passengers=passes)
+    apiKey = os.getenv('API_KEY')
+
+    return render_template('eventform.html', item=item, data=item_data, passengers=passes, key=apiKey)
 
 
 @events_bp.route('/delete/<item>')
