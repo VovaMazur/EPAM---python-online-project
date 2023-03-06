@@ -49,8 +49,6 @@ def edit(item):
     """edit route"""
 
     item_data = {}
-    if item != 'add':
-        item_data = pass_get_byid(item)[0]['item']
 
     if request.method == 'POST':
         updated_item = {}
@@ -82,6 +80,10 @@ def edit(item):
         message = resp[0].get('message')
         flash(f'Some error during update. {message}', 'error')
         logger.error('Some error during update %s. Response code: %s', message, resp[1])
+        item_data = updated_item
+
+    if item != 'add':
+        item_data = pass_get_byid(item)[0]['item']
 
     return render_template('passform.html', data=item_data, item=item)
 

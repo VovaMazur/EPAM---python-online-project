@@ -20,6 +20,12 @@ class PassengerApi(Resource):
             if resp[1] == 200:
                 logger.debug('Get all items with status %s. Status code: %s',
                              status, resp[1])
+            else:
+                logger.error('Item(s) not found with status %s. Status code: %s',
+                             status, resp[1])
+            resp = Response(json.dumps(resp[0]), resp[1], mimetype='application/json')
+
+
         else:
             resp = pass_get_byid(pass_id)
             if resp[1] == 200:
@@ -28,7 +34,7 @@ class PassengerApi(Resource):
             else:
                 logger.error('Item with id %s not found. Status code: %s',
                              pass_id, resp[1])
-                resp = Response(json.dumps(resp[0]), resp[1], mimetype='application/json')
+            resp = Response(json.dumps(resp[0]), resp[1], mimetype='application/json')
 
         return resp
 

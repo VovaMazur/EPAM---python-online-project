@@ -46,11 +46,13 @@ class EventApi(Resource):
                 if resp[1] == 200:
                     logger.debug('Get items. Passid:%s, datefrom:%s, dateto:%s. Status code: %s',
                                  pass_id, datefrom, dateto, resp[1])
+
                 else:
                     logger.error('%s. Passid:%s, datefrom:%s, dateto:%s. '
                                  'Status code: %s', resp[0]['message'],
                                  pass_id, datefrom, dateto, resp[1])
-                    resp = Response(json.dumps(resp[0]), resp[1], mimetype='application/json')
+
+                resp = Response(json.dumps(resp[0]), resp[1], mimetype='application/json')
             else:
                 resp = event_get_byid(event_id)
                 if resp[1] == 200:
@@ -60,7 +62,8 @@ class EventApi(Resource):
                     logger.error('%s. EventID:%s, datefrom:%s, dateto:%s. '
                                  'Status code: %s', resp[0]['message'],
                                  event_id, datefrom, dateto, resp[1])
-                    resp = Response(json.dumps(resp[0]), resp[1], mimetype='application/json')
+
+                resp = Response(json.dumps(resp[0]), resp[1], mimetype='application/json')
 
         return resp
 

@@ -40,7 +40,6 @@ update_schema_event = {}
 update_schema_event = create_schema_event.copy()
 update_schema_event.pop('required')
 
-
 create_schema_pass = {
     'type': 'object',
     'properties': {
@@ -148,6 +147,7 @@ def event_post(payload, event_id=None):
     except exceptions.ValidationError as error:
         resp = error_msgs[3]
         resp[0]['message'] = f'{resp[0]["message"]} {error}'
+        resp[0]['item'] = {}
 
     else:
         if not event_id:
@@ -177,6 +177,7 @@ def event_post(payload, event_id=None):
                 resp[0]['item'] = old_item.fs_as_dict
             else:
                 resp = error_msgs[1]
+                resp[0]['item'] = {}
 
     return resp
 
@@ -192,6 +193,7 @@ def event_delete(event_id):
         resp[0]['item'] = item.fs_as_dict
     else:
         resp = error_msgs[1]
+        resp[0]['item'] = {}
 
     return resp
 
@@ -231,6 +233,7 @@ def pass_get_bystatus(status=None):
         resp[0]['item'] = temp
     else:
         resp = error_msgs[1]
+        resp[0]['item'] = {}
 
     return resp
 
@@ -273,6 +276,7 @@ def pass_post(payload, pass_id=None):
     except exceptions.ValidationError as error:
         resp = error_msgs[3]
         resp[0]['message'] = f'{resp[0]["message"]} {error}'
+        resp[0]['item'] = {}
 
     else:
         if not pass_id:
@@ -293,12 +297,16 @@ def pass_post(payload, pass_id=None):
             old_item = Passenger.query.filter(Passenger.id == pass_id).first()
             if old_item:
                 for key, value in payload.items():
-                    setattr(old_item, key, value)
+                    if key != 'dob':
+                        setattr(old_item, key, value)
+                    else:
+                        setattr(old_item, key, datetime.strptime(value, '%Y-%m-%d').date())
                 db.session.commit()
                 resp = error_msgs[6]
                 resp[0]['item'] = old_item.fs_as_dict
             else:
                 resp = error_msgs[1]
+                resp[0]['item'] = {}
 
     return resp
 
@@ -314,5 +322,6 @@ def pass_delete(pass_id):
         resp[0]['item'] = item.fs_as_dict
     else:
         resp = error_msgs[1]
+        resp[0]['item'] = {}
 
     return resp

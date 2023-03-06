@@ -1,4 +1,3 @@
-include manifestapp/schema.sql
 graft manifestapp/static
 graft manifestapp/templates
 global-exclude *.pyc

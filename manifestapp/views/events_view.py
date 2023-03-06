@@ -59,15 +59,7 @@ def main():
 def edit(item):
     """edit route"""
 
-    passes = pass_getall_list()
-    if passes.get('all'):
-        passes.pop('all')
-
     item_data = {}
-    if item != 'add':
-        item_data = event_get_byid(int(item))[0]['item']
-        item_data['other_pass'] = [int(x) for x in item_data.get('other_pass').split(',')] \
-                if item_data.get('other_pass') != '' else []
 
     if request.method == 'POST':
         updated_item = {}
@@ -97,6 +89,19 @@ def edit(item):
         message = resp[0].get('message')
         flash(f'Some error during update. {message}', 'error')
         logger.error('Some error during update %s. Response code: %s', message, resp[1])
+        item_data = updated_item
+
+    passes = pass_getall_list()
+    if passes.get('all'):
+        passes.pop('all')
+
+    if item != 'add':
+        item_data = event_get_byid(int(item))[0]['item']
+
+    if item_data.get('other_pass') != '':
+        item_data['other_pass'] = [int(x) for x in item_data.get('other_pass').split(',')]
+    else:
+        item_data['other_pass'] = []
 
     return render_template('eventform.html', item=item, data=item_data, passengers=passes)
 
