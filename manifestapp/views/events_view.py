@@ -98,7 +98,7 @@ def edit(item):
     if item != 'add':
         item_data = event_get_byid(int(item))[0]['item']
 
-    if item_data.get('other_pass') != '':
+    if 'other_pass' in item_data and item_data.get('other_pass') != '':
         item_data['other_pass'] = [int(x) for x in item_data.get('other_pass').split(',')]
     else:
         item_data['other_pass'] = []

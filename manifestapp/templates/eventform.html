@@ -9,73 +9,82 @@
 <main>
     <h1>Calling details:</h1>
 
-    <form action="{{ url_for('events.edit', item=item) }}" id="event-details" method="POST">
-        <div>
-            <label for="edate">Date*</label>
-            <input type="date" id="edate" name="date" value="{{ data.date }}" required>
-        </div>
+    <div class="wrapper">
+        <form action="{{ url_for('events.edit', item=item) }}" id="event-details" method="POST">
+            <div>
+                <label for="edate">Date*</label>
+                <input type="date" id="edate" name="date" value="{{ data.date }}" required>
+            </div>
+            
+            <div>
+                <label for="epassenger">Passenger*</label>
+                <select name="passengerID" id="epassenger" required>
+                    {% for p in passengers %}
+                        <option value="{{ p }}"
+                            {% if p == data.passengerID %}
+                                selected="selected"
+                            {% endif %}>
+                        {{ passengers[p] }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            
+            <div>
+                <label for="geoloc">Geo location*</label>
+                <input type="text" id="geoloc" name="geo_location" placeholder="Format for lat & long > 'xx.xxx, xx.xxx'" value="{{ data.geo_location }}" required>
+            </div>
         
-        <div>
-            <label for="epassenger">Passenger*</label>
-            <select name="passengerID" id="epassenger" required>
-                {% for p in passengers %}
-                    <option value="{{ p }}"
-                        {% if p == data.passengerID %}
-                            selected="selected"
-                        {% endif %}>
-                    {{ passengers[p] }}</option>
-                {% endfor %}
-            </select>
-        </div>
-        
-        <div>
-            <label for="geoloc">Geo location*</label>
-            <input type="text" id="geoloc" name="geo_location" placeholder="Format for lat & long > 'xx.xxx, xx.xxx'" value="{{ data.geo_location }}" required>
-        </div>
+            <div>
+                <label for="edescription">Description*</label>
+                <input type="text" id="edescription" name="description" placeholder="Short description of event" maxlength="90" value="{{ data.description }}" required>
+            </div>
     
-        <div>
-            <label for="edescription">Description*</label>
-            <input type="text" id="edescription" name="description" placeholder="Short description of event" maxlength="90" value="{{ data.description }}" required>
-        </div>
+            <div>
+                <label for="estatus">Status*</label>
+                <select name="status" id="estatus" required>
+                    <option value="unknown" 
+                            {% if data.status == 'unknown' %}
+                                selected="selected"
+                            {% endif %}>Unknown</option>
+        
+                    <option value="success"
+                            {% if data.status == 'success' %}
+                                selected="selected"
+                            {% endif %}>Success</option>
+        
+                    <option value="failure"
+                            {% if data.status == 'failure' %}
+                                selected="selected"
+                            {% endif %}>Failure</option>
+                </select>
+            </div>
+            
+            <div>
+                <label for="eothers">Other passengers</label>
+                <select name="other_pass" id="eothers" multiple>
+                    {% for p in passengers %}
+                        <option value="{{ p }}"
+                            {% if p in data.other_pass %}
+                                selected="selected"
+                            {% endif %}
+                        >{{ passengers[p] }}</option>
+                    {% endfor %}
+                </select><br>
+            </div>
+    
+            <div class="comments">
+                <label for="ecomment">Comments</label>
+                <input type="text" id="ecomment" name="comments" placeholder="Add comments" maxlength="140" value="{{ data.comments }}">
+            </div>
+        </form>
 
-        <div>
-            <label for="estatus">Status*</label>
-            <select name="status" id="estatus" required>
-                <option value="unknown" 
-                        {% if data.status == 'unknown' %}
-                            selected="selected"
-                        {% endif %}>Unknown</option>
-    
-                <option value="success"
-                        {% if data.status == 'success' %}
-                            selected="selected"
-                        {% endif %}>Success</option>
-    
-                <option value="failure"
-                        {% if data.status == 'failure' %}
-                            selected="selected"
-                        {% endif %}>Failure</option>
-            </select>
-        </div>
-        
-        <div>
-            <label for="eothers">Other passengers</label>
-            <select name="other_pass" id="eothers" multiple>
-                {% for p in passengers %}
-                    <option value="{{ p }}"
-                        {% if p in data.other_pass %}
-                            selected="selected"
-                        {% endif %}
-                    >{{ passengers[p] }}</option>
-                {% endfor %}
-            </select><br>
-        </div>
+        <div class="map">
+            {% if 'geo_location' in data %}
+                <img src="https://maps.googleapis.com/maps/api/staticmap?center={{ data.geo_location }}&zoom=5&size=550x365&markers=color:red%7C{{ data.geo_location }}&maptype=roadmap&key=AIzaSyCRG8EaD_twJreQo3L1pZqX-m9gvn3G5a4" alt="Geo location of event">
+            {% endif %}
+        </div>        
+    </div>
 
-        <div class="comments">
-            <label for="ecomment">Comments</label>
-            <input type="text" id="ecomment" name="comments" placeholder="Add comments" maxlength="140" value="{{ data.comments }}">
-        </div>
-    </form>
 </main>
 
 {% endblock %}
