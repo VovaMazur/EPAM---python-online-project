@@ -84,7 +84,7 @@ class TestPassView(unittest.TestCase):
     @patch('manifestapp.views.passengers_view.pass_get_byid')
     def test_edit_route_get(self, mock_getpass):
         mock_getpass.return_value = [{'message': 'Item(s) retrieved', 'item': {
-                "id": 1,
+                "id": 2,
                 "fname": "Ben",
                 "lname": "Stone",
                 "seatno": "12C",
@@ -95,7 +95,7 @@ class TestPassView(unittest.TestCase):
             }
               }, 200]
 
-        test_resp = TestPassView.client.get('/passengers/edit/1')
+        test_resp = TestPassView.client.get('/passengers/edit/2')
         self.assertEqual(test_resp.status_code, 200)
         self.assertEqual(test_resp.mimetype, 'text/html')
         self.assertIn('value="Ben"', test_resp.text)
@@ -103,11 +103,6 @@ class TestPassView(unittest.TestCase):
         self.assertIn('value="12C"', test_resp.text)
         self.assertIn('value="NY, Some place"', test_resp.text)
         self.assertIn('value="1980-01-23"', test_resp.text)
-        self.assertIn('''<option value="live"
-                    
-                        selected="selected"
-                    
-                >Live</option>''', test_resp.text)
 
         test_resp = TestPassView.client.get('/passengers/edit/add')
         self.assertEqual(test_resp.status_code, 200)

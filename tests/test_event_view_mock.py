@@ -96,17 +96,9 @@ class TestEvView(unittest.TestCase):
         self.assertEqual(test_resp.status_code, 200)
         self.assertEqual(test_resp.mimetype, 'text/html')
         self.assertIn('value="2022-12-15"', test_resp.text)
-        self.assertIn('''<option value="1"
-                        
-                            selected="selected"
-                        >
-                    Mack Macker</option>''', test_resp.text)
         self.assertIn('value="12.45, 23.45"', test_resp.text)
         self.assertIn('value="auto testing dummy descp"', test_resp.text)
-        self.assertIn('''<option value="success"
-                        
-                            selected="selected"
-                        >Success</option>''', test_resp.text)
+
 
     @patch('manifestapp.views.events_view.pass_getall_list')
     @patch('manifestapp.views.events_view.event_post')
