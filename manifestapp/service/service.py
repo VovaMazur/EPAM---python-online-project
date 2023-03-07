@@ -36,7 +36,6 @@ create_schema_event = {
     'required': ['date', 'passengerID', 'geo_location', 'description', 'status']
 }
 
-update_schema_event = {}
 update_schema_event = create_schema_event.copy()
 update_schema_event.pop('required')
 
@@ -62,7 +61,6 @@ create_schema_pass = {
     'required': ['fname', 'lname', 'seatno', 'status']
 }
 
-update_schema_pass = {}
 update_schema_pass = create_schema_pass.copy()
 update_schema_pass.pop('required')
 

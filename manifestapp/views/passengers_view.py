@@ -1,9 +1,8 @@
 """Passenger routes"""
+import requests
 from flask import Blueprint, request, flash
 from flask import render_template, redirect, url_for
 from manifestapp.logger import logger_setup
-from manifestapp.service import pass_get_bystatus, pass_get_byid, \
-    pass_post, pass_delete, event_get_summary
 
 passengers_bp = Blueprint('passengers', __name__, static_folder='static', url_prefix='/passengers')
 
@@ -21,15 +20,17 @@ def main():
 
     global events_summary, status
 
-    events_summary = event_get_summary()
+    url = request.url_root
+
+    events_summary = requests.get(f'{url}/eventsummaryapi', timeout=3).json()
 
     if request.method == 'POST':
         status = request.form.get('selected_status')
         logger.debug('Page filter is updated. %s', status)
 
-    db_passes = pass_get_bystatus(status=status)
-    if db_passes[1] == 200:
-        db_passes = db_passes[0]['item']
+    db_passes = requests.get(f'{url}/passapi/all/{status}', timeout=3)
+    if db_passes.status_code == 200:
+        db_passes = db_passes.json().get('item')
     else:
         db_passes = []
 
@@ -37,7 +38,7 @@ def main():
     #processing raw data
     for passenger in db_passes:
         data.append(passenger)
-        data[-1]['callings'] = events_summary.get(passenger['id'], 0)
+        data[-1]['callings'] = events_summary.get(str(passenger['id']), 0)
 
     logger.debug('Page to be rendered. Parameters: %s', status)
 
@@ -47,6 +48,8 @@ def main():
 @passengers_bp.route('/edit/<item>', methods=['GET', 'POST'])
 def edit(item):
     """edit route"""
+
+    url = request.url_root
 
     item_data = {}
 
@@ -66,24 +69,24 @@ def edit(item):
 
         if item != 'add':
             #update
-            resp = pass_post(payload=updated_item, pass_id=item)
+            resp = requests.post(f'{url}/passapi/{item}', json=updated_item, timeout=3)
         else:
             #create
-            resp = pass_post(payload=updated_item)
+            resp = requests.post(f'{url}/passapi', json=updated_item, timeout=3)
 
 
-        if resp[1] == 200:
+        if resp.status_code == 200:
             flash('Record is created/updated', 'success')
-            logger.debug('Record is created / update. Response code: %s', resp[1])
+            logger.debug('Record is created / update. Response code: %s', resp.status_code)
             return redirect(url_for('passengers.main'))
 
-        message = resp[0].get('message')
+        message = resp.json().get('message')
         flash(f'Some error during update. {message}', 'error')
-        logger.error('Some error during update %s. Response code: %s', message, resp[1])
+        logger.error('Some error during update %s. Response code: %s', message, resp.status_code)
         item_data = updated_item
 
     if item != 'add':
-        item_data = pass_get_byid(item)[0]['item']
+        item_data = requests.get(f'{url}/passapi/{item}', timeout=3).json().get('item')
 
     return render_template('passform.html', data=item_data, item=item)
 
@@ -94,17 +97,21 @@ def delete(item):
 
     global events_summary
 
-    events_summary = event_get_summary()
+    url = request.url_root
 
-    if int(item) not in events_summary:
-        resp = pass_delete(item)
-        if resp[1] == 200:
+    events_summary = requests.get(f'{url}/eventsummaryapi', timeout=3).json()
+
+    if str(item) not in events_summary:
+        resp = requests.delete(f'{url}/passapi/{item}', timeout=3)
+
+        if resp.status_code == 200:
             flash('Record is deleted', 'success')
-            logger.debug('Record is deleted. Response code: %s', resp[1])
+            logger.debug('Record is deleted. Response code: %s', resp.status_code)
         else:
-            message = resp[0].get('message')
+            message = resp.json().get('message')
             flash(f'Some error during deletion. {message}', 'error')
-            logger.error('Some error during deletion %s. Response code: %s', message, resp[1])
+            logger.error('Some error during deletion %s. Response code: %s',
+                         message, resp.status_code)
     else:
         flash('You cannot delete a passenger data if he logged callings', 'error')
         logger.error('You cannot delete a passenger data if there are logged callings')

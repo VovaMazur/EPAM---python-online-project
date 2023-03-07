@@ -38,10 +38,12 @@ Application CRUDs 2 entities related to the mentioned TV show:
 |eventapi|DELETE, GET, POST|`/eventapi/<event_id>`|access event with event_id|
 |eventapi|DELETE, GET, POST|`/eventapi`|access all events in the database|
 |eventapi|DELETE, GET, POST|`/eventapi/all`|access all events in the database|
+|eventsummaryapi|GET|`/eventsummaryapi`|get events summary|
 | | | | |
 |passengerapi|DELETE, GET, POST|`/passapi/<pass_id>/<string:status>`|access passenger data with passenger_id (can be 'all') and having status|
 |passengerapi|DELETE, GET, POST|`/passapi/<pass_id>`|access passenger data with passenger_id (can be 'all')| 
 |passengerapi|DELETE, GET, POST|`/passapi`|access all passengers data|
+|passengersummaryapi|GET|`/passlistapi`|get dictionary of passengers name|
 | | | | |
 |***web app***|  |  |  |
 |events.main|GET, POST|`/events/`|events list, main screen for events|

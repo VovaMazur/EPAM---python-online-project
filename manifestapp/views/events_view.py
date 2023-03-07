@@ -1,11 +1,10 @@
 """Events routes"""
 import os
+import requests
 from dotenv import load_dotenv
 from flask import Blueprint, request, flash
 from flask import render_template, redirect, url_for
 from manifestapp.logger import logger_setup
-from manifestapp.service import event_get_bypass, pass_getall_list, \
-    event_get_byid, event_post, event_delete
 
 events_bp = Blueprint('events', __name__, static_folder='static', url_prefix='/events')
 
@@ -21,8 +20,10 @@ def main():
     """main route"""
     global pass_id, datefrom, dateto
 
+    url = request.url_root
+
     #setup
-    data = pass_getall_list()
+    data = requests.get(f'{url}/passlistapi', timeout=3).json()
 
     if request.method == 'POST':
         pass_id = request.form.get('filter') if request.form.get('filter') != 'all' else 'all'
@@ -30,9 +31,11 @@ def main():
         dateto = request.form.get('dateto') if request.form.get('dateto') else '-'
         logger.debug('Page filters are updated. %s %s %s', pass_id, datefrom, dateto)
 
-    all_events = event_get_bypass(pass_id, datefrom, dateto)
+    all_events = requests.get(f'{url}/eventapi/all/{pass_id}/{datefrom}/{dateto}', timeout=3)
     if all_events:
-        all_events = all_events[0]['item']
+        all_events = all_events.json().get('item')
+    else:
+        all_events = []
 
     #processing raw data
     events = []
@@ -40,14 +43,15 @@ def main():
         events.append({
             'id': event.get('id'),
             'date': event.get('date'),
-            'passenger': data.get(event.get('passengerID')),
+            'passenger': data.get(str(event.get('passengerID'))),
             'geo_location': event.get('geo_location'),
             'description': event.get('description'),
             'status': event.get('status'),
-            'other_pass': ', '.join([data.get(int(x)) for x in
-                                     event.get('other_pass').split(',') if x != ''])
+            'other_pass': ', '.join([data.get(x.strip()) if data.get(x.strip()) is not None
+                                        else 'Deleted' for x in event.get('other_pass').split(',')])
+                                        if event.get('other_pass').split(',') != [''] else ''
         })
-    selected_pass = data[pass_id if pass_id == 'all' else int(pass_id)]
+    selected_pass = data[pass_id if pass_id == 'all' else pass_id]
     selected_dates = [datefrom, dateto]
 
     logger.debug('Page to be rendered. Parameters: %s %s', selected_pass, selected_dates)
@@ -59,6 +63,8 @@ def main():
 @events_bp.route('/edit/<item>', methods=['GET', 'POST'])
 def edit(item):
     """edit route"""
+
+    url = request.url_root
 
     item_data = {}
 
@@ -76,50 +82,54 @@ def edit(item):
 
         if item != 'add':
             #update
-            resp = event_post(payload=updated_item, event_id=item)
+            resp = requests.post(f'{url}/eventapi/{item}', json=updated_item, timeout=3)
 
         else:
             #create
-            resp = event_post(payload=updated_item)
+            resp = requests.post(f'{url}/eventapi', json=updated_item, timeout=3)
 
-        if resp[1] == 200:
+        if resp.status_code == 200:
             flash('Record is created/updated', 'success')
-            logger.debug('Record is created / update. Response code: %s', resp[1])
+            logger.debug('Record is created / update. Response code: %s', resp.status_code)
             return redirect(url_for('events.main'))
 
-        message = resp[0].get('message')
+        message = resp.json().get('message')
         flash(f'Some error during update. {message}', 'error')
-        logger.error('Some error during update %s. Response code: %s', message, resp[1])
+        logger.error('Some error during update %s. Response code: %s', message, resp.status_code)
         item_data = updated_item
 
-    passes = pass_getall_list()
+    passes = requests.get(f'{url}/passlistapi', timeout=3).json()
     if passes.get('all'):
         passes.pop('all')
 
     if item != 'add':
-        item_data = event_get_byid(int(item))[0]['item']
+        item_data = requests.get(f'{url}/eventapi/{item}', timeout=3).json().get('item')
 
     if 'other_pass' in item_data and item_data.get('other_pass') != '':
         item_data['other_pass'] = [int(x) for x in item_data.get('other_pass').split(',')]
     else:
         item_data['other_pass'] = []
 
-    apiKey = os.getenv('API_KEY')
+    api_key = os.getenv('API_KEY')
 
-    return render_template('eventform.html', item=item, data=item_data, passengers=passes, key=apiKey)
+    return render_template('eventform.html', item=item, data=item_data,
+                           passengers=passes, key=api_key)
 
 
 @events_bp.route('/delete/<item>')
 def delete(item):
     """edit route"""
 
-    resp = event_delete(item)
-    if resp[1] == 200:
+    url = request.url_root
+
+    resp = requests.delete(f'{url}/eventapi/{item}', timeout=3)
+
+    if resp.status_code == 200:
         flash('Record is deleted', 'success')
-        logger.debug('Record is deleted. Response code: %s', resp[1])
+        logger.debug('Record is deleted. Response code: %s', resp.status_code)
     else:
-        message = resp[0].get('message')
+        message = resp.json().get('message')
         flash(f'Some error during deletion. {message}', 'error')
-        logger.error('Some error during deletion %s. Response code: %s', message, resp[1])
+        logger.error('Some error during deletion %s. Response code: %s', message, resp.status_code)
 
     return redirect(url_for('events.main'))

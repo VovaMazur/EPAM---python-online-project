@@ -2,7 +2,8 @@
 import json
 from flask_restful import Resource
 from flask import request, Response
-from manifestapp.service import pass_get_bystatus, pass_get_byid, pass_post, pass_delete
+from manifestapp.service import pass_get_bystatus, pass_get_byid, \
+    pass_post, pass_delete, pass_getall_list
 from manifestapp.logger import logger_setup
 
 logger = logger_setup(__name__, '%(levelname)s::%(name)s::%(asctime)s'
@@ -23,7 +24,7 @@ class PassengerApi(Resource):
             else:
                 logger.error('Item(s) not found with status %s. Status code: %s',
                              status, resp[1])
-            resp = Response(json.dumps(resp[0]), resp[1], mimetype='application/json')
+            resp = Response(json.dumps(resp[0]), resp[1], content_type='application/json')
 
 
         else:
@@ -34,7 +35,7 @@ class PassengerApi(Resource):
             else:
                 logger.error('Item with id %s not found. Status code: %s',
                              pass_id, resp[1])
-            resp = Response(json.dumps(resp[0]), resp[1], mimetype='application/json')
+            resp = Response(json.dumps(resp[0]), resp[1], content_type='application/json')
 
         return resp
 
@@ -48,7 +49,7 @@ class PassengerApi(Resource):
         else:
             logger.debug('DELETE. %s. Status code: %s', res[0]['message'], res[1])
 
-        resp = Response(json.dumps(res[0]), res[1], mimetype='application/json')
+        resp = Response(json.dumps(res[0]), res[1], content_type='application/json')
         return resp
 
     def post(self, pass_id=None):
@@ -63,6 +64,15 @@ class PassengerApi(Resource):
         elif res[1] == 200:
             logger.debug('POST. %s. Status code: %s', res[0]['message'], res[1])
 
-        resp = Response(json.dumps(res[0]), res[1], mimetype='application/json')
+        resp = Response(json.dumps(res[0]), res[1], content_type='application/json')
 
         return resp
+
+
+class PassengerSummaryApi(Resource):
+    """API class for passengers summary"""
+
+    def get(self):
+        """GET method to retrieve passengers summary data as a DICT"""
+
+        return pass_getall_list()

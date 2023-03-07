@@ -4,7 +4,7 @@ import json
 from flask_restful import Resource
 from flask import request, Response
 from manifestapp.service import event_get_bypass, event_get_byid, \
-    event_post, event_delete, error_msgs
+    event_post, event_delete, error_msgs, event_get_summary
 from manifestapp.logger import logger_setup
 
 logger = logger_setup(__name__, '%(levelname)s::%(name)s::%(asctime)s'
@@ -34,7 +34,7 @@ class EventApi(Resource):
         if (datefrom and not validatedate(datefrom)) or \
                 (dateto and not validatedate(dateto)):
             resp = Response(json.dumps(error_msgs[2][0]), error_msgs[2][1],
-                            mimetype='application/json')
+                            content_type='application/json')
             logger.error('Invalid %s parameter. '
                          'Status code: %s', ("datefrom" if datefrom else "dateto"),
                          error_msgs[2][1])
@@ -52,7 +52,6 @@ class EventApi(Resource):
                                  'Status code: %s', resp[0]['message'],
                                  pass_id, datefrom, dateto, resp[1])
 
-                resp = Response(json.dumps(resp[0]), resp[1], mimetype='application/json')
             else:
                 resp = event_get_byid(event_id)
                 if resp[1] == 200:
@@ -63,7 +62,7 @@ class EventApi(Resource):
                                  'Status code: %s', resp[0]['message'],
                                  event_id, datefrom, dateto, resp[1])
 
-                resp = Response(json.dumps(resp[0]), resp[1], mimetype='application/json')
+            resp = Response(json.dumps(resp[0]), resp[1], content_type='application/json')
 
         return resp
 
@@ -77,7 +76,7 @@ class EventApi(Resource):
         else:
             logger.debug('DELETE. %s. Status code: %s', res[0]['message'], res[1])
 
-        resp = Response(json.dumps(res[0]), res[1], mimetype='application/json')
+        resp = Response(json.dumps(res[0]), res[1], content_type='application/json')
         return resp
 
     def post(self, event_id=None):
@@ -92,6 +91,15 @@ class EventApi(Resource):
         elif res[1] == 200:
             logger.debug('POST. %s. Status code: %s', res[0]['message'], res[1])
 
-        resp = Response(json.dumps(res[0]), res[1], mimetype='application/json')
+        resp = Response(json.dumps(res[0]), res[1], content_type='application/json')
 
         return resp
+
+
+class EventSummaryApi(Resource):
+    """API class for events summary data"""
+
+    def get(self):
+        """GET method to retrieve events summary data"""
+
+        return event_get_summary()

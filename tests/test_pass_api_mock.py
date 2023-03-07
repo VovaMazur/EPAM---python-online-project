@@ -154,3 +154,18 @@ class TestPassAPI(unittest.TestCase):
         item_updated_withoutid.pop('id')
         self.assertEqual(item_updated_withoutid, test_payload)
 
+    @patch('manifestapp.rest.passenger_api.pass_getall_list')
+    def test_get_passlist(self, mock_passlist_f):
+        mock_passlist_f.return_value = {
+            'all': 'All',
+            '1': 'Ben Stone',
+            '2': 'Kel Stone'
+        }
+
+        test_resp = TestPassAPI.client.get('/passlistapi')
+        self.assertEqual(test_resp.status_code, 200)
+        self.assertEqual(test_resp.json, {
+            'all': 'All',
+            '1': 'Ben Stone',
+            '2': 'Kel Stone'
+        })

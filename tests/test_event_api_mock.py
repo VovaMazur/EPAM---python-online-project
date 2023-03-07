@@ -156,3 +156,16 @@ class TestEventAPI(unittest.TestCase):
         item_updated_withoutid.pop('id')
         self.assertEqual(item_updated_withoutid, test_payload)
 
+    @patch('manifestapp.rest.event_api.event_get_summary')
+    def test_get_summary(self, mock_get_summary):
+        mock_get_summary.return_value = {
+            '1': 1,
+            '2': 1
+        }
+
+        test_resp = TestEventAPI.client.get('/eventsummaryapi')
+        self.assertEqual(test_resp.status_code, 200)
+        self.assertEqual(test_resp.json, {
+            '1': 1,
+            '2': 1
+        })

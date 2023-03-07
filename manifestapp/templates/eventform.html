@@ -21,7 +21,7 @@
                 <select name="passengerID" id="epassenger" required>
                     {% for p in passengers %}
                         <option value="{{ p }}"
-                            {% if p == data.passengerID %}
+                            {% if p|int == data.passengerID %}
                                 selected="selected"
                             {% endif %}>
                         {{ passengers[p] }}</option>
@@ -64,7 +64,7 @@
                 <select name="other_pass" id="eothers" multiple>
                     {% for p in passengers %}
                         <option value="{{ p }}"
-                            {% if p in data.other_pass %}
+                            {% if p|int in data.other_pass %}
                                 selected="selected"
                             {% endif %}
                         >{{ passengers[p] }}</option>
