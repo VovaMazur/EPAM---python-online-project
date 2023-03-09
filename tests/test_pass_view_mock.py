@@ -14,6 +14,7 @@ class TestPassView(unittest.TestCase):
         cls.app.test_client_class = FlaskLoginClient
         cls.user = MagicMock(username='test')
         cls.user.get_id.return_value = 1
+        cls.user.query.get.return_value = 1
 
     @responses.activate
     def test_main_route(self):
