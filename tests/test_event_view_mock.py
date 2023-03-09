@@ -1,19 +1,31 @@
 """Tests for components"""
 import unittest
 import responses
-from unittest.mock import MagicMock
+from unittest.mock import patch, MagicMock
 from flask_login import FlaskLoginClient
+from manifestapp.models import User
+from manifestapp.extensions import login_manager
 from manifestapp import create_app
 
 
 class TestEvView(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
-        cls.app = create_app()
-        cls.app.test_client_class = FlaskLoginClient
-        cls.user = MagicMock(username='test')
-        cls.user.get_id.return_value = 1
-        cls.user.query.get.return_value = 1
+        t_config = {
+            'ENV': 'development',
+            'DEBUG': True,
+            'TESTING': True,
+            'LOGIN_DISABLED': True,
+            'SQLALCHEMY_DATABASE_URI': 'sqlite:///test.db',
+            'SECRET_KEY': 'test'
+        }
+
+        cls.app = create_app(t_config)
+        cls.client = cls.app.test_client()
+        # cls.app.test_client_class = FlaskLoginClient
+        # with cls.app.app_context():
+        #     cls.mock_user = MagicMock(autospec=User)
+        #     cls.mock_user.username = 'test'
 
     @responses.activate
     def test_main_route_get(self):
@@ -51,7 +63,8 @@ class TestEvView(unittest.TestCase):
                 'comments': ''}]},
             status=200)
 
-        with TestEvView.app.test_client(user=TestEvView.user) as client:
+        with TestEvView.client as client:
+        # with TestEvView.app.test_client(user=TestEvView.mock_user) as client:
             test_resp = client.get('/events/').text
             self.assertIn('Registered callings of passenger(s): All', test_resp)
             self.assertIn('''<td>1</td>
@@ -89,7 +102,8 @@ class TestEvView(unittest.TestCase):
             status=200)
 
         test_form_data = {'filter': '2'}
-        with TestEvView.app.test_client(user=TestEvView.user) as client:
+        with TestEvView.client as client:
+        # with TestEvView.app.test_client(user=mock_user) as client:
             test_resp = client.post('/events/', data=test_form_data).text
             self.assertIn('Registered callings of passenger(s): Test Tester', test_resp)
             self.assertNotIn('''<td>2</td>
@@ -106,7 +120,8 @@ class TestEvView(unittest.TestCase):
             status=404)
 
         test_form_data = {'filter': 3}
-        with TestEvView.app.test_client(user=TestEvView.user) as client:
+        with TestEvView.client as client:
+        # with TestEvView.app.test_client(user=mock_user) as client:
             test_resp = client.post('/events/', data=test_form_data).text
             self.assertIn('Registered callings of passenger(s): Mack Mackerson', test_resp)
             self.assertIn('''<tbody>
@@ -138,7 +153,8 @@ class TestEvView(unittest.TestCase):
                 'comments': ''}},
             status=200)
 
-        with TestEvView.app.test_client(user=TestEvView.user) as client:
+        with TestEvView.client as client:
+        # with TestEvView.app.test_client(user=mock_user) as client:
             test_resp = client.get('/events/edit/add').text
             self.assertIn('form action="/events/edit/add" id="event-details" method="POST"', test_resp)
 
@@ -204,7 +220,8 @@ class TestEvView(unittest.TestCase):
                 'comments': ''}},
             status=200)
 
-        with TestEvView.app.test_client(user=TestEvView.user) as client:
+        with TestEvView.client as client:
+        # with TestEvView.app.test_client(user=mock_user) as client:
             test_resp = client.post('/events/edit/1', data=test_payload)
             self.assertEqual(test_resp.status_code, 302)
             self.assertEqual(test_resp.mimetype, 'text/html')
@@ -231,7 +248,8 @@ class TestEvView(unittest.TestCase):
             json={'message': 'Incorrect payload', 'item': {}},
             status=400)
 
-        with TestEvView.app.test_client(user=TestEvView.user) as client:
+        with TestEvView.client as client:
+        # with TestEvView.app.test_client(user=mock_user) as client:
             test_resp = client.post('/events/edit/add', data=test_invalid_payload).text
             self.assertIn('div id="div_flash" class="error"', test_resp)
             self.assertIn('form action="/events/edit/add" id="event-details" method="POST', test_resp)
@@ -269,7 +287,8 @@ class TestEvView(unittest.TestCase):
               },
             status=200)
 
-        with TestEvView.app.test_client(user=TestEvView.user) as client:
+        with TestEvView.client as client:
+        # with TestEvView.app.test_client(user=mock_user) as client:
             test_resp = client.get('/events/delete/10000')
             self.assertEqual(test_resp.status_code, 302)
             self.assertEqual(test_resp.mimetype, 'text/html')

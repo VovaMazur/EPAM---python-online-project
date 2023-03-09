@@ -4,7 +4,6 @@ import responses
 from unittest.mock import MagicMock
 from flask_login import FlaskLoginClient
 from manifestapp import create_app
-from manifestapp.views.passengers_view import main, edit, delete
 
 
 class TestPassView(unittest.TestCase):
