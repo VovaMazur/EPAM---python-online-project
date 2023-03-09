@@ -1,19 +1,23 @@
 """Tests for components"""
 import unittest
 import responses
-from unittest.mock import MagicMock
-from flask_login import FlaskLoginClient
 from manifestapp import create_app
 
 
 class TestPassView(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
-        cls.app = create_app()
-        cls.app.test_client_class = FlaskLoginClient
-        cls.user = MagicMock(username='test')
-        cls.user.get_id.return_value = 1
-        cls.user.query.get.return_value = 1
+        t_config = {
+            'ENV': 'development',
+            'DEBUG': True,
+            'TESTING': True,
+            'LOGIN_DISABLED': True,
+            'SQLALCHEMY_DATABASE_URI': 'sqlite:///test.db',
+            'SECRET_KEY': 'test'
+        }
+
+        cls.app = create_app(t_config)
+        cls.client = cls.app.test_client()
 
     @responses.activate
     def test_main_route(self):
@@ -49,7 +53,7 @@ class TestPassView(unittest.TestCase):
             status=200
         )
 
-        with TestPassView.app.test_client(user=TestPassView.user) as client:
+        with TestPassView.client as client:
             test_resp = client.get('/passengers/').text
             self.assertIn('''<td>1</td>
                 <td>Ben</td>
@@ -68,7 +72,7 @@ class TestPassView(unittest.TestCase):
         )
 
         test_form_data = {'selected_status': 'invalid'}
-        with TestPassView.app.test_client(user=TestPassView.user) as client:
+        with TestPassView.client as client:
             test_resp = client.post('/passengers/', data=test_form_data).text
             self.assertIn('''<tbody>
             
@@ -91,7 +95,7 @@ class TestPassView(unittest.TestCase):
             }},
             status=200)
 
-        with TestPassView.app.test_client(user=TestPassView.user) as client:
+        with TestPassView.client as client:
             test_resp = client.get('/passengers/edit/1').text
             self.assertIn('form action="/passengers/edit/1" id="pass-details" method="POST"', test_resp)
             self.assertIn('value="Ben"', test_resp)
@@ -130,7 +134,7 @@ class TestPassView(unittest.TestCase):
                 "comments": ""
             }
 
-        with TestPassView.app.test_client(user=TestPassView.user) as client:
+        with TestPassView.client as client:
             test_resp = client.post('/passengers/edit/10', data=test_payload)
             self.assertEqual(test_resp.status_code, 302)
             self.assertEqual(test_resp.mimetype, 'text/html')
@@ -151,7 +155,7 @@ class TestPassView(unittest.TestCase):
             }},
             status=200)
 
-        with TestPassView.app.test_client(user=TestPassView.user) as client:
+        with TestPassView.client as client:
             test_resp = client.post('/passengers/edit/add', data=test_payload)
             self.assertEqual(test_resp.status_code, 302)
             self.assertEqual(test_resp.mimetype, 'text/html')
@@ -188,7 +192,7 @@ class TestPassView(unittest.TestCase):
                 "comments": ""
             }
 
-        with TestPassView.app.test_client(user=TestPassView.user) as client:
+        with TestPassView.client as client:
             test_resp = client.post('/passengers/edit/20', data=test_notfound).text
             self.assertIn('div id="div_flash" class="error"', test_resp)
 
@@ -223,7 +227,7 @@ class TestPassView(unittest.TestCase):
             status=404
         )
 
-        with TestPassView.app.test_client(user=TestPassView.user) as client:
+        with TestPassView.client as client:
             test_resp = client.get('/passengers/delete/3')
             self.assertEqual(test_resp.status_code, 302)
             self.assertEqual(test_resp.mimetype, 'text/html')
