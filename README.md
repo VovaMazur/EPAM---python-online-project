@@ -50,6 +50,7 @@ User logining functionality is added to the Web app part.
 |***web app***|  |  |  |
 |log.login|GET, POST|`/log/in`|user login form for registered users|
 |log.register|GET, POST|`/log/register`|user registration form for new users|
+|log.logout|GET|`/log/out`|user logging out|
 | | | | |
 |events.main|GET, POST|`/events/`|events list, main screen for events|
 |events.delete|GET|`/events/delete/<item>`|delete selected event|
