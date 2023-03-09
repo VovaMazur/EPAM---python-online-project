@@ -2,6 +2,7 @@
 import requests
 from flask import Blueprint, request, flash
 from flask import render_template, redirect, url_for
+from flask_login import login_required
 from manifestapp.logger import logger_setup
 
 passengers_bp = Blueprint('passengers', __name__, static_folder='static', url_prefix='/passengers')
@@ -15,6 +16,7 @@ status = 'all'
 
 
 @passengers_bp.route('/', methods=['GET', 'POST'])
+@login_required
 def main():
     """main route"""
 
@@ -46,6 +48,7 @@ def main():
 
 
 @passengers_bp.route('/edit/<item>', methods=['GET', 'POST'])
+@login_required
 def edit(item):
     """edit route"""
 
@@ -92,6 +95,7 @@ def edit(item):
 
 
 @passengers_bp.route('/delete/<item>')
+@login_required
 def delete(item):
     """edit route"""
 

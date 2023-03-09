@@ -2,7 +2,7 @@ html,
 body {
     background-color: #DDD0C8;
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-    margin-left: 20px;
+    margin-inline: 20px;
 }
 
 input,
@@ -32,6 +32,7 @@ ul {
     padding: 0;
     list-style-type: none;
     height: 10%;
+    justify-content: space-between;
 }
 
 a {
@@ -52,6 +53,12 @@ a:hover {
     background-color: black;
 }
 
+li.user-info {
+    font-weight: bold;
+    font-size: 2rem;
+    margin-left: 50%;
+}
+
 div#div_flash {
     font-weight: bold;
     margin-block: 20px;
@@ -66,6 +73,10 @@ div.error#div_flash {
 
 div.success#div_flash {
     background-color: lightgreen;
+}
+
+div.info#div_flash {
+    background-color: grey;
 }
 
 div.main-buttons {

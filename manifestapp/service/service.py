@@ -1,7 +1,7 @@
 """CRUD Functions with app models"""
 from datetime import datetime
 from jsonschema import validate, exceptions
-from manifestapp.db_instance import db
+from manifestapp.extensions import db
 from manifestapp.models import Event, Passenger
 
 error_msgs = [

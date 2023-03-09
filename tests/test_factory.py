@@ -8,5 +8,5 @@ class TestAppFactory(unittest.TestCase):
         app = create_app()
         self.assertEqual(app.name, 'manifestapp')
         self.assertEqual(app.testing, False)
-        self.assertEqual(app.blueprints.keys(), dict({'events': '', 'passengers': ''}).keys())
+        self.assertEqual(app.blueprints.keys(), dict({'events': '', 'passengers': '', 'log': ''}).keys())
         self.assertEqual(app.config['SQLALCHEMY_DATABASE_URI'], 'mysql://app:password@192.168.0.110:3306/manifestapp')

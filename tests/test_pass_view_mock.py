@@ -1,6 +1,8 @@
 """Tests for components"""
 import unittest
 import responses
+from unittest.mock import MagicMock
+from flask_login import FlaskLoginClient
 from manifestapp import create_app
 from manifestapp.views.passengers_view import main, edit, delete
 
@@ -9,6 +11,9 @@ class TestPassView(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         cls.app = create_app()
+        cls.app.test_client_class = FlaskLoginClient
+        cls.user = MagicMock(username='test')
+        cls.user.get_id.return_value = 1
 
     @responses.activate
     def test_main_route(self):
@@ -44,14 +49,8 @@ class TestPassView(unittest.TestCase):
             status=200
         )
 
-        responses.get(
-            url='http://localhost//passapi/all/invalid',
-            json={'message': 'Item(s) not found', 'item': {}},
-            status=404
-        )
-
-        with TestPassView.app.test_request_context():
-            test_resp = main()
+        with TestPassView.app.test_client(user=TestPassView.user) as client:
+            test_resp = client.get('/passengers/').text
             self.assertIn('''<td>1</td>
                 <td>Ben</td>
                 <td>Stone</td>
@@ -61,11 +60,17 @@ class TestPassView(unittest.TestCase):
                 <td>live</td>
                 <td>1</td>''', test_resp)
 
+        #post method / main page
+        responses.get(
+            url='http://localhost//passapi/all/invalid',
+            json={'message': 'Item(s) not found', 'item': {}},
+            status=404
+        )
 
         test_form_data = {'selected_status': 'invalid'}
-        with TestPassView.app.test_request_context(method='POST', data=test_form_data):
-            test_resp = main()
-            self.assertIn('''        <tbody>
+        with TestPassView.app.test_client(user=TestPassView.user) as client:
+            test_resp = client.post('/passengers/', data=test_form_data).text
+            self.assertIn('''<tbody>
             
         </tbody>''', test_resp)
 
@@ -86,9 +91,8 @@ class TestPassView(unittest.TestCase):
             }},
             status=200)
 
-        with TestPassView.app.test_request_context():
-            test_resp = edit('1')
-            self.assertEqual(True, True)
+        with TestPassView.app.test_client(user=TestPassView.user) as client:
+            test_resp = client.get('/passengers/edit/1').text
             self.assertIn('form action="/passengers/edit/1" id="pass-details" method="POST"', test_resp)
             self.assertIn('value="Ben"', test_resp)
             self.assertIn('value="Stone"', test_resp)
@@ -126,8 +130,8 @@ class TestPassView(unittest.TestCase):
                 "comments": ""
             }
 
-        with TestPassView.app.test_request_context(method='POST', data=test_payload):
-            test_resp = edit('10')
+        with TestPassView.app.test_client(user=TestPassView.user) as client:
+            test_resp = client.post('/passengers/edit/10', data=test_payload)
             self.assertEqual(test_resp.status_code, 302)
             self.assertEqual(test_resp.mimetype, 'text/html')
             self.assertEqual(test_resp.headers['Location'], "/passengers/")
@@ -147,8 +151,8 @@ class TestPassView(unittest.TestCase):
             }},
             status=200)
 
-        with TestPassView.app.test_request_context(method='POST', data=test_payload):
-            test_resp = edit('add')
+        with TestPassView.app.test_client(user=TestPassView.user) as client:
+            test_resp = client.post('/passengers/edit/add', data=test_payload)
             self.assertEqual(test_resp.status_code, 302)
             self.assertEqual(test_resp.mimetype, 'text/html')
             self.assertEqual(test_resp.headers['Location'], "/passengers/")
@@ -184,8 +188,8 @@ class TestPassView(unittest.TestCase):
                 "comments": ""
             }
 
-        with TestPassView.app.test_request_context(method='POST', data=test_notfound):
-            test_resp = edit('20')
+        with TestPassView.app.test_client(user=TestPassView.user) as client:
+            test_resp = client.post('/passengers/edit/20', data=test_notfound).text
             self.assertIn('div id="div_flash" class="error"', test_resp)
 
     @responses.activate
@@ -219,18 +223,18 @@ class TestPassView(unittest.TestCase):
             status=404
         )
 
-        with TestPassView.app.test_request_context():
-            test_resp = delete('3')
+        with TestPassView.app.test_client(user=TestPassView.user) as client:
+            test_resp = client.get('/passengers/delete/3')
             self.assertEqual(test_resp.status_code, 302)
             self.assertEqual(test_resp.mimetype, 'text/html')
             self.assertEqual(test_resp.headers['Location'], "/passengers/")
 
-            test_resp = delete('10000')
+            test_resp = client.get('/passengers/delete/10000')
             self.assertEqual(test_resp.status_code, 302)
             self.assertEqual(test_resp.mimetype, 'text/html')
             self.assertEqual(test_resp.headers['Location'], "/passengers/")
 
-            test_resp = delete('1')
+            test_resp = client.get('/passengers/delete/1')
             self.assertEqual(test_resp.status_code, 302)
             self.assertEqual(test_resp.mimetype, 'text/html')
             self.assertEqual(test_resp.headers['Location'], "/passengers/")

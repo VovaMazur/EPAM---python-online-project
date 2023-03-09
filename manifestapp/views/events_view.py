@@ -4,6 +4,7 @@ import requests
 from dotenv import load_dotenv
 from flask import Blueprint, request, flash
 from flask import render_template, redirect, url_for
+from flask_login import login_required
 from manifestapp.logger import logger_setup
 
 events_bp = Blueprint('events', __name__, static_folder='static', url_prefix='/events')
@@ -16,6 +17,7 @@ pass_id, datefrom, dateto = 'all', '-', '-'
 load_dotenv()
 
 @events_bp.route('/', methods=['GET', 'POST'])
+@login_required
 def main():
     """main route"""
     global pass_id, datefrom, dateto
@@ -61,6 +63,7 @@ def main():
 
 
 @events_bp.route('/edit/<item>', methods=['GET', 'POST'])
+@login_required
 def edit(item):
     """edit route"""
 
@@ -117,6 +120,7 @@ def edit(item):
 
 
 @events_bp.route('/delete/<item>')
+@login_required
 def delete(item):
     """edit route"""
 

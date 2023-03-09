@@ -14,6 +14,8 @@ Application CRUDs 2 entities related to the mentioned TV show:
 - events details (callings of passengers)
 - passenger details
 
+User logining functionality is added to the Web app part.
+
 
 # Instructions:
 
@@ -46,6 +48,9 @@ Application CRUDs 2 entities related to the mentioned TV show:
 |passengersummaryapi|GET|`/passlistapi`|get dictionary of passengers name|
 | | | | |
 |***web app***|  |  |  |
+|log.login|GET, POST|`/log/in`|user login form for registered users|
+|log.register|GET, POST|`/log/register`|user registration form for new users|
+| | | | |
 |events.main|GET, POST|`/events/`|events list, main screen for events|
 |events.delete|GET|`/events/delete/<item>`|delete selected event|
 |events.edit|GET, POST|`/events/edit/<item>`|update & create an event data|

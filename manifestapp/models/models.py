@@ -1,6 +1,9 @@
 """Data model definition for the application"""
 from flask_serialize import FlaskSerialize
-from manifestapp.db_instance import db
+from flask_login import UserMixin
+from password_strength import PasswordPolicy
+from manifestapp.extensions import db, login_manager, app_bcrypt
+
 
 FsMixin = FlaskSerialize(db)
 
@@ -38,3 +41,38 @@ class Passenger(db.Model, FsMixin):
     # serializer fields
     __fs_create_fields__ = __fs_update_fields__ = ['fname', 'lname',
                                                    'seatno', 'address', 'dob', 'status', 'comments']
+
+
+policy = PasswordPolicy.from_names(
+    length=8,  # min length: 8
+    uppercase=1,  # need min. 1 uppercase letters
+    numbers=1,  # need min. 1 digits
+)
+
+@login_manager.user_loader
+def load_user(user_id):
+    """User callback utility function"""
+    return User.query.get(user_id)
+
+class User(db.Model, UserMixin):
+    """Class model to store users data"""
+
+    __tablename__ = 'users'
+    id = db.Column(db.Integer, primary_key=True)
+    username = db.Column(db.String(10), nullable=False, unique=True)
+    pwd_hash = db.Column(db.String(60), nullable=False)
+    is_active = db.Column(db.Integer, nullable=False, default=1)  #1 is active, 0 is inactive
+
+    @property
+    def password(self):
+        """User attribute to set hashed password"""
+        return self.pwd_hash
+
+    @password.setter
+    def password(self, plain_text_pwd):
+        """User attribute setter for hashed password"""
+        self.pwd_hash = app_bcrypt.generate_password_hash(plain_text_pwd).decode('utf-8')
+
+    def check_pwd(self, attempted_pwd):
+        """User password method check. Checking of string vs hashed password stored in the DB"""
+        return app_bcrypt.check_password_hash(self.pwd_hash, attempted_pwd)

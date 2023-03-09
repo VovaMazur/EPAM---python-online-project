@@ -5,25 +5,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='images/icons8-star-filled-color-16.png') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles/base.css') }}" type="text/css">
-    <title>Manifest TV - events tracker</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/log.css') }}" type="text/css">
+    <title>Manifest TV - login page</title>
     <script src="https://kit.fontawesome.com/870bdadc6a.js" crossorigin="anonymous"></script>
 </head>
 <body>
-    <nav>
-        <ul>
-            <li><a href="{{ url_for('events.main') }}">Events</a></li>
-            <li><a href="{{ url_for('passengers.main') }}">Passengers</a></li>
-            <li class="user-info">
-                {% if current_user.is_authenticated %}
-                    Current user: {{ current_user.username }}
-                {% endif %}
-            </li>
-            <li>
-                <a href="{{ url_for('log.logout') }}">Logout</a>
-            </li>
-        </ul>
-    </nav>
     {% with messages = get_flashed_messages(with_categories=true) %}
         {% if messages %}
            {% for category, message in messages %}
@@ -37,10 +23,20 @@
         {% endif %}
     {% endwith %}
 
+    <h1>Login form:</h1>
 
-    {% block content %}
+    <form action="{{ url_for('log.login') }}" id="login" method="POST">
+        <label for="username">Username: </label>
+        <input type="text" id="username" name="username" maxlength="10" placeholder="Enter your user name" required>
+        <label for="pwd">Password: </label>
+        <input type="password" id="pwd" name="password" maxlength="10" placeholder="Enter your password" required>
+        <button id="form" type="submit" form="login">OK</button>
+    </form>
 
-    {% endblock %}
+    <div>
+        <h3>Do you want to register?</h3>
+        <a href="{{ url_for('log.register') }}">Go to Register page</a>
+    </div>
 
 </body>
 </html>

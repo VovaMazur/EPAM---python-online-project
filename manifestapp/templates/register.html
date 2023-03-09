@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='images/icons8-star-filled-color-16.png') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/log.css') }}" type="text/css">
+    <title>Manifest TV - register page</title>
+    <script src="https://kit.fontawesome.com/870bdadc6a.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+    {% for category, message in messages %}
+    <div id="div_flash" class="{{category}}">
+        <button type="button" onclick="removeFlash()">
+            <span>&times;</span>
+        </button>
+        {{ message }}
+    </div>
+    {% endfor %}
+    {% endif %}
+    {% endwith %}
+    
+    <h1>Registration form:</h1>
+
+    <form action="{{ url_for('log.register') }}" id="register" method="POST">
+        <label for="username">Username: </label>
+        <input title="Username should be maximum 10 symbols" type="text" id="username" name="username" maxlength="10" placeholder="Enter your user name" required>
+        <label for="pwd">Password: </label>
+        <input title="Password should consist of min. 8 symbols, including 1 uppercase, 1 number"
+        type="password" id="pwd" name="password" maxlength="10" placeholder="Enter your password" required>
+        <label for="pwd2">Repeat password: </label>
+        <input title="Both passwords should match" type="password" id="pwd2" name="password2" maxlength="10" placeholder="Repeat your password" required>
+        <button id="form" type="submit" form="register">OK</button>
+    </form>
+
+    <div>
+        <h3>Have you already registered?</h3>
+        <a href="{{ url_for('log.login') }}">Go to Login page</a>
+    </div>
+
+</body>
+</html>
+
+<script>
+    function removeFlash() {
+        document.getElementById('div_flash').remove();
+    }
+</script>
+
+    <!-- <div>
+        <i class="fa-solid fa-arrows-rotate"></i>
+        <i class="fa-regular fa-square-plus"></i>
+        <i class="fa-solid fa-filter"></i>
+        <i class="fa-solid fa-pencil"></i>
+        <i class="fa-regular fa-trash-can"></i>
+        <i class="fa-regular fa-circle-check"></i>
+        <i class="fa-regular fa-circle-xmark"></i>
+    </div> -->

@@ -1,24 +1,29 @@
 """Tests for components"""
 import unittest
 import responses
+from unittest.mock import MagicMock
+from flask_login import FlaskLoginClient
 from manifestapp import create_app
-from manifestapp.views.events_view import main, edit, delete
 
 
 class TestEvView(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         cls.app = create_app()
+        cls.app.test_client_class = FlaskLoginClient
+        cls.user = MagicMock(username='test')
+        cls.user.get_id.return_value = 1
 
     @responses.activate
-    def test_main_route(self):
+    def test_main_route_get(self):
+        #get method / main page
         responses.get(
             url='http://localhost//passlistapi',
             json={
             'all': 'All',
-            1: 'Mack Macker',
-            2: 'Test Tester',
-            3: 'Mack Mackerson'
+            '1': 'Mack Macker',
+            '2': 'Test Tester',
+            '3': 'Mack Mackerson'
         },
             status=200)
 
@@ -45,8 +50,8 @@ class TestEvView(unittest.TestCase):
                 'comments': ''}]},
             status=200)
 
-        with TestEvView.app.test_request_context():
-            test_resp = main()
+        with TestEvView.app.test_client(user=TestEvView.user) as client:
+            test_resp = client.get('/events/').text
             self.assertIn('Registered callings of passenger(s): All', test_resp)
             self.assertIn('''<td>1</td>
                 <td>2022-12-15</td>
@@ -54,6 +59,19 @@ class TestEvView(unittest.TestCase):
                 <td>12.45, 23.45</td>
                 <td>auto testing dummy descp</td>
                 <td>success</td>''', test_resp)
+
+    @responses.activate
+    def test_main_route_post(self):
+        # post method / main page
+        responses.get(
+            url='http://localhost//passlistapi',
+            json={
+            'all': 'All',
+            '1': 'Mack Macker',
+            '2': 'Test Tester',
+            '3': 'Mack Mackerson'
+        },
+            status=200)
 
         responses.get(
             url='http://localhost//eventapi/all/2/-/-',
@@ -69,25 +87,26 @@ class TestEvView(unittest.TestCase):
                 'comments': ''}]},
             status=200)
 
-        test_form_data = {'filter': 2}
-        with TestEvView.app.test_request_context(method='POST', data=test_form_data):
-            test_resp = main()
+        test_form_data = {'filter': '2'}
+        with TestEvView.app.test_client(user=TestEvView.user) as client:
+            test_resp = client.post('/events/', data=test_form_data).text
             self.assertIn('Registered callings of passenger(s): Test Tester', test_resp)
-            self.assertNotIn('''<td>1</td>
+            self.assertNotIn('''<td>2</td>
                 <td>2022-12-15</td>
-                <td>Mack Macker</td>
+                <td>Test Tester</td>
                 <td>12.45, 23.45</td>
                 <td>auto testing dummy descp</td>
                 <td>success</td>''', test_resp)
 
+        #empty list / items not found
         responses.get(
             url='http://localhost//eventapi/all/3/-/-',
             json={'message': 'Item(s) not found', 'item': {}},
             status=404)
 
         test_form_data = {'filter': 3}
-        with TestEvView.app.test_request_context(method='POST', data=test_form_data):
-            test_resp = main()
+        with TestEvView.app.test_client(user=TestEvView.user) as client:
+            test_resp = client.post('/events/', data=test_form_data).text
             self.assertIn('Registered callings of passenger(s): Mack Mackerson', test_resp)
             self.assertIn('''<tbody>
             
@@ -118,11 +137,11 @@ class TestEvView(unittest.TestCase):
                 'comments': ''}},
             status=200)
 
-        with TestEvView.app.test_request_context():
-            test_resp = edit('add')
+        with TestEvView.app.test_client(user=TestEvView.user) as client:
+            test_resp = client.get('/events/edit/add').text
             self.assertIn('form action="/events/edit/add" id="event-details" method="POST"', test_resp)
 
-            test_resp = edit('1')
+            test_resp = client.get('/events/edit/1').text
             self.assertIn('form action="/events/edit/1" id="event-details" method="POST"', test_resp)
             self.assertIn('value="2022-12-15"', test_resp)
             self.assertIn('''<option value="1"
@@ -136,6 +155,17 @@ class TestEvView(unittest.TestCase):
                             
                                 selected="selected"
                             >Success</option>''', test_resp)
+
+    @responses.activate
+    def test_edit_route_post(self):
+        responses.get(
+            url='http://localhost//passlistapi',
+            json={
+                'all': 'All',
+                1: 'Mack Macker',
+                2: 'Test Tester'
+                },
+            status=200)
 
         test_payload = {
             'date': '2022-12-15',
@@ -173,13 +203,13 @@ class TestEvView(unittest.TestCase):
                 'comments': ''}},
             status=200)
 
-        with TestEvView.app.test_request_context(method='POST', data=test_payload):
-            test_resp = edit('1')
+        with TestEvView.app.test_client(user=TestEvView.user) as client:
+            test_resp = client.post('/events/edit/1', data=test_payload)
             self.assertEqual(test_resp.status_code, 302)
             self.assertEqual(test_resp.mimetype, 'text/html')
             self.assertEqual(test_resp.headers['Location'], "/events/")
 
-            test_resp = edit('add')
+            test_resp = client.post('/events/edit/add', data=test_payload)
             self.assertEqual(test_resp.status_code, 302)
             self.assertEqual(test_resp.mimetype, 'text/html')
             self.assertEqual(test_resp.headers['Location'], "/events/")
@@ -200,8 +230,8 @@ class TestEvView(unittest.TestCase):
             json={'message': 'Incorrect payload', 'item': {}},
             status=400)
 
-        with TestEvView.app.test_request_context(method='POST', data=test_invalid_payload):
-            test_resp = edit('add')
+        with TestEvView.app.test_client(user=TestEvView.user) as client:
+            test_resp = client.post('/events/edit/add', data=test_invalid_payload).text
             self.assertIn('div id="div_flash" class="error"', test_resp)
             self.assertIn('form action="/events/edit/add" id="event-details" method="POST', test_resp)
             self.assertIn('value="2022-12-15"', test_resp)
@@ -238,13 +268,13 @@ class TestEvView(unittest.TestCase):
               },
             status=200)
 
-        with TestEvView.app.test_request_context():
-            test_resp = delete('10000')
+        with TestEvView.app.test_client(user=TestEvView.user) as client:
+            test_resp = client.get('/events/delete/10000')
             self.assertEqual(test_resp.status_code, 302)
             self.assertEqual(test_resp.mimetype, 'text/html')
             self.assertEqual(test_resp.headers['Location'], "/events/")
 
-            test_resp = delete('1')
+            test_resp = client.get('/events/delete/1')
             self.assertEqual(test_resp.status_code, 302)
             self.assertEqual(test_resp.mimetype, 'text/html')
             self.assertEqual(test_resp.headers['Location'], "/events/")
