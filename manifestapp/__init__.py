@@ -1,5 +1,6 @@
 """Manifest application module"""
 import os
+from datetime import timedelta
 from flask import Flask, render_template
 from manifestapp.extensions import db, migrate, app_bcrypt, login_manager
 from manifestapp.models import Event, Passenger, User
@@ -15,6 +16,7 @@ def create_app(test_config=None):
         application.config.from_pyfile('config.py')
     else:
         application.config.from_mapping(test_config)
+    application.permanent_session_lifetime = timedelta(hours=1)
 
     # Initialize Flask extensions here
     db.init_app(application)
@@ -29,6 +31,8 @@ def create_app(test_config=None):
     login_manager.login_view = 'log.login'
     login_manager.login_message = 'Please, login to access the web application'
     login_manager.login_message_category = "info"
+
+
 
     # Register blueprints here
     application.register_blueprint(events_bp)
