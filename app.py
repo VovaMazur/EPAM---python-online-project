@@ -3,4 +3,4 @@ from flask import has_app_context
 
 if __name__ == "__main__":
     application = create_app()
-    application.run(debug=True)
+    application.run()
