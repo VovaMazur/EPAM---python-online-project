@@ -2,8 +2,7 @@
 import os
 import requests
 from dotenv import load_dotenv
-from flask import Blueprint, request, flash
-from flask import render_template, redirect, url_for
+from flask import Blueprint, request, flash, render_template, redirect, url_for, session
 from flask_login import login_required
 from manifestapp.logger import logger_setup
 
@@ -12,15 +11,16 @@ events_bp = Blueprint('events', __name__, static_folder='static', url_prefix='/e
 logger = logger_setup(__name__, '%(levelname)s::%(name)s::%(asctime)s'
                                 '::%(message)s', 'webapp.log', 'DEBUG')
 
-#initial setup
-pass_id, datefrom, dateto = 'all', '-', '-'
+#load environment
 load_dotenv()
 
 @events_bp.route('/', methods=['GET', 'POST'])
 @login_required
 def main():
     """main route"""
-    global pass_id, datefrom, dateto
+
+    pass_id, datefrom, dateto = session.get('e_pass_id', 'all'), session.get('e_datefrom', '-'), \
+                                session.get('e_dateto', '-')
 
     url = request.url_root
 
@@ -31,6 +31,10 @@ def main():
         pass_id = request.form.get('filter') if request.form.get('filter') != 'all' else 'all'
         datefrom = request.form.get('datefrom') if request.form.get('datefrom') else '-'
         dateto = request.form.get('dateto') if request.form.get('dateto') else '-'
+
+        session['e_pass_id'], session['e_datefrom'], session['e_dateto'] = pass_id, datefrom, dateto
+        session.modified = True
+
         logger.debug('Page filters are updated. %s %s %s', pass_id, datefrom, dateto)
 
     all_events = requests.get(f'{url}/eventapi/all/{pass_id}/{datefrom}/{dateto}', timeout=3)

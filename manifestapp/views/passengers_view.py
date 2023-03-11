@@ -1,7 +1,6 @@
 """Passenger routes"""
 import requests
-from flask import Blueprint, request, flash
-from flask import render_template, redirect, url_for
+from flask import Blueprint, request, flash, render_template, redirect, url_for, session
 from flask_login import login_required
 from manifestapp.logger import logger_setup
 
@@ -10,17 +9,13 @@ passengers_bp = Blueprint('passengers', __name__, static_folder='static', url_pr
 logger = logger_setup(__name__, '%(levelname)s::%(name)s::%(asctime)s'
                                 '::%(message)s', 'webapp.log', 'DEBUG')
 
-#initial setup
-events_summary = {}
-status = 'all'
-
 
 @passengers_bp.route('/', methods=['GET', 'POST'])
 @login_required
 def main():
     """main route"""
 
-    global events_summary, status
+    status = session.get('pass_status', 'all')
 
     url = request.url_root
 
@@ -28,6 +23,8 @@ def main():
 
     if request.method == 'POST':
         status = request.form.get('selected_status')
+        session['pass_status'] = status
+        session.modified = True
         logger.debug('Page filter is updated. %s', status)
 
     db_passes = requests.get(f'{url}/passapi/all/{status}', timeout=3)
@@ -98,8 +95,6 @@ def edit(item):
 @login_required
 def delete(item):
     """edit route"""
-
-    global events_summary
 
     url = request.url_root
 

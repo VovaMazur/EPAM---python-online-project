@@ -42,7 +42,8 @@ def register():
 
                 check_user = User.query.filter(User.username == new_user.username).first()
                 if check_user:
-                    msg = f'User <{check_user.username}> already exists. Please, use another username or go to login page'
+                    msg = f'User <{check_user.username}> already exists. ' \
+                          f'Please, use another username or go to login page'
                 else:
                     db.session.add(new_user)
                     db.session.commit()
