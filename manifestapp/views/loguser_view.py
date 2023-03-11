@@ -1,6 +1,6 @@
 """User logining routes"""
-from flask import Blueprint, request, flash, url_for
-from flask import render_template, redirect
+from flask import Blueprint, request, flash, url_for, \
+    render_template, redirect, session
 from flask_login import login_required, logout_user, login_user
 from manifestapp.logger import logger_setup
 from manifestapp.models import User, policy
@@ -68,5 +68,9 @@ def logout():
     """Logout route"""
 
     logout_user()
+    session.pop('e_pass_id', None)
+    session.pop('e_datefrom', None)
+    session.pop('e_dateto', None)
+    session.pop('pass_status', None)
     logger.debug('Current user is logged out')
     return redirect(url_for('log.login'))
